@@ -9,8 +9,8 @@ app.run(function($transform) {
 });
 
 app.config(function($routeProvider) {
-	  $routeProvider.when('/',              {templateUrl: 'home.html', reloadOnSearch: false});
-	  $routeProvider.when('/scroll',        {templateUrl: 'scroll.html', reloadOnSearch: false}); 
+	  $routeProvider.when('/',  	{templateUrl: 'pages/home.html', reloadOnSearch: false});
+	  $routeProvider.when('/about', {templateUrl: 'pages/about.html', reloadOnSearch: false}); 
 	});
 
 app.controller('magusRootController', function($rootScope, $scope){
