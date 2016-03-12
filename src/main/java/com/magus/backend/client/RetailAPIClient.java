@@ -8,6 +8,7 @@ import com.magus.backend.model.APIConstants;
 
 public class RetailAPIClient extends AbstractClient {
 
+	//http://retailbanking.mybluemix.net/banking/icicibank/balanceenquiry?client_id=test@abc.com&token=f5316a5e35a4&accountno=9999888877770001
 	public String balanceEnquiry(String accNo) {
 		WebTarget webTarget = getWebTarget().path(APIConstants.BALANCE_ENQUIRY_STR);
 		Response response = queryClientToken(webTarget)
@@ -18,6 +19,7 @@ public class RetailAPIClient extends AbstractClient {
 		return ans;
 	}
 
+	//http://retailbanking.mybluemix.net/banking/icicibank/account_summary?client_id=test@abc.com&token=f5316a5e35a4&custid=88881001&accountno=
 	public String accountSummary(String accNo, String custId) {
 		Response response = queryClientToken(getWebTarget().path(APIConstants.ACCOUNT_SUMMARY_STR))
 				.queryParam(APIConstants.ACCOUNT_NUMBER_STR, String.valueOf(accNo))

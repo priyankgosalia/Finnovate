@@ -9,5 +9,5 @@ package com.magus.version;
 public final class Version {
 	public static String APPNAME	= "magus";
     public static String VERSION 	= "1.0.0-SNAPSHOT";
-    public static String BUILDTIME 	= "09-03-2016 02:05";
+    public static String BUILDTIME 	= "13-03-2016 00:30";
 }

@@ -28,7 +28,7 @@ public class AbstractClient {
 		if (response.getStatus() <= 299 && response.getStatus() >= 200) {
 			ans = response.readEntity(String.class);
 		}
-		return ans;
+		return ans.substring(ans.indexOf("[")+1, ans.lastIndexOf("]"));
 	}
 
 	public WebTarget queryClientToken(WebTarget webTarget) {

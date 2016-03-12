@@ -2,9 +2,13 @@ package com.magus.backend.model;
 
 import java.util.Date;
 
-public class AccountBalance {
+public class AccountBalance extends AuthorizationFailed{
 
-	private double balance;
+	public AccountBalance(String code, String description, String message) {
+		super(code, description, message);
+	}
+
+	private Double balance;
 	private String accountNumber;
 	private String accountType;
 	private Date balanceTime;
@@ -20,11 +24,11 @@ public class AccountBalance {
 		this.balanceTime = balanceTime;
 	}
 
-	public double getBalance() {
+	public Double getBalance() {
 		return balance;
 	}
 
-	public void setBalance(double balance) {
+	public void setBalance(Double balance) {
 		this.balance = balance;
 	}
 

@@ -1,8 +1,13 @@
 package com.magus.backend.model;
 
-public class AccountSummary {
 
-	private double balance;
+public class AccountSummary  extends AuthorizationFailed{
+
+	public AccountSummary(String code, String description, String message) {
+		super(code, description, message);
+	}
+
+	private Double balance;
 	private String accountNumber;
 	private String productDescription;
 	private String productType;
@@ -17,7 +22,7 @@ public class AccountSummary {
 
 	}
 
-	public AccountSummary(double balance, String accountNumber, String productDescription, String productType,
+	public AccountSummary(Double balance, String accountNumber, String productDescription, String productType,
 			String subProductType, String customerId, String accountType, String accountStatus, String mobileNumber,
 			String productCategory) {
 		this.balance = balance;
@@ -32,11 +37,11 @@ public class AccountSummary {
 		this.productCategory = productCategory;
 	}
 
-	public double getBalance() {
+	public Double getBalance() {
 		return balance;
 	}
 
-	public void setBalance(double balance) {
+	public void setBalance(Double balance) {
 		this.balance = balance;
 	}
 
