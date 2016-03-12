@@ -3,13 +3,13 @@ package com.magus.backend.model;
 
 public class AccountSummary  extends AuthorizationFailed{
 
-	public AccountSummary(String code, String description, String message) {
+	public AccountSummary(Integer code, String description, String message) {
 		super(code, description, message);
 	}
 
 	private Double balance;
-	private String accountNumber;
-	private String productDescription;
+	private String accountno;
+	private String product_desc;
 	private String productType;
 	private String subProductType;
 	private String customerId;
@@ -26,8 +26,8 @@ public class AccountSummary  extends AuthorizationFailed{
 			String subProductType, String customerId, String accountType, String accountStatus, String mobileNumber,
 			String productCategory) {
 		this.balance = balance;
-		this.accountNumber = accountNumber;
-		this.productDescription = productDescription;
+		this.accountno = accountNumber;
+		this.product_desc = productDescription;
 		this.productType = productType;
 		this.subProductType = subProductType;
 		this.customerId = customerId;
@@ -46,19 +46,19 @@ public class AccountSummary  extends AuthorizationFailed{
 	}
 
 	public String getAccountNumber() {
-		return accountNumber;
+		return accountno;
 	}
 
 	public void setAccountNumber(String accountNumber) {
-		this.accountNumber = accountNumber;
+		this.accountno = accountNumber;
 	}
 
 	public String getProductDescription() {
-		return productDescription;
+		return product_desc;
 	}
 
 	public void setProductDescription(String productDescription) {
-		this.productDescription = productDescription;
+		this.product_desc = productDescription;
 	}
 
 	public String getProductType() {

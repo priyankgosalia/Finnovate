@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class AccountBalance extends AuthorizationFailed{
 
-	public AccountBalance(String code, String description, String message) {
+	public AccountBalance(Integer code, String description, String message) {
 		super(code, description, message);
 	}
 

@@ -2,12 +2,12 @@ package com.magus.backend.model;
 
 public class AuthorizationFailed {
 
-	private String code;
+	private Integer code;
 	private String description;
 	private String message;
 
 	
-	public AuthorizationFailed(String code, String description, String message) {
+	public AuthorizationFailed(Integer code, String description, String message) {
 		super();
 		this.code = code;
 		this.description = description;
@@ -18,11 +18,11 @@ public class AuthorizationFailed {
 		super();
 	}
 
-	public String getCode() {
+	public Integer getCode() {
 		return code;
 	}
 
-	public void setCode(String code) {
+	public void setCode(Integer code) {
 		this.code = code;
 	}
 

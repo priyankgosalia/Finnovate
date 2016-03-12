@@ -14,6 +14,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.magus.backend.client.RetailAPIClient;
 import com.magus.backend.model.AccountBalance;
 import com.magus.backend.model.AccountSummary;
+import com.magus.backend.model.BranchAtmLocator;
 
 @Path("/retail")
 public class RetailWebservice {
@@ -34,5 +35,13 @@ public class RetailWebservice {
 	public AccountBalance getAccountBalance(@QueryParam("accountNumber") String accNo) throws JsonParseException, JsonMappingException, IOException{
 		ObjectMapper mapper = new ObjectMapper();
 		return mapper.readValue(client.balanceEnquiry(accNo), AccountBalance.class);
+	}
+	
+	@GET
+	@Path("/atmLocator")
+	@Produces(MediaType.APPLICATION_JSON)
+	public BranchAtmLocator getAtmLocator(@QueryParam("lat") String latitude, @QueryParam("long") String longitude) throws JsonParseException, JsonMappingException, IOException{
+		ObjectMapper mapper = new ObjectMapper();
+		return mapper.readValue(client.branchAtmLocator(latitude, longitude), BranchAtmLocator.class);
 	}
 }

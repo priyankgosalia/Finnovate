@@ -5,6 +5,8 @@ public interface APIConstants {
 	// public final static String baseURL = "http://localhost:8080/magus/ws/messages";
 	public static final String RETAIL_BASE_URL = "https://retailbanking.mybluemix.net/banking/icicibank/";
 	public static final String LOAN_BASE_URL = "https://alphaiciapi2.mybluemix.net/rest/Loan/";
+	public static final String CORP_BASE_URL = "https://corporate_bank.mybluemix.net/corporate_banking/mybank/";
+	public static final String INSURANCE_BASE_URL = "http://generalinsurance.mybluemix.net/banking/icicibank_general_insurance/";
 	public static final String CLIENT_ID_VALUE = "ujjwal.ju@gmail.com";
 	public static final String TOKEN_VALUE = "0d78405d6ac4";
 
@@ -24,7 +26,25 @@ public interface APIConstants {
 	public static final String LOAN_TRANSACTION_DETAILS_STR = "transDetails";
 	public static final String CARD_ACCOUNT_DETAILS_STR = "getCardDetails";
 
+	public static final String LOCATE_ATM = "locate";
+	public static final String ATM ="ATM";
+	public static final String LATITUDE ="lat";
+	public static final String LONGITUDE ="long";
+
 	// corporate banking api urls
+	public static final String CORP_ACC_SUMM = "corp_account_summary";
+	public static final String SHOW_RM = "show_rm_mapping";
+	public static final String CORP_ID = "corpid";
+	public static final String USER_ID = "userid";
+	public static final String RM_QUERY = "corp_rm_query";
+	public static final String RM_ID = "rmid";
+	public static final String QUERY = "query";
+
+	//insurance api
+	public static final String CUST_DETAILS = "getCustomerDtls";
+	public static final String MOBILE_NO = "mobileNo";
+	public static final String EMAIL_ID = "emailId";
+	public static final String RENEWAL_NOTICE = "getRenewalNotice";
 	
 	// parameter keys
 	public static final String ACCOUNT_NUMBER_STR = "accountno";
