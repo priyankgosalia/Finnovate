@@ -7,7 +7,7 @@ import javax.ws.rs.core.Response;
 
 import org.glassfish.jersey.client.ClientConfig;
 
-import com.magus.backend.model.C;
+import com.magus.backend.model.APIConstants;
 
 public class AbstractClient {
 
@@ -18,7 +18,7 @@ public class AbstractClient {
 			ClientConfig conf = new ClientConfig();
 			Client client = ClientBuilder.newClient(conf);
 
-			webTarget = client.target(C.RetailBaseURL);
+			webTarget = client.target(APIConstants.RETAIL_BASE_URL);
 		}
 		return webTarget;
 	}
@@ -32,8 +32,8 @@ public class AbstractClient {
 	}
 
 	public WebTarget queryClientToken(WebTarget webTarget) {
-		return webTarget.queryParam(C.CLIENT_ID_STR, C.CLIENT_ID_VAL)
-				.queryParam(C.TOKEN_STR, C.TOKEN_VAL);
+		return webTarget.queryParam(APIConstants.CLIENT_ID_STR, APIConstants.CLIENT_ID_VALUE)
+				.queryParam(APIConstants.TOKEN_STR, APIConstants.TOKEN_VALUE);
 	}
 
 	public AbstractClient() {

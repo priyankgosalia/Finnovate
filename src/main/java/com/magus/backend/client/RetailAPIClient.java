@@ -4,26 +4,24 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import com.magus.backend.model.C;
+import com.magus.backend.model.APIConstants;
 
 public class RetailAPIClient extends AbstractClient {
 
 	public String balanceEnquiry(String accNo) {
-		WebTarget webTarget = getWebTarget().path(C.BALANCEENQUIRY_STR);
+		WebTarget webTarget = getWebTarget().path(APIConstants.BALANCE_ENQUIRY_STR);
 		Response response = queryClientToken(webTarget)
-								.queryParam(C.ACCOUNTNO_STR, String.valueOf(accNo)).request()
-								.accept(MediaType.APPLICATION_JSON_TYPE).get();
+				.queryParam(APIConstants.ACCOUNT_NUMBER_STR, String.valueOf(accNo)).request()
+				.accept(MediaType.APPLICATION_JSON_TYPE).get();
 		String ans = getResponse(response);
 
 		return ans;
 	}
 
 	public String accountSummary(String accNo, String custId) {
-		Response response = queryClientToken(
-				getWebTarget().path(C.ACC_SUMM_STR))
-						.queryParam(C.ACCOUNTNO_STR, String.valueOf(accNo))
-						.queryParam(C.CUSTID_STR, custId).request()
-						.accept(MediaType.APPLICATION_JSON_TYPE).get();
+		Response response = queryClientToken(getWebTarget().path(APIConstants.ACCOUNT_SUMMARY_STR))
+				.queryParam(APIConstants.ACCOUNT_NUMBER_STR, String.valueOf(accNo))
+				.queryParam(APIConstants.CUSTID_STR, custId).request().accept(MediaType.APPLICATION_JSON_TYPE).get();
 		String ans = getResponse(response);
 
 		return ans;
@@ -34,8 +32,8 @@ public class RetailAPIClient extends AbstractClient {
 		String accNo = "5555666677770328";
 		System.out.println(client.balanceEnquiry(accNo));
 		System.out.println(client.accountSummary(accNo, "88881328"));
-		
-		DummyClient cl2 = new DummyClient();
-		System.out.println(cl2.isKYCDone("999999990019"));
+
+		// DummyClient cl2 = new DummyClient();
+		// System.out.println(cl2.isKYCDone("999999990019"));
 	}
 }
