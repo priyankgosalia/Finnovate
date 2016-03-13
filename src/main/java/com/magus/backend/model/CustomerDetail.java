@@ -1,7 +1,7 @@
 package com.magus.backend.model;
 
 
-public class CustomerDetail extends AuthorizationFailed{
+public class CustomerDetail extends ErrorResponse {
 
 	public CustomerDetail(Integer code, String description, String message) {
 		super(code, description, message);

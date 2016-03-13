@@ -1,6 +1,6 @@
 package com.magus.backend.model;
 
-public class RelationManager extends AuthorizationFailed{
+public class RelationManager extends ErrorResponse {
 
 	public RelationManager(Integer code, String description, String message) {
 		super(code, description, message);
