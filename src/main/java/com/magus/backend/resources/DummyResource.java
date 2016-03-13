@@ -30,9 +30,9 @@ public class DummyResource {
 	}*/
 
 	@GET
-	@Path("/{kyc}")
+	@Path("/{aadhar}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public String getMessage(@PathParam("kyc") String uid){
+	public String getMessage(@PathParam("aadhar") String uid){
 		return service.isKYCed(uid);	
 	}
 	

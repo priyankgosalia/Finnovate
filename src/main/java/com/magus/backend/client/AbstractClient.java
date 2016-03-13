@@ -12,22 +12,30 @@ import com.magus.backend.model.APIConstants;
 public class AbstractClient {
 
 	private static WebTarget webTarget = null;
+	private String BASE_URL = "";
 
-	public static WebTarget getWebTarget() {
+	public void setBASE_URL(String bASE_URL) {
+		BASE_URL = bASE_URL;
+	}
+
+	public WebTarget getWebTarget() {
 		if (webTarget == null) {
 			ClientConfig conf = new ClientConfig();
 			Client client = ClientBuilder.newClient(conf);
 
-			webTarget = client.target(APIConstants.RETAIL_BASE_URL);
+			webTarget = client.target(BASE_URL);
 		}
 		return webTarget;
 	}
 
 	public String getResponse(Response response) {
-		String ans = "Something went Wrong, Code :" + response.getStatus();
+		String ans = "{ \"code\":" +  response.getStatus() + ",\"description\":\"Access Denied\",\"message\":\"Something went Wrong\"}";
 		if (response.getStatus() <= 299 && response.getStatus() >= 200) {
 			ans = response.readEntity(String.class);
 		}
+		if(ans.indexOf("[") == 0 && ans.lastIndexOf("]") > 0)
+		return ans.substring(ans.indexOf("[")+1, ans.lastIndexOf("]"));
+		
 		return ans;
 	}
 
