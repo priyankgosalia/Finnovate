@@ -5,6 +5,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import com.magus.backend.model.APIConstants;
+import com.magus.backend.model.DummyReponses;
 
 public class RetailAPIClient extends AbstractClient {
 
@@ -18,7 +19,7 @@ public class RetailAPIClient extends AbstractClient {
 		Response response = queryClientToken(webTarget)
 				.queryParam(APIConstants.ACCOUNT_NUMBER_STR, String.valueOf(accNo)).request()
 				.accept(MediaType.APPLICATION_JSON_TYPE).get();
-		return getResponse(response);
+		return getResponse(response, DummyReponses.getRetailBalanceEnq());
 	}
 
 	//http://retailbanking.mybluemix.net/banking/icicibank/account_summary?client_id=test@abc.com&token=f5316a5e35a4&custid=88881001&accountno=
@@ -26,7 +27,7 @@ public class RetailAPIClient extends AbstractClient {
 		Response response = queryClientToken(getWebTarget().path(APIConstants.ACCOUNT_SUMMARY_STR))
 				.queryParam(APIConstants.ACCOUNT_NUMBER_STR, String.valueOf(accNo))
 				.queryParam(APIConstants.CUSTID_STR, custId).request().accept(MediaType.APPLICATION_JSON_TYPE).get();
-		return getResponse(response);
+		return getResponse(response, DummyReponses.getRetailAccountSummary());
 	}
 
 	public String branchAtmLocator(String lat, String lng){

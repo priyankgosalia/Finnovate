@@ -3,38 +3,19 @@ package com.magus.backend.model;
 
 public class AccountSummary  extends AuthorizationFailed{
 
-	public AccountSummary(Integer code, String description, String message) {
-		super(code, description, message);
-	}
-
 	private Double balance;
 	private String accountno;
 	private String product_desc;
-	private String productType;
-	private String subProductType;
-	private String customerId;
-	private String accountType;
-	private String accountStatus;
-	private String mobileNumber;
-	private String productCategory;
+	private String product_type;
+	private String sub_product_type;
+	private String custid;
+	private String accounttype;
+	private String account_status;
+	private String mobile_no;
+	private String product_category;
 
 	public AccountSummary() {
 
-	}
-
-	public AccountSummary(Double balance, String accountNumber, String productDescription, String productType,
-			String subProductType, String customerId, String accountType, String accountStatus, String mobileNumber,
-			String productCategory) {
-		this.balance = balance;
-		this.accountno = accountNumber;
-		this.product_desc = productDescription;
-		this.productType = productType;
-		this.subProductType = subProductType;
-		this.customerId = customerId;
-		this.accountType = accountType;
-		this.accountStatus = accountStatus;
-		this.mobileNumber = mobileNumber;
-		this.productCategory = productCategory;
 	}
 
 	public Double getBalance() {
@@ -45,76 +26,77 @@ public class AccountSummary  extends AuthorizationFailed{
 		this.balance = balance;
 	}
 
-	public String getAccountNumber() {
+	public String getAccountno() {
 		return accountno;
 	}
 
-	public void setAccountNumber(String accountNumber) {
-		this.accountno = accountNumber;
+	public void setAccountno(String accountno) {
+		this.accountno = accountno;
 	}
 
-	public String getProductDescription() {
+	public String getProduct_desc() {
 		return product_desc;
 	}
 
-	public void setProductDescription(String productDescription) {
-		this.product_desc = productDescription;
+	public void setProduct_desc(String product_desc) {
+		this.product_desc = product_desc;
 	}
 
-	public String getProductType() {
-		return productType;
+	public String getProduct_type() {
+		return product_type;
 	}
 
-	public void setProductType(String productType) {
-		this.productType = productType;
+	public void setProduct_type(String product_type) {
+		this.product_type = product_type;
 	}
 
-	public String getSubProductType() {
-		return subProductType;
+	public String getSub_product_type() {
+		return sub_product_type;
 	}
 
-	public void setSubProductType(String subProductType) {
-		this.subProductType = subProductType;
+	public void setSub_product_type(String sub_product_type) {
+		this.sub_product_type = sub_product_type;
 	}
 
-	public String getCustomerId() {
-		return customerId;
+	public String getCustid() {
+		return custid;
 	}
 
-	public void setCustomerId(String customerId) {
-		this.customerId = customerId;
+	public void setCustid(String custid) {
+		this.custid = custid;
 	}
 
-	public String getAccountType() {
-		return accountType;
+	public String getAccounttype() {
+		return accounttype;
 	}
 
-	public void setAccountType(String accountType) {
-		this.accountType = accountType;
+	public void setAccounttype(String accounttype) {
+		this.accounttype = accounttype;
 	}
 
-	public String getAccountStatus() {
-		return accountStatus;
+	public String getAccount_status() {
+		return account_status;
 	}
 
-	public void setAccountStatus(String accountStatus) {
-		this.accountStatus = accountStatus;
+	public void setAccount_status(String account_status) {
+		this.account_status = account_status;
 	}
 
-	public String getMobileNumber() {
-		return mobileNumber;
+	public String getMobile_no() {
+		return mobile_no;
 	}
 
-	public void setMobileNumber(String mobileNumber) {
-		this.mobileNumber = mobileNumber;
+	public void setMobile_no(String mobile_no) {
+		this.mobile_no = mobile_no;
 	}
 
-	public String getProductCategory() {
-		return productCategory;
+	public String getProduct_category() {
+		return product_category;
 	}
 
-	public void setProductCategory(String productCategory) {
-		this.productCategory = productCategory;
+	public void setProduct_category(String product_category) {
+		this.product_category = product_category;
 	}
+
 
 }

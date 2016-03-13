@@ -4,26 +4,15 @@ import java.util.Date;
 
 public class AccountBalance extends AuthorizationFailed{
 
-	public AccountBalance(Integer code, String description, String message) {
-		super(code, description, message);
-	}
-
 	private Double balance;
-	private String accountNumber;
-	private String accountType;
-	private Date balanceTime;
+	private String accountno;
+	private String accounttype;
+	private String balancetime;
 
 	public AccountBalance() {
 
 	}
-
-	public AccountBalance(double balance, String accountNumber, String accountType, Date balanceTime) {
-		this.balance = balance;
-		this.accountNumber = accountNumber;
-		this.accountType = accountType;
-		this.balanceTime = balanceTime;
-	}
-
+	
 	public Double getBalance() {
 		return balance;
 	}
@@ -32,28 +21,28 @@ public class AccountBalance extends AuthorizationFailed{
 		this.balance = balance;
 	}
 
-	public String getAccountNumber() {
-		return accountNumber;
+	public String getAccountno() {
+		return accountno;
 	}
 
-	public void setAccountNumber(String accountNumber) {
-		this.accountNumber = accountNumber;
+	public void setAccountno(String accountno) {
+		this.accountno = accountno;
 	}
 
-	public String getAccountType() {
-		return accountType;
+	public String getAccounttype() {
+		return accounttype;
 	}
 
-	public void setAccountType(String accountType) {
-		this.accountType = accountType;
+	public void setAccounttype(String accounttype) {
+		this.accounttype = accounttype;
 	}
 
-	public Date getBalanceTime() {
-		return balanceTime;
+	public String getBalancetime() {
+		return balancetime;
 	}
 
-	public void setBalanceTime(Date balanceTime) {
-		this.balanceTime = balanceTime;
+	public void setBalancetime(String balancetime) {
+		this.balancetime = balancetime;
 	}
-
+	
 }

@@ -33,12 +33,30 @@ public class AbstractClient {
 		if (response.getStatus() <= 299 && response.getStatus() >= 200) {
 			ans = response.readEntity(String.class);
 		}
-		if(ans.indexOf("[") == 0 && ans.lastIndexOf("]") > 0)
-		return ans.substring(ans.indexOf("[")+1, ans.lastIndexOf("]"));
-		
-		return ans;
+		return trimOff_START_ARRAY(ans);
 	}
 
+	
+	public String getResponse(Response response, String dummyResponse) {
+		String ans = "{ \"code\":" +  response.getStatus() + ",\"description\":\"Access Denied\",\"message\":\"Something went Wrong\"}";
+		if (response.getStatus() <= 299 && response.getStatus() >= 200) {
+			ans = response.readEntity(String.class);
+		}
+		if(ans.contains("\"code\":401")){
+			return trimOff_START_ARRAY(dummyResponse);
+		}
+		return trimOff_START_ARRAY(ans);
+	}
+
+	private String trimOff_START_ARRAY(String ans) {
+		if(ans.indexOf("[") == 0 && ans.lastIndexOf("]") > 0)
+		ans.substring(ans.indexOf("[")+1, ans.lastIndexOf("]"));
+		
+		//String resp = ans.substring(ans.indexOf('}'),ans.length());
+		
+		return ans.substring(ans.indexOf('}')+2,ans.length());
+	}
+	
 	public WebTarget queryClientToken(WebTarget webTarget) {
 		return webTarget.queryParam(APIConstants.CLIENT_ID_STR, APIConstants.CLIENT_ID_VALUE)
 				.queryParam(APIConstants.TOKEN_STR, APIConstants.TOKEN_VALUE);
