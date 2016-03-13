@@ -7,7 +7,9 @@
 	magusApp.config(function config($routeProvider) {
 		$routeProvider.when('/home', {
 			templateUrl : 'pages/home.html',
-			title : 'Home'
+			title : 'Home',
+			controller: 'HomeController',
+			controllerAs: 'hc'
 		}).when('/login', {
 			templateUrl : 'pages/login.html',
 			controller : 'LoginController',
@@ -79,10 +81,9 @@
 	magusApp.controller('MainController', MainController);
 	MainController.$inject = [ '$rootScope', '$location', 'AuthenticationService' ];
 
-	function MainController($rootScope, $scope, $location,
-			AuthenticationService) {
-		this.logout = logout;
-		this.AuthenticationService = AuthenticationService;
+	function MainController($rootScope, $scope, $location, AuthenticationService) {
+		var svc = this;
+		svc.AuthenticationService = AuthenticationService;
 
 		(function initController() {
 			$scope.swiped = function(direction) {
@@ -100,15 +101,9 @@
 			$rootScope.$on('$routeChangeSuccess', function() {
 				$rootScope.loading = false;
 			});
-			
-			$rootScope.logout = logout;
 			$rootScope.AuthenticationService = AuthenticationService;
         })();
 
-		function logout() {
-			AuthenticationService.ClearCredentials();
-			$location.path('/#/login');
-		}
 	}
 
 })();
