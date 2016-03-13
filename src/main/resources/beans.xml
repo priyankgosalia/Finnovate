@@ -13,38 +13,6 @@
 	<context:component-scan base-package="com.magus.backend" />
 	<context:property-placeholder location="/WEB-INF/classes/app.properties"/>
 	
-	<!-- use a vanilla Spring data source for development -->
-	<bean id="ds"
-		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<property name="driverClassName" value="${jdbc.driverClassName}" />
-		<property name="url" value="${jdbc.url}" />
-		<property name="username" value="${jdbc.username}" />
-		<property name="password" value="${jdbc.password}" />
-	</bean>
-	
-	<!-- use a pooled data source for production -->
-	<bean id="cpds" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
-	    <property name="driverClass" value="${jdbc.driverClassName}"/>
-	    <property name="jdbcUrl" value="${jdbc.url}"/>
-	    <property name="user" value="${jdbc.username}"/>
-	    <property name="password" value="${jdbc.password}"/>
-	    <property name="acquireIncrement" value="${pool.c3p0.acquireIncrement}"/>
-        <property name="idleConnectionTestPeriod" value="${pool.c3p0.idleConnectionTestPeriod}"/>
-        <property name="maxPoolSize" value="${pool.c3p0.maxPoolSize}"/>
-        <property name="maxStatements" value="${pool.c3p0.maxStatements}"/>
-        <property name="minPoolSize" value="${pool.c3p0.minPoolSize}"/>
-	</bean>
-
-	<bean id="jtemplate"
-		class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
-		<constructor-arg ref="cpds"></constructor-arg>
-	</bean>
-	
-	<bean id="sjtemplate"
-		class="org.springframework.jdbc.core.simple.SimpleJdbcTemplate">
-		<constructor-arg ref="cpds"></constructor-arg>
-	</bean>
-	
 	<bean id="appContext" class="com.magus.backend.context.ApplicationContextProvider"></bean>
 	
 </beans>  

@@ -10,7 +10,6 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import org.apache.logging.log4j.Logger;
-import org.json.JSONException;
 import org.apache.logging.log4j.LogManager;
 import com.magus.backend.model.LoginRequest;
 import com.magus.backend.model.LoginResponse;
@@ -38,7 +37,7 @@ public class LoginService extends AbstractService {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public LoginResponse authenticate(LoginRequest request,
-									@Context HttpServletRequest req) throws JSONException {
+									@Context HttpServletRequest req) {
 		final String username = request.getUsername();
 		final String password = request.getPassword();
 		LoginResponse response = null;

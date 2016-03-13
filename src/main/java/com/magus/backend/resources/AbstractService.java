@@ -7,7 +7,7 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class AbstractService {
-	private static ObjectMapper mapper = new ObjectMapper();
+	protected static ObjectMapper mapper = new ObjectMapper();
 	
 	protected static <T> T convertToJSON(String jsonStr, Class<T> klass) throws JsonParseException, JsonMappingException, IOException {
 		return mapper.readValue(jsonStr, klass);

@@ -1,0 +1,39 @@
+<div class="scrollable">
+	<div class="scrollable-content">
+		<div class="list-group text-center">
+			<div class="list-group-item list-group-item-home">
+				<img src="images/icici_logo_small.gif"></img>
+				<h1>magus</h1>
+				<small>your personal banker</small>
+			</div>
+			<div class="list-group-item list-group-item-home">
+		        <div>
+		        	<div ng-if="lc.dataLoading">
+						<i class="fa fa-spinner fa-pulse"></i> <h4>Please wait...</h4>
+					</div>
+					<div ng-if="lc.loginFailure">
+						<div class="alert alert-danger" role="alert"><i class="fa fa-2x fa-exclamation-triangle"></i>&nbsp;{{lc.failureMessage}}</div>
+					</div>
+		            <h4 class="home-heading">Please Login</h4>
+		            <form role="form" ng-submit='lc.login()'>
+						<fieldset>
+						<div class="form-group has-success has-feedback">
+							<label>Internet Banking User ID</label> <input type="text" ng-model="lc.username"
+								class="form-control" placeholder="Enter your username">
+						</div>
+						<div class="form-group">
+							<label>Internet Banking Password</label> <input type="password"
+								class="form-control" placeholder="Enter your password" ng-model="lc.password">
+						</div>
+						</fieldset>
+						<hr>
+						<div class="form-actions">
+							<button type="submit" ng-disabled="form.$invalid || vm.dataLoading"
+								class="btn btn-lg btn-primary btn-block">
+								<i class="fa fa-sign-in"></i></i> Login </button>
+						</div>
+					</form>
+		        </div>
+      		</div>
+		</div>
+	</div>
