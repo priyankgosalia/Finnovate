@@ -1,11 +1,24 @@
 package com.magus.backend.model;
 
 public class LoginResponse {
-	boolean result;
-	String message;
-	int userId;
-	String userFirstName;
-	boolean admin;
+	private boolean result;
+	private String message;
+	private int userId;
+	private String userFirstName;
+	private boolean admin;
+	
+	public LoginResponse() {
+		
+	}
+	
+	public LoginResponse(boolean result, String message, int userId, String userFirstName, boolean admin) {
+		super();
+		this.result = result;
+		this.message = message;
+		this.userId = userId;
+		this.userFirstName = userFirstName;
+		this.admin = admin;
+	}
 	
 	public LoginResponse(boolean result) {
 		this.result = result;
