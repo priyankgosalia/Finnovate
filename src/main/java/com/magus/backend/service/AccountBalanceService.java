@@ -7,7 +7,7 @@ public class AccountBalanceService {
 	AccountBalance accountBalance;
 	
 	public String getBalance(String accountNumber){
-		accountBalance.setAccountNumber(accountNumber);
+		accountBalance.setAccountno(accountNumber);
 		return accountBalance.toString();
 	}
 }
