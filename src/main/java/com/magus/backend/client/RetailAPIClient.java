@@ -37,6 +37,30 @@ public class RetailAPIClient extends AbstractClient {
 		return getResponse(response, DummyReponses.getMiniStatementSummary());
 	}
 	
+	public String transactionHistoryNDays(String accNo, int days){
+		Response response = queryClientToken(getWebTarget()).path(APIConstants.TRANSACTION_HISTORY_N_DAYS_STR)
+				.queryParam(APIConstants.ACCOUNT_NUMBER_STR, String.valueOf(accNo))
+				.queryParam(APIConstants.NUMBER_OF_DAYS, Integer.valueOf(days))
+				.request().accept(MediaType.APPLICATION_JSON_TYPE).get();
+		return getResponse(response, DummyReponses.getTransactionSummaryNDays());
+	}
+	
+	public String transactionHistoryInterval(String accNo, String fromDate, String toDate) {
+		Response response = queryClientToken(getWebTarget()).path(APIConstants.TRANSACTION_HISTORY_INTERVAL_STR)
+				.queryParam(APIConstants.ACCOUNT_NUMBER_STR, String.valueOf(accNo))
+				.queryParam(APIConstants.FROM_DATE, String.valueOf(fromDate))
+				.queryParam(APIConstants.TO_DATE, String.valueOf(toDate))
+				.request().accept(MediaType.APPLICATION_JSON_TYPE).get();
+		return getResponse(response, DummyReponses.getTransactionSummaryInterval());
+	}
+	
+	public String behaviourScore(String accNo) {
+		Response response = queryClientToken(getWebTarget()).path(APIConstants.BEHAVIOUR_SCORE_STR)
+				.queryParam(APIConstants.ACCOUNT_NUMBER_STR, String.valueOf(accNo))
+				.request().accept(MediaType.APPLICATION_JSON_TYPE).get();
+		return getResponse(response, DummyReponses.getBehaviourScore());
+	}
+	
 	public String branchAtmLocator(String lat, String lng){
 		Response response = queryClientToken(getWebTarget()).path(APIConstants.BRANCH_ATM_LOCATOR_STR)
 				.queryParam(APIConstants.LOCATE_ATM, APIConstants.ATM)
@@ -56,4 +80,5 @@ public class RetailAPIClient extends AbstractClient {
 		// DummyClient cl2 = new DummyClient();
 		// System.out.println(cl2.isKYCDone("999999990019"));
 	}
+
 }

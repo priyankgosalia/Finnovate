@@ -1,7 +1,5 @@
 package com.magus.backend.model;
 
-import java.util.Date;
-
 public class TransactionHistory extends ErrorResponse {
 
 	private String transactiondate;

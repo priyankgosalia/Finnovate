@@ -13,4 +13,16 @@ public class DummyReponses {
 	public static String getMiniStatementSummary(){
 		return "[{ \"code\":200 }, { \"accountno\": \"9999888877770001\", \"closing_balance\": \"5000000.00\", \"transactiondate\": \"2016-02-09 12:14:33.000 IST\", \"amount\": \"10000.00\", \"credit_debit_flag\": \"Dr.\", \"remark\": \"My Remark\"}]";
 	}
+	
+	public static String getTransactionSummaryNDays(){
+		return "[{ \"code\":200 }, { \"accountno\": \"9999888877770001\", \"closing_balance\": \"5000000.00\", \"transactiondate\": \"2016-02-09 12:14:33.000 IST\", \"amount\": \"10000.00\", \"credit_debit_flag\": \"Dr.\", \"remark\": \"My Remark\"}]";
+	}
+
+	public static String getTransactionSummaryInterval() {
+		return "[{ \"code\":200 }, { \"accountno\": \"9999888877770001\", \"closing_balance\": \"5000000.00\", \"transactiondate\": \"2016-02-09 12:14:33.000 IST\", \"amount\": \"10000.00\", \"credit_debit_flag\": \"Dr.\", \"remark\": \"My Remark\"}]";
+	}
+	
+	public static String getBehaviourScore() {
+		return "[{ \"code\":200 }, { \"score\": 80}]";
+	}
 }

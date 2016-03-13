@@ -51,5 +51,8 @@ public interface APIConstants {
 	public static final String TOKEN_STR = "token";
 	public static final String CLIENT_ID_STR = "client_id"; 
 	public static final String CUSTID_STR = "custid";
+	public static final String NUMBER_OF_DAYS = "days";
+	public static final String FROM_DATE = "fromdate";
+	public static final String TO_DATE = "todate";
 
 }
