@@ -1,15 +1,11 @@
 package com.magus.backend.model;
 
-public class BehaviourScore {
+public class BehaviourScore extends ErrorResponse {
 
 	private int score;
 
 	public BehaviourScore() {
 
-	}
-
-	public BehaviourScore(int score) {
-		this.score = score;
 	}
 
 	public int getScore() {

@@ -1,7 +1,7 @@
 package com.magus.backend.model;
 
 
-public class PolicyRenewal extends AuthorizationFailed{
+public class PolicyRenewal extends ErrorResponse {
 
 	public PolicyRenewal(Integer code, String description, String message) {
 		super(code, description, message);

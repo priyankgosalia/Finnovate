@@ -1,6 +1,6 @@
 package com.magus.backend.model;
 
-public class AccountBalance extends AuthorizationFailed{
+public class AccountBalance extends ErrorResponse {
 
 	private Double balance;
 	private String accountno;

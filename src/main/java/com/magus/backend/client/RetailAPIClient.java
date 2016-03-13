@@ -30,6 +30,13 @@ public class RetailAPIClient extends AbstractClient {
 		return getResponse(response, DummyReponses.getRetailAccountSummary());
 	}
 
+	public String miniStatement(String accNo){
+		Response response = queryClientToken(getWebTarget()).path(APIConstants.TRANSACTION_HISTORY_MINI_STATEMENT_STR)
+				.queryParam(APIConstants.ACCOUNT_NUMBER_STR, String.valueOf(accNo))
+				.request().accept(MediaType.APPLICATION_JSON_TYPE).get();
+		return getResponse(response, DummyReponses.getMiniStatementSummary());
+	}
+	
 	public String branchAtmLocator(String lat, String lng){
 		Response response = queryClientToken(getWebTarget()).path(APIConstants.BRANCH_ATM_LOCATOR_STR)
 				.queryParam(APIConstants.LOCATE_ATM, APIConstants.ATM)

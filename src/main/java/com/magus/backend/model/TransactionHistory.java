@@ -2,67 +2,57 @@ package com.magus.backend.model;
 
 import java.util.Date;
 
-public class TransactionHistory {
+public class TransactionHistory extends ErrorResponse {
 
-	private Date transactionDate;
-	private String transactionAmount;
-	private String closingBalance;
-	private String accountNumber;
-	private String creditDebitFlag;
+	private String transactiondate;
+	private String amount;
+	private String closing_balance;
+	private String accountno;
+	private String credit_debit_flag;
 	private String remark;
 
 	public TransactionHistory() {
 
 	}
 
-	public TransactionHistory(Date transactionDate, String transactionAmount, String closingBalance,
-			String accountNumber, String creditDebitFlag, String remark) {
-		this.transactionDate = transactionDate;
-		this.transactionAmount = transactionAmount;
-		this.closingBalance = closingBalance;
-		this.accountNumber = accountNumber;
-		this.creditDebitFlag = creditDebitFlag;
-		this.remark = remark;
+	public String getTransactiondate() {
+		return transactiondate;
 	}
 
-	public Date getTransactionDate() {
-		return transactionDate;
+	public void setTransactiondate(String transactiondate) {
+		this.transactiondate = transactiondate;
 	}
 
-	public void setTransactionDate(Date transactionDate) {
-		this.transactionDate = transactionDate;
+	public String getAmount() {
+		return amount;
 	}
 
-	public String getTransactionAmount() {
-		return transactionAmount;
+	public void setAmount(String amount) {
+		this.amount = amount;
 	}
 
-	public void setTransactionAmount(String transactionAmount) {
-		this.transactionAmount = transactionAmount;
+	public String getClosing_balance() {
+		return closing_balance;
 	}
 
-	public String getClosingBalance() {
-		return closingBalance;
+	public void setClosing_balance(String closing_balance) {
+		this.closing_balance = closing_balance;
 	}
 
-	public void setClosingBalance(String closingBalance) {
-		this.closingBalance = closingBalance;
+	public String getAccountno() {
+		return accountno;
 	}
 
-	public String getAccountNumber() {
-		return accountNumber;
+	public void setAccountno(String accountno) {
+		this.accountno = accountno;
 	}
 
-	public void setAccountNumber(String accountNumber) {
-		this.accountNumber = accountNumber;
+	public String getCredit_debit_flag() {
+		return credit_debit_flag;
 	}
 
-	public String getCreditDebitFlag() {
-		return creditDebitFlag;
-	}
-
-	public void setCreditDebitFlag(String creditDebitFlag) {
-		this.creditDebitFlag = creditDebitFlag;
+	public void setCredit_debit_flag(String credit_debit_flag) {
+		this.credit_debit_flag = credit_debit_flag;
 	}
 
 	public String getRemark() {

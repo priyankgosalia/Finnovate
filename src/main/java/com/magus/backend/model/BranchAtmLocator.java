@@ -1,7 +1,7 @@
 package com.magus.backend.model;
 
 
-public class BranchAtmLocator extends AuthorizationFailed{
+public class BranchAtmLocator extends ErrorResponse {
 
 	public BranchAtmLocator(Integer code, String description, String message) {
 		super(code, description, message);

@@ -1,7 +1,8 @@
 package com.magus.backend.model;
 
+import com.magus.backend.model.ErrorResponse;
 
-public class CorpAccountSummary  extends AuthorizationFailed{
+public class CorpAccountSummary extends ErrorResponse {
 
 	public CorpAccountSummary(Integer code, String description, String message) {
 		super(code, description, message);
@@ -48,14 +49,13 @@ public class CorpAccountSummary  extends AuthorizationFailed{
 		this.account_status = account_status;
 	}
 
-	public CorpAccountSummary(String code, String description, String message,
-			Double balance, String account_no, String currency,
-			String account_status) {
+	public CorpAccountSummary(String code, String description, String message, Double balance, String account_no,
+			String currency, String account_status) {
 		super();
 		this.balance = balance;
 		this.account_no = account_no;
 		this.currency = currency;
 		this.account_status = account_status;
 	}
-	
+
 }
