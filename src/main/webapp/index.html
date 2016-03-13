@@ -21,26 +21,28 @@
     <script src="js/mobile-angular-ui-1.2.0-rc3/mobile-angular-ui.gestures.min.js"></script>
     <script src="js/main.js"></script>
     <script src="js/controllers/LoginController.js"></script>
+    <script src="js/controllers/KYCAadharController.js"></script>
     <script src="js/services/AuthenticationService.js"></script>
+    <script src="js/services/KYCService.js"></script>
   </head>
 
   <body ng-app="magus" 
     ng-controller="MainController"
     ui-prevent-touchmove-defaults>
     <!-- Sidebars -->
-    <div ng-include="'pages/menu.html'" 
+    <div ng-if="globals.currentUser"  ng-include="'pages/menu.html'" 
             ui-track-as-search-param='true'
             class="sidebar sidebar-left"></div>
 
-    <div class="app" 
+    <div class="app"
          ui-swipe-right='Ui.turnOn("uiSidebarLeft")'
          ui-swipe-left='Ui.turnOff("uiSidebarLeft")'>
 
       <!-- Navbars -->
 
-      <div class="navbar navbar-app navbar-absolute-top">
+      <div ng-if="globals.currentUser" class="navbar navbar-app navbar-absolute-top">
         <div class="navbar-brand navbar-brand-center" ui-yield-to="title">
-          magus
+          {{ title }}
         </div>
         <div class="btn-group pull-left">
           <div ui-toggle="uiSidebarLeft" class="btn sidebar-toggle">
@@ -51,7 +53,7 @@
 
       <div class="navbar navbar-app navbar-absolute-bottom">
         <div class="btn-group justified">
-          <a href="/about" class="btn btn-navbar"><i class="fa fa-home fa-navbar"></i> About</a>
+          <a href="#/about" class="btn btn-navbar"><i class="fa fa-home fa-navbar"></i> About</a>
           <a href="#" class="btn btn-navbar"><i class="fa fa-github fa-navbar"></i> Contact Us</a>
         </div>
       </div>

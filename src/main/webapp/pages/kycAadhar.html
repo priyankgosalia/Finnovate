@@ -1,0 +1,42 @@
+<div class="scrollable">
+	<div class="scrollable-content section">
+		<div class="list-group text-center">
+			<h3>Hey {{ kca.userFirstName }}, we're almost done!</h3>
+			<div class="list-group-item list-group-item-home">
+		        <div>
+		        	<div ng-if="kca.dataLoading">
+						<i class="fa fa-spinner fa-pulse"></i> <h4>Please wait...</h4>
+					</div>
+					<div ng-if="kca.kycFailure">
+						<div class="alert alert-danger" role="alert"><i class="fa fa-2x fa-exclamation-triangle"></i>&nbsp;{{kca.failureMessage}}</div>
+					</div>
+		            <h4 class="home-heading">Please enter your Aadhar number to activate the App</h4>
+		            <form role="form" ng-submit='kca.otpGenerated == true && kca.doKYC()'>
+						<fieldset>
+						<div class="form-group has-success has-feedback">
+							<label>Aadhar Number</label> <input ng-disabled="kca.otpGenerated == true" type="text" ng-model="kca.aadhar"
+								class="form-control" placeholder="Enter your Aadhar Number">
+						</div>
+						<div ng-if="kca.otpGenerated == false" class="form-actions">
+							<br/>
+							<button ng-disabled="form.$invalid || kca.dataLoading"
+								class="btn btn-lg btn-success btn-block" ng-click="kca.getOTP()">
+								<i class="fa fa-sign-in"></i></i> Proceed </button>
+						</div>
+						<div ng-if="kca.otpGenerated == true" class="form-group">
+							<label>Please enter the 6 digit OTP</label> <input type="text"
+								class="form-control" placeholder="Enter the OTP" ng-model="kca.otp">
+						</div>
+						</fieldset>
+						<hr>
+						<div ng-if="kca.otpGenerated == true" class="form-actions">
+							<button type="submit" ng-disabled="form.$invalid || kca.dataLoading"
+								class="btn btn-lg btn-primary btn-block">
+								<i class="fa fa-sign-in"></i></i> Activate </button>
+						</div>
+					</form>
+		        </div>
+      		</div>
+		</div>
+	</div>
+</div>

@@ -18,9 +18,9 @@
         service.SetUsername = SetUsername;
         service.SetUserId = SetUserId;
         service.GetUserId = GetUserId;
-        service.SetAdmin = SetAdmin;
-        service.isAdmin = isAdmin;
-        
+        service.SetKYCValid = SetKYCValid;
+        service.isKYCValid = isKYCValid;
+
         return service;
  
         function Login(username, password, callback) {
@@ -34,11 +34,13 @@
         function SetUsername(user) {
         	$rootScope.globals.currentUser.username = user;
         	$window.sessionStorage.username = user;
+        	$cookieStore.put('globals', $rootScope.globals);
         }
         
         function SetUserFirstName(firstName) {
         	$rootScope.globals.userFirstName = firstName;
         	$window.sessionStorage.userFirstName = firstName;
+        	$cookieStore.put('globals', $rootScope.globals);
         }
         
         function SetUserId(userId) {
@@ -50,13 +52,14 @@
         	return $window.sessionStorage.userId;
         }
         
-        function SetAdmin(adm) {
-        	$rootScope.globals.admin = adm;
-        	$window.sessionStorage.admin = adm;
+        function SetKYCValid(adm) {
+        	$rootScope.globals.kycValid = adm;
+        	$window.sessionStorage.kycValid = adm;
+        	$cookieStore.put('globals', $rootScope.globals);
         }
         
-        function isAdmin() {
-        	return $window.sessionStorage.admin;
+        function isKYCValid() {
+        	return $window.sessionStorage.kycValid;
         }
         
         function GetUserFirstName() {

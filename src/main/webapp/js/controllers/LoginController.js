@@ -5,8 +5,8 @@
         .module('magus')
         .controller('LoginController', LoginController);
  
-    LoginController.$inject = ['$location', 'AuthenticationService'];
-    function LoginController($location, AuthenticationService) {
+    LoginController.$inject = ['$rootScope', '$location', 'AuthenticationService'];
+    function LoginController($rootScope, $location, AuthenticationService) {
         var vm = this;
         vm.login = login;
  
@@ -25,7 +25,8 @@
                     AuthenticationService.SetUsername(vm.username);
                     AuthenticationService.SetUserFirstName(response.userFirstName);
                     AuthenticationService.SetUserId(response.userId);
-                    AuthenticationService.SetAdmin(response.admin);
+                    AuthenticationService.SetKYCValid(response.validKYC);
+                    $rootScope.globals.kycValid = true;
                     vm.loginFailure = false;
                     $location.path('/');
                 } else {

@@ -26,10 +26,10 @@ public class LoginService extends AbstractService {
 	private static final Map<String,UserBO> users = new HashMap<String,UserBO>();
 	
 	static {
-		users.put("priyank", 	new UserBO("priyank","password","Priyank","Gosalia",true));
-		users.put("ujjwal", 	new UserBO("ujjwal","password","Ujjwal","Jain",true));
-		users.put("prajot", 	new UserBO("prajot","password","Prajot","Naik",true));
-		users.put("puneet", 	new UserBO("puneet","password","Puneet","Khanna",true));
+		users.put("puneet", 	new UserBO("puneet","password","Puneet","Khanna",true,false));
+		users.put("ujjwal", 	new UserBO("ujjwal","password","Ujjwal","Jain",true,false));
+		users.put("prajot", 	new UserBO("prajot","password","Prajot","Naik",true,false));
+		users.put("priyank", 	new UserBO("priyank","password","Priyank","Gosalia",true,false));
 	}
 	
 	@POST
@@ -42,7 +42,7 @@ public class LoginService extends AbstractService {
 		final String password = request.getPassword();
 		LoginResponse response = null;
 		if (username!=null && password!=null) {
-			logger.info("Logging in User = '"+username+"' with Password = '"+password+"'");
+			logger.info("Authenticating User = '"+username+"' with Password = '"+password+"'");
 			try {
 				final UserBO u = users.get(username);
 				if (u!=null) {

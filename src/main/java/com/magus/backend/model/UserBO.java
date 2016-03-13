@@ -1,12 +1,5 @@
 package com.magus.backend.model;
 
-/*
- * UserBO
- * 
- * Created: 21-DEC-2015
- * Author:  Priyank Gosalia <priyankmg@gmail.com>
- */
-
 public class UserBO {
 	private int id;
 	private String username;
@@ -14,13 +7,15 @@ public class UserBO {
 	private String firstName;
 	private String lastName;
 	private boolean enabled;
-	
-	public UserBO (String userName, String password, String firstName, String lastName, boolean enabled) {
+	private boolean kyc;
+
+	public UserBO (String userName, String password, String firstName, String lastName, boolean enabled, boolean kyc) {
 		this.username = userName;
 		this.password = password;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.enabled = enabled;
+		this.kyc = kyc;
 	}
 	
 	public int getId() {
@@ -58,6 +53,12 @@ public class UserBO {
 	}
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
+	}
+	public boolean isKyc() {
+		return kyc;
+	}
+	public void setKyc(boolean kyc) {
+		this.kyc = kyc;
 	}
 	
 	@Override

@@ -5,19 +5,19 @@ public class LoginResponse {
 	private String message;
 	private int userId;
 	private String userFirstName;
-	private boolean admin;
+	private boolean validKYC;
 	
 	public LoginResponse() {
 		
 	}
 	
-	public LoginResponse(boolean result, String message, int userId, String userFirstName, boolean admin) {
+	public LoginResponse(boolean result, String message, int userId, String userFirstName, boolean validKYC) {
 		super();
 		this.result = result;
 		this.message = message;
 		this.userId = userId;
 		this.userFirstName = userFirstName;
-		this.admin = admin;
+		this.validKYC = validKYC;
 	}
 	
 	public LoginResponse(boolean result) {
@@ -78,11 +78,11 @@ public class LoginResponse {
 		this.userId = userId;
 	}
 	
-	public boolean isAdmin() {
-		return admin;
+	public boolean isValidKYC() {
+		return validKYC;
 	}
 
-	public void setAdmin(boolean admin) {
-		this.admin = admin;
+	public void setValidKYC(boolean admin) {
+		this.validKYC = admin;
 	}
 }
