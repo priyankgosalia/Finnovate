@@ -10,13 +10,12 @@ import javax.ws.rs.core.MediaType;
 
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.magus.backend.client.CorporateAPIClient;
 import com.magus.backend.model.CorpAccountSummary;
 import com.magus.backend.model.RelationManager;
 
 @Path("/corporate")
-public class CorporateWebservice {
+public class CorporateWebservice extends AbstractService {
 
 	CorporateAPIClient client = new CorporateAPIClient();
 	
@@ -24,24 +23,21 @@ public class CorporateWebservice {
 	@Path("/accountSummary")
 	@Produces(MediaType.APPLICATION_JSON)
 	public CorpAccountSummary getCorpAccSumm(@QueryParam ("corpid") String corpid, @QueryParam("userid") String userid) throws JsonParseException, JsonMappingException, IOException{
-		ObjectMapper mapper = new ObjectMapper();
-		return mapper.readValue(client.accountSummary(corpid, userid), CorpAccountSummary.class);
+		return convertToJSON(client.accountSummary(corpid, userid), CorpAccountSummary.class);
 	}
 	
 	@GET
 	@Path("/showRM")
 	@Produces(MediaType.APPLICATION_JSON)
 	public RelationManager getShowRM(@QueryParam ("corpid") String corpid, @QueryParam("userid") String userid) throws JsonParseException, JsonMappingException, IOException{
-		ObjectMapper mapper = new ObjectMapper();
-		return mapper.readValue(client.showRM(corpid, userid), RelationManager.class);
+		return convertToJSON(client.showRM(corpid, userid), RelationManager.class);
 	}
 	
 	@GET
 	@Path("/corpRMQuery")
 	@Produces(MediaType.APPLICATION_JSON)
 	public RelationManager getCorpRMQuery(@QueryParam ("corpid") String corpid, @QueryParam("userid") String userid) throws JsonParseException, JsonMappingException, IOException{
-		ObjectMapper mapper = new ObjectMapper();
-		return mapper.readValue(client.showRM(corpid, userid), RelationManager.class);
+		return convertToJSON(client.showRM(corpid, userid), RelationManager.class);
 	}
 }
 

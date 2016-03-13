@@ -1,7 +1,5 @@
 package com.magus.backend.model;
 
-import java.util.Date;
-
 public class AccountBalance extends AuthorizationFailed{
 
 	private Double balance;
