@@ -29,19 +29,21 @@ public class AbstractClient {
 	}
 
 	public String getResponse(Response response) {
+		String ans = checkStatus(response);
+		return trimOff_START_ARRAY(ans);
+	}
+
+	private String checkStatus(Response response) {
 		String ans = "{ \"code\":" +  response.getStatus() + ",\"description\":\"Access Denied\",\"message\":\"Something went Wrong\"}";
 		if (response.getStatus() <= 299 && response.getStatus() >= 200) {
 			ans = response.readEntity(String.class);
 		}
-		return trimOff_START_ARRAY(ans);
+		return ans;
 	}
 
 	
 	public String getResponse(Response response, String dummyResponse) {
-		String ans = "{ \"code\":" +  response.getStatus() + ",\"description\":\"Access Denied\",\"message\":\"Something went Wrong\"}";
-		if (response.getStatus() <= 299 && response.getStatus() >= 200) {
-			ans = response.readEntity(String.class);
-		}
+		String ans = checkStatus(response);
 		if(ans.contains("\"code\":401")){
 			return trimOff_START_ARRAY(dummyResponse);
 		}
@@ -53,7 +55,9 @@ public class AbstractClient {
 		ans.substring(ans.indexOf("[")+1, ans.lastIndexOf("]"));
 		
 		//String resp = ans.substring(ans.indexOf('}'),ans.length());
-		
+		if(ans.indexOf('}') == ans.length()){
+			return ans;
+		}
 		return ans.substring(ans.indexOf('}')+2,ans.length());
 	}
 	

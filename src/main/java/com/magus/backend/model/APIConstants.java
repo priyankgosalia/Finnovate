@@ -8,7 +8,7 @@ public interface APIConstants {
 	public static final String CORP_BASE_URL = "https://corporate_bank.mybluemix.net/corporate_banking/mybank/";
 	public static final String INSURANCE_BASE_URL = "http://generalinsurance.mybluemix.net/banking/icicibank_general_insurance/";
 	public static final String CLIENT_ID_VALUE = "ujjwal.ju@gmail.com";
-	public static final String TOKEN_VALUE = "0d78405d6ac4";
+	public static final String TOKEN_VALUE = "b9b9c06ff5d4";
 
 	// retail banking api urls
 	public static final String BALANCE_ENQUIRY_STR = "balanceenquiry";
