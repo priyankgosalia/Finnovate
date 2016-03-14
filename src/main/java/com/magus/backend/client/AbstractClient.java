@@ -51,14 +51,15 @@ public class AbstractClient {
 	}
 
 	private String trimOff_START_ARRAY(String ans) {
-		if(ans.indexOf("[") == 0 && ans.lastIndexOf("]") > 0)
-		ans.substring(ans.indexOf("[")+1, ans.lastIndexOf("]"));
+		String reply = ans;
+		if(reply.indexOf("[") == 0 && reply.lastIndexOf("]") > 0)
+			reply = reply.substring(reply.indexOf("[")+1, reply.lastIndexOf("]"));
 		
 		//String resp = ans.substring(ans.indexOf('}'),ans.length());
-		if(ans.indexOf('}') == ans.length()){
-			return ans;
+		if(reply.indexOf('}') == reply.length() - 1){
+			return reply;
 		}
-		return ans.substring(ans.indexOf('}')+2,ans.length());
+		return reply.substring(reply.indexOf('}')+2,reply.length());
 	}
 	
 	public WebTarget queryClientToken(WebTarget webTarget) {
