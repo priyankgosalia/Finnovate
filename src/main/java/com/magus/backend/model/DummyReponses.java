@@ -25,4 +25,13 @@ public class DummyReponses {
 	public static String getBehaviourScore() {
 		return "[{ \"code\":200 }, { \"score\": 80}]";
 	}
+
+	public static String getPocketCreation(){
+		return "{\"errorCode\":\"200\",\"errorDescripttion\":\"success\",\"walletDetails\":[{\"creationStatus\":\"Wallet Already Exist\",\"auth_data\":\"a6af52c1154d4a5496e1\"}]}";
+	}
+
+	public static String getPocketCredit(String amount){
+		return "{\"amount\":"+ amount +", \"txn_id\":\"123498\", \"bank_txn_id\":\"80527\", \"errorCode\":\"200\", \"errorDescripttion\":\"success\" } ";
+	}
+
 }

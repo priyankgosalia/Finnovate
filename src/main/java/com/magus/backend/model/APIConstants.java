@@ -7,6 +7,7 @@ public interface APIConstants {
 	public static final String LOAN_BASE_URL = "https://alphaiciapi2.mybluemix.net/rest/Loan/";
 	public static final String CORP_BASE_URL = "https://corporate_bank.mybluemix.net/corporate_banking/mybank/";
 	public static final String INSURANCE_BASE_URL = "http://generalinsurance.mybluemix.net/banking/icicibank_general_insurance/";
+	public static final String POCKET_BASE_URL = "http://alphaiciapi2.mybluemix.net/rest/Wallet/";
 	public static final String CLIENT_ID_VALUE = "ujjwal.ju@gmail.com";
 	public static final String TOKEN_VALUE = "93bea2128124";
 
@@ -46,6 +47,10 @@ public interface APIConstants {
 	public static final String EMAIL_ID = "emailId";
 	public static final String RENEWAL_NOTICE = "getRenewalNotice";
 	
+	//Pockets
+	public static final String CREATE_WALLET = "createWallet";
+	public static final String CREDIT_WALLET = "creditWalletAmount";
+	
 	// parameter keys
 	public static final String ACCOUNT_NUMBER_STR = "accountno";
 	public static final String TOKEN_STR = "token";
@@ -54,5 +59,7 @@ public interface APIConstants {
 	public static final String NUMBER_OF_DAYS = "days";
 	public static final String FROM_DATE = "fromdate";
 	public static final String TO_DATE = "todate";
+
+	public static final String MERCHANT = "myMerchant";
 
 }

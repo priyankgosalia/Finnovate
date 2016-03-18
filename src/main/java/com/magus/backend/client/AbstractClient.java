@@ -56,7 +56,7 @@ public class AbstractClient {
 			reply = reply.substring(reply.indexOf("[")+1, reply.lastIndexOf("]"));
 		
 		//String resp = ans.substring(ans.indexOf('}'),ans.length());
-		if(reply.indexOf('}') == reply.length() - 1){
+		if(!reply.substring(reply.indexOf('}')+1, reply.indexOf('}') +2 ).equalsIgnoreCase(",")){
 			return reply;
 		}
 		return reply.substring(reply.indexOf('}')+2,reply.length());
@@ -65,6 +65,11 @@ public class AbstractClient {
 	public WebTarget queryClientToken(WebTarget webTarget) {
 		return webTarget.queryParam(APIConstants.CLIENT_ID_STR, APIConstants.CLIENT_ID_VALUE)
 				.queryParam(APIConstants.TOKEN_STR, APIConstants.TOKEN_VALUE);
+	}
+	
+	public WebTarget pathClientToken(WebTarget webTarget) {
+		return webTarget.path(APIConstants.CLIENT_ID_VALUE)
+				.path(APIConstants.TOKEN_VALUE);
 	}
 
 	public AbstractClient() {
