@@ -65,16 +65,17 @@ public class RetailAPIClient extends AbstractClient {
 		Response response = queryClientToken(getWebTarget()).path(APIConstants.BRANCH_ATM_LOCATOR_STR)
 				.queryParam(APIConstants.LOCATE_ATM, APIConstants.ATM)
 				.queryParam(APIConstants.LATITUDE, lat)
-				.queryParam(APIConstants.LONGITUDE, lng).request().accept(MediaType.APPLICATION_JSON).get();
+				.queryParam(APIConstants.LONGITUDE, lng)
+				.request().accept(MediaType.APPLICATION_JSON).get();
 		return getResponse(response);
 	}
+	
 	
 	public static void main(String[] args) {
 		RetailAPIClient client = new RetailAPIClient();
 		String accNo = "5555666677770328";
 		System.out.println(client.balanceEnquiry(accNo));
 		System.out.println(client.accountSummary(accNo, "88881328"));
-		
 		System.out.println(client.branchAtmLocator("", ""));
 
 		// DummyClient cl2 = new DummyClient();

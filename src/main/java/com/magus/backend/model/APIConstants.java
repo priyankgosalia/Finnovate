@@ -59,7 +59,12 @@ public interface APIConstants {
 	public static final String NUMBER_OF_DAYS = "days";
 	public static final String FROM_DATE = "fromdate";
 	public static final String TO_DATE = "todate";
+<<<<<<< Updated upstream
 
 	public static final String MERCHANT = "myMerchant";
 
+=======
+	public static final String LOAN_ACCOUNT_NUMBER = "loanAccounNo";
+	
+>>>>>>> Stashed changes
 }

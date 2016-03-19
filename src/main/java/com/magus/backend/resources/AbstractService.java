@@ -12,4 +12,5 @@ public class AbstractService {
 	protected static <T> T convertToJSON(String jsonStr, Class<T> klass) throws JsonParseException, JsonMappingException, IOException {
 		return mapper.readValue(jsonStr, klass);
 	}
+	
 }

@@ -27,6 +27,9 @@ public class AbstractClient {
 		}
 		return webTarget;
 	}
+	public String getVanillaResponse(Response response) {
+		return response.readEntity(String.class);
+	}
 
 	public String getResponse(Response response) {
 		String ans = checkStatus(response);
@@ -67,9 +70,14 @@ public class AbstractClient {
 				.queryParam(APIConstants.TOKEN_STR, APIConstants.TOKEN_VALUE);
 	}
 	
+<<<<<<< Updated upstream
 	public WebTarget pathClientToken(WebTarget webTarget) {
 		return webTarget.path(APIConstants.CLIENT_ID_VALUE)
 				.path(APIConstants.TOKEN_VALUE);
+=======
+	public WebTarget query(WebTarget webTarget) {
+		return webTarget;
+>>>>>>> Stashed changes
 	}
 
 	public AbstractClient() {

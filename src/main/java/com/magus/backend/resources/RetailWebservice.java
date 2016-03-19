@@ -4,23 +4,27 @@ import java.io.IOException;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
+import com.magus.backend.client.LoanAPIClient;
 import com.magus.backend.client.RetailAPIClient;
 import com.magus.backend.model.AccountBalance;
 import com.magus.backend.model.AccountSummary;
 import com.magus.backend.model.BehaviourScore;
 import com.magus.backend.model.BranchAtmLocator;
+import com.magus.backend.model.LoanAccountSummary;
 import com.magus.backend.model.TransactionHistory;
 
 @Path("/retail")
 public class RetailWebservice extends AbstractService {
 
 	RetailAPIClient client = new RetailAPIClient();
+	LoanAPIClient loanClient = new LoanAPIClient();
 	
 	@GET
 	@Produces(MediaType.TEXT_PLAIN)
@@ -77,5 +81,16 @@ public class RetailWebservice extends AbstractService {
 		return convertToJSON(client.branchAtmLocator(latitude, longitude), BranchAtmLocator.class);
 	}
 	
-	
+	@GET
+	@Path("/loanAccountSummary/{input}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public LoanAccountSummary getLoanAccountSummaryByLoanAccountNo(@PathParam("input") String input) throws JsonParseException, JsonMappingException, IOException{
+		if (input.length() == 8) {
+			return convertToJSON(loanClient.loanAccountSummaryByCustId(input), LoanAccountSummary.class);
+		}
+		else {
+			return convertToJSON(loanClient.loanAccountSummaryByAccountNo(input), LoanAccountSummary.class);
+		}
+	}
+	//custId
 }
