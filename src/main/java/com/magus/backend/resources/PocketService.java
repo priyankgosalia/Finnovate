@@ -111,5 +111,8 @@ public class PocketService  extends AbstractService {
 			auth_data = CACHE.getFromMap(mobile);
 		}
 		return auth_data;
+
+		public PocketCreditResp credit(@QueryParam("amount") Double amount) throws JsonParseException, JsonMappingException, IOException{
+		return convertToJSON(client.credit(amount), PocketCreditResp.class);
 	}
 }

@@ -32,6 +32,31 @@ public class PocketAPIClient extends AbstractClient {
 		
 		return getResponse(response, DummyReponses.getPocketCreation());
 	}
+
+	public String credit(Double amount){
+		WebTarget webTarget = getWebTarget().path(APIConstants.CREDIT_WALLET);
+		
+		PocketPostCredit creditRequest = new PocketPostCredit();
+		creditRequest.setId_type("TOKEN");
+		creditRequest.setId_value("abcVxAfkBTN7t3jjnrdw");
+		creditRequest.setAuth_type("TOKEN");
+		creditRequest.setAuth_data("0dfa125fed634134b275");
+		creditRequest.setTxn_id("123498");
+		creditRequest.setAmount(amount);
+		creditRequest.setPromocode("pockt1234");
+		creditRequest.setRemarks("Cake Shopp");
+		creditRequest.setSub_merchant("Cakerina");
+		creditRequest.setLatitude("19.11376955");
+		creditRequest.setLongitude("73.8500124");
+		creditRequest.setImei("35550702720000");
+		creditRequest.setIp_address("194.154.205.26");
+		creditRequest.setOs("android");
+		
+		Response response = webTarget.request(MediaType.APPLICATION_JSON).post(Entity.entity(creditRequest, MediaType.APPLICATION_JSON));
+		return response.readEntity(String.class);
+		//return DummyReponses.getPocketCredit(amount);
+>>>>>>> branch 'master' of https://github.com/priyankgosalia/magus
+	}
 	
 	public String credit(PocketPost creditRequest){
 		WebTarget webTarget = getWebTarget().path(APIConstants.CREDIT_WALLET);
@@ -52,7 +77,7 @@ public class PocketAPIClient extends AbstractClient {
 		
 		WalletProfile wallet = new WalletProfile("Prajot","Naik","prajot@gmail.com","9910111101","1985-08-01","male","10.10.200.200","windows","none","abc");
 		//System.out.println(client.create(wallet));
-		System.out.println(client.credit(null));
+		System.out.println(client.credit(255.50));
 	}
 
 }
