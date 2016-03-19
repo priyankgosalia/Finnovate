@@ -1,0 +1,18 @@
+table {
+	table-layout: fixed;
+	align: center;
+	padding: 20px;
+}
+
+tr td {
+	padding: 20px;
+	align: center;
+}
+
+h4 .homeitem {
+	align: center;
+}
+
+h5 .homeitem {
+	align: center;
+}

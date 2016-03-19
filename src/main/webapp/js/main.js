@@ -15,6 +15,11 @@
 			controller : 'LoginController',
 			controllerAs : 'lc',
 			title : 'Login'
+		}).when('/logout', {
+			templateUrl : 'pages/logout.html',
+			controller : 'LogoutController',
+			controllerAs : 'oc',
+			title : 'Logout',
 		}).when('/kycAadhar', {
 			templateUrl : 'pages/kycAadhar.html',
 			controller : 'KYCAadharController',
@@ -60,21 +65,32 @@
 		$rootScope.$on('$locationChangeStart', function(event, next, current) {
 			$rootScope.globals = $cookieStore.get('globals') || {};
 			// redirect to login page if not logged in and trying to access a restricted page
-			var restrictedPage = $.inArray($location.path(), [ '/login', '/about' ]) === -1;
+			var restrictedPage = $.inArray($location.path(), [ '/login', '/logout', '/about' ]) === -1;
 			var loggedIn = $rootScope.globals.currentUser;
 			var kycValid = false;
 			if (loggedIn) {
-				console.log($rootScope.globals.kycValid);
+				console.log("Logged in. KYC Valid = "+$rootScope.globals.kycValid);
 				var kycValid = $rootScope.globals.kycValid;
 			}
+			console.log(next.indexOf("logout"));
+			if (next.indexOf("logout")>0) {
+				console.log("Setting path to logout...");
+				$location.path('/logout');
+			}
+			console.log("here 1.");
 			if (restrictedPage && !loggedIn) {
 				$location.path('/login');
+				console.log("here 1-a.");
 			}
+			console.log("here 2.");
 			if (loggedIn && (!kycValid || kycValid == false)) {
 				$location.path('/kycAadhar');
-			} else if (loggedIn && kycValid == true && next.indexOf("onb")<=0){
+				console.log("here 2-a.");
+			} else if (loggedIn && kycValid == true && next.indexOf("onb")<=0 && next.indexOf("logout")<=0){
 				$location.path('/home');
+				console.log("here 2-b.");
 			}
+			console.log("here 3.");
 		});
 	});
 
