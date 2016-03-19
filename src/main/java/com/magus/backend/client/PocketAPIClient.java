@@ -2,13 +2,13 @@ package com.magus.backend.client;
 
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
-import javax.ws.rs.core.Form;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import com.magus.backend.model.APIConstants;
 import com.magus.backend.model.DummyReponses;
 import com.magus.backend.model.PocketPost;
+import com.magus.backend.model.PocketPostCredit;
 import com.magus.backend.model.WalletProfile;
 
 public class PocketAPIClient extends AbstractClient {
@@ -53,9 +53,7 @@ public class PocketAPIClient extends AbstractClient {
 		creditRequest.setOs("android");
 		
 		Response response = webTarget.request(MediaType.APPLICATION_JSON).post(Entity.entity(creditRequest, MediaType.APPLICATION_JSON));
-		return response.readEntity(String.class);
-		//return DummyReponses.getPocketCredit(amount);
->>>>>>> branch 'master' of https://github.com/priyankgosalia/magus
+		return getResponse(response, DummyReponses.getPocketCredit(amount));
 	}
 	
 	public String credit(PocketPost creditRequest){
