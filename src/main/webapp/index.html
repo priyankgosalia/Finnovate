@@ -32,9 +32,7 @@
     ng-controller="MainController"
     ui-prevent-touchmove-defaults>
     <!-- Sidebars -->
-    <div ng-if="globals.kycValid == true"  ng-include="'pages/menu.html'" 
-            ui-track-as-search-param='true'
-            class="sidebar sidebar-left"></div>
+    <div ng-if="globals.kycValid" ng-include="'pages/menu.html'" class="sidebar sidebar-left"></div>
 
     <div class="app"
          ui-swipe-right='Ui.turnOn("uiSidebarLeft")'
@@ -46,9 +44,9 @@
         <div class="navbar-brand navbar-brand-center" ui-yield-to="title">
           {{ title }}
         </div>
-        <div class="btn-group pull-left">
+        <div ng-if="globals.kycValid" class="btn-group pull-left">
           <div ui-toggle="uiSidebarLeft" class="btn sidebar-toggle">
-            <i class="fa fa-bars"></i> Menu
+            <i class="fa fa-bars"></i>
           </div>
         </div>
       </div>
