@@ -1,13 +1,13 @@
 package com.magus.backend.model;
 
-public class PocketPostCredit {
+public class PocketPost {
 
 	private String id_type ;
 	private String id_value;
 	private String auth_type ;
 	private String auth_data ;
 	private String txn_id;
-	private String amount;
+	private Double amount;
 	private String promocode ;
 	private String remarks ;
 	private String sub_merchant;
@@ -47,10 +47,10 @@ public class PocketPostCredit {
 	public void setTxn_id(String txn_id) {
 		this.txn_id = txn_id;
 	}
-	public String getAmount() {
+	public Double getAmount() {
 		return amount;
 	}
-	public void setAmount(String amount) {
+	public void setAmount(Double amount) {
 		this.amount = amount;
 	}
 	public String getPromocode() {
@@ -107,8 +107,8 @@ public class PocketPostCredit {
 	public void setOs(String os) {
 		this.os = os;
 	}
-	public PocketPostCredit(String id_type, String id_value, String auth_type,
-			String auth_data, String txn_id, String amount, String promocode,
+	public PocketPost(String id_type, String id_value, String auth_type,
+			String auth_data, String txn_id, Double amount, String promocode,
 			String remarks, String sub_merchant, String latitude,
 			String longitude, String imei, String device_id, String ip_address,
 			String os) {
@@ -129,7 +129,7 @@ public class PocketPostCredit {
 		this.ip_address = ip_address;
 		this.os = os;
 	}
-	public PocketPostCredit() {
+	public PocketPost() {
 		super();
 		// TODO Auto-generated constructor stub
 	}

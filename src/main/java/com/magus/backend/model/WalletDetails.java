@@ -16,6 +16,11 @@ public class WalletDetails {
 	public void setAuth_data(String auth_data) {
 		this.auth_data = auth_data;
 	}
+	@Override
+	public String toString() {
+		return "WalletDetails [creationStatus=" + creationStatus
+				+ ", auth_data=" + auth_data + "]";
+	}
 	
 	
 }

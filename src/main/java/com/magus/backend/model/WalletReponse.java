@@ -26,6 +26,11 @@ public class WalletReponse {
 	public void setWalletDetails(List<WalletDetails> walletDetails) {
 		this.WalletDetails = walletDetails;
 	}
+	@Override
+	public String toString() {
+		return "WalletReponse [errorCode=" + errorCode + ", errorDescripttion="
+				+ errorDescripttion + ", WalletDetails=" + WalletDetails.get(0).toString() + "]";
+	}
 	
 	
 }

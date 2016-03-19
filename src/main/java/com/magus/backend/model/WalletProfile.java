@@ -72,6 +72,12 @@ public class WalletProfile {
 	public void setState(String state) {
 		this.state = state;
 	}
+	
+	public WalletProfile(String mobile) {
+		super();
+		this.mobile = mobile;
+	}
+	
 	public WalletProfile(String firstName, String lastName, String emailId,
 			String mobile, String birthDate, String gender, String ipConfig,
 			String platform, String deviceId, String state) {

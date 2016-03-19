@@ -11,9 +11,9 @@ public class Sharing {
 	public Map<String, Double> share(SharingData data ){
 		Map<String, Double> map = data.getShareRatio();
 		Map<String, Double> sharing = new HashMap<>();
-		for(String email : map.keySet()){
-			Double thisShare = data.getBillAmount()*map.get(email);
-			sharing.put(email, thisShare);
+		for(String mobile : map.keySet()){
+			Double thisShare = data.getBillAmount()*map.get(mobile);
+			sharing.put(mobile, thisShare);
 		}
 		
 		return sharing;
