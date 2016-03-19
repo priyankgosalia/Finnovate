@@ -69,15 +69,13 @@ public class AbstractClient {
 		return webTarget.queryParam(APIConstants.CLIENT_ID_STR, APIConstants.CLIENT_ID_VALUE)
 				.queryParam(APIConstants.TOKEN_STR, APIConstants.TOKEN_VALUE);
 	}
-	
-<<<<<<< Updated upstream
+
 	public WebTarget pathClientToken(WebTarget webTarget) {
 		return webTarget.path(APIConstants.CLIENT_ID_VALUE)
 				.path(APIConstants.TOKEN_VALUE);
-=======
+	}
 	public WebTarget query(WebTarget webTarget) {
 		return webTarget;
->>>>>>> Stashed changes
 	}
 
 	public AbstractClient() {

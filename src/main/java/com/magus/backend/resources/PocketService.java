@@ -36,7 +36,7 @@ public class PocketService  extends AbstractService {
 	@GET
 	@Path("/credit")
 	@Produces(MediaType.APPLICATION_JSON)
-	public PocketCreditResp credit(@QueryParam("amount") String amount) throws JsonParseException, JsonMappingException, IOException{
+	public PocketCreditResp credit(@QueryParam("amount") Double amount) throws JsonParseException, JsonMappingException, IOException{
 		return convertToJSON(client.credit(amount), PocketCreditResp.class);
 	}
 }
