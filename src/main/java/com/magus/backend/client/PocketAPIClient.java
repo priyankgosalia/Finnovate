@@ -39,7 +39,7 @@ public class PocketAPIClient extends AbstractClient {
 		creditRequest.setId_type("TOKEN");
 		creditRequest.setId_value("abcVxAfkBTN7t3jjnrdw");
 		creditRequest.setAuth_type("TOKEN");
-		creditRequest.setAuth_data("2d9c2fe842854b079bb2");
+		creditRequest.setAuth_data("0dfa125fed634134b275");
 		creditRequest.setTxn_id("123498");
 		creditRequest.setAmount(amount);
 		creditRequest.setPromocode("pockt1234");
