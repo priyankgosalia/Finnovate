@@ -8,7 +8,6 @@ import javax.ws.rs.core.Response;
 
 import com.magus.backend.model.APIConstants;
 import com.magus.backend.model.DummyReponses;
-import com.magus.backend.model.PocketPostCredit;
 import com.magus.backend.model.WalletProfile;
 
 public class PocketAPIClient extends AbstractClient {
@@ -38,7 +37,7 @@ public class PocketAPIClient extends AbstractClient {
 		form.param("id_type", "TOKEN"); 
 		form.param("id_value", "abcVxAfkBTN7t3jjnrdw"); 
 		form.param("auth_type", "TOKEN"); 
-		form.param("auth_data", "2d9c2fe842854b079bb2"); 
+		form.param("auth_data", "0dfa125fed634134b275"); 
 		form.param("txn_id", "123498"); 
 		form.param("amount", amount); 
 		form.param("promocode", "pockt1234"); 
@@ -50,8 +49,16 @@ public class PocketAPIClient extends AbstractClient {
 		form.param("device_id", "7b47c06dsj12243"); 
 		form.param("ip_address", "194.154.205.26"); 
 		form.param("os", "android");
-		
-		//webTarget.request(MediaType.APPLICATION_JSON).post(Entity.entity(form, MediaType.APPLICATION_JSON),PocketPostCredit.class);
+		form.param("clientID", APIConstants.CLIENT_ID_VALUE);
+		form.param("authToken", APIConstants.TOKEN_VALUE);		
+		Entity<Form> entity = Entity.entity(form, MediaType.APPLICATION_JSON);
+		System.out.println(webTarget.getUri());
+		System.out.println(entity);
+		//webTarget.request().accept(MediaType.APPLICATION_JSON).
+		//post(entity,PocketCreditResp.class);
+		//buildPost(entity).invoke();
+		//System.out.println(rs);
+		//post(entity,PocketCreditResp.class);
 		return DummyReponses.getPocketCredit(amount);
 	}
 	
@@ -60,6 +67,7 @@ public class PocketAPIClient extends AbstractClient {
 		
 		WalletProfile wallet = new WalletProfile("Prajot","Naik","prajot@gmail.com","9910111101","1985-08-01","male","10.10.200.200","windows","none","abc");
 		System.out.println(client.create(wallet));
+		client.credit("100");
 	}
 
 }
