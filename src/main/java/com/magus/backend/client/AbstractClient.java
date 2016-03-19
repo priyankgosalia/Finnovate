@@ -40,6 +40,7 @@ public class AbstractClient {
 		String ans = "{ \"code\":" +  response.getStatus() + ",\"description\":\"Access Denied\",\"message\":\"Something went Wrong\"}";
 		if (response.getStatus() <= 299 && response.getStatus() >= 200) {
 			ans = response.readEntity(String.class);
+			ans = ans.replace("WalletDetails", "walletDetails");
 		}
 		return ans;
 	}
@@ -59,25 +60,26 @@ public class AbstractClient {
 			reply = reply.substring(reply.indexOf("[")+1, reply.lastIndexOf("]"));
 		
 		//String resp = ans.substring(ans.indexOf('}'),ans.length());
-		if(!reply.substring(reply.indexOf('}')+1, reply.indexOf('}') +2 ).equalsIgnoreCase(",")){
+		int indexOfCurlyBracket = reply.indexOf('}');
+		boolean onlyOneCurlyBracket = indexOfCurlyBracket == reply.lastIndexOf("}");
+		
+		if(onlyOneCurlyBracket || !reply.substring(indexOfCurlyBracket+1, indexOfCurlyBracket +2 ).equalsIgnoreCase(",")){
 			return reply;
 		}
-		return reply.substring(reply.indexOf('}')+2,reply.length());
+		return reply.substring(indexOfCurlyBracket+2,reply.length());
 	}
 	
 	public WebTarget queryClientToken(WebTarget webTarget) {
 		return webTarget.queryParam(APIConstants.CLIENT_ID_STR, APIConstants.CLIENT_ID_VALUE)
 				.queryParam(APIConstants.TOKEN_STR, APIConstants.TOKEN_VALUE);
 	}
-	
-<<<<<<< Updated upstream
+
 	public WebTarget pathClientToken(WebTarget webTarget) {
 		return webTarget.path(APIConstants.CLIENT_ID_VALUE)
 				.path(APIConstants.TOKEN_VALUE);
-=======
+	}
 	public WebTarget query(WebTarget webTarget) {
 		return webTarget;
->>>>>>> Stashed changes
 	}
 
 	public AbstractClient() {

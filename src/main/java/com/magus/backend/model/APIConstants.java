@@ -50,6 +50,8 @@ public interface APIConstants {
 	//Pockets
 	public static final String CREATE_WALLET = "createWallet";
 	public static final String CREDIT_WALLET = "creditWalletAmount";
+	public static final String DEBIT_WALLET = "debitWalletAmount";
+	public static final String BALANCE_WALLET = "getWalletBalance";
 	
 	// parameter keys
 	public static final String ACCOUNT_NUMBER_STR = "accountno";
@@ -59,12 +61,5 @@ public interface APIConstants {
 	public static final String NUMBER_OF_DAYS = "days";
 	public static final String FROM_DATE = "fromdate";
 	public static final String TO_DATE = "todate";
-<<<<<<< Updated upstream
-
 	public static final String MERCHANT = "myMerchant";
-
-=======
-	public static final String LOAN_ACCOUNT_NUMBER = "loanAccounNo";
-	
->>>>>>> Stashed changes
 }

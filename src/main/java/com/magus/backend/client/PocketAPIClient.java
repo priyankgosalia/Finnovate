@@ -8,6 +8,7 @@ import javax.ws.rs.core.Response;
 
 import com.magus.backend.model.APIConstants;
 import com.magus.backend.model.DummyReponses;
+import com.magus.backend.model.PocketPost;
 import com.magus.backend.model.WalletProfile;
 
 public class PocketAPIClient extends AbstractClient {
@@ -28,46 +29,30 @@ public class PocketAPIClient extends AbstractClient {
 				.path(wallet.getDeviceId()).path(wallet.getState()))
 				.request()
 				.accept(MediaType.APPLICATION_JSON_TYPE).get();
-		return DummyReponses.getPocketCreation();//getResponse(response, DummyReponses.getPocketCreation());
-	}
-
-	public String credit(String amount){
-		WebTarget webTarget = getWebTarget().path(APIConstants.CREDIT_WALLET);
-		Form form = new Form();
-		form.param("id_type", "TOKEN"); 
-		form.param("id_value", "abcVxAfkBTN7t3jjnrdw"); 
-		form.param("auth_type", "TOKEN"); 
-		form.param("auth_data", "0dfa125fed634134b275"); 
-		form.param("txn_id", "123498"); 
-		form.param("amount", amount); 
-		form.param("promocode", "pockt1234"); 
-		form.param("remarks", "Cake shop"); 
-		form.param("sub_merchant", "Cakerina"); 
-		form.param("latitude", "19.11376955"); 
-		form.param("longitude", "73.8500124"); 
-		form.param("imei", "35550702720000"); 
-		form.param("device_id", "7b47c06dsj12243"); 
-		form.param("ip_address", "194.154.205.26"); 
-		form.param("os", "android");
-		form.param("clientID", APIConstants.CLIENT_ID_VALUE);
-		form.param("authToken", APIConstants.TOKEN_VALUE);		
-		Entity<Form> entity = Entity.entity(form, MediaType.APPLICATION_JSON);
-		System.out.println(webTarget.getUri());
-		System.out.println(entity);
-		//webTarget.request().accept(MediaType.APPLICATION_JSON).
-		//post(entity,PocketCreditResp.class);
-		//buildPost(entity).invoke();
-		//System.out.println(rs);
-		//post(entity,PocketCreditResp.class);
-		return DummyReponses.getPocketCredit(amount);
+		
+		return getResponse(response, DummyReponses.getPocketCreation());
 	}
 	
+	public String credit(PocketPost creditRequest){
+		WebTarget webTarget = getWebTarget().path(APIConstants.CREDIT_WALLET);
+		
+		Response response = webTarget.request(MediaType.APPLICATION_JSON).post(Entity.entity(creditRequest, MediaType.APPLICATION_JSON));
+		return getResponse(response, DummyReponses.getPocketCredit(creditRequest.getAmount()));
+	}
+	
+	public String debit(PocketPost postRequest){
+		WebTarget webTarget = getWebTarget().path(APIConstants.DEBIT_WALLET);
+		
+		Response response = webTarget.request(MediaType.APPLICATION_JSON).post(Entity.entity(postRequest, MediaType.APPLICATION_JSON));
+		return getResponse(response, DummyReponses.getPocketDebit(postRequest.getAmount()));
+	}
+
 	public static void main(String[] args) {
 		PocketAPIClient client = new PocketAPIClient();
 		
 		WalletProfile wallet = new WalletProfile("Prajot","Naik","prajot@gmail.com","9910111101","1985-08-01","male","10.10.200.200","windows","none","abc");
-		System.out.println(client.create(wallet));
-		client.credit("100");
+		//System.out.println(client.create(wallet));
+		System.out.println(client.credit(null));
 	}
 
 }
