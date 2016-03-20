@@ -3,22 +3,22 @@
  
     angular
         .module('magus')
-        .controller('HomeController', HomeController);
+        .controller('VirtualRMController', VirtualRMController);
  
-    HomeController.$inject = ['$rootScope', '$location', 'AuthenticationService'];
-    function HomeController($rootScope, $location, AuthenticationService) {
+    VirtualRMController.$inject = ['$rootScope', '$location', 'AuthenticationService'];
+    function VirtualRMController($rootScope, $location, AuthenticationService) {
         var vm = this;
         vm.$location = $location;
         vm.$rootScope = $rootScope;
         vm.AuthenticationService = AuthenticationService;
-        vm.virtualRM = virtualRM;
+        vm.goBack = goBack;
         vm.userFirstName = AuthenticationService.GetUserFirstName();
         vm.username = AuthenticationService.GetUsername();
         vm.dataLoading = false;
         return vm;
         
-        function virtualRM() {
-        	vm.$location.path("/virtualrm");
+        function goBack() {
+        	vm.$location.path("/home");
         };
         
     }

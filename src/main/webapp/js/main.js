@@ -25,6 +25,11 @@
 			controller : 'KYCAadharController',
 			controllerAs : 'kca',
 			title : 'KYC'
+		}).when('/virtualrm', {
+			templateUrl : 'pages/virtualrm.html',
+			controller : 'VirtualRMController',
+			controllerAs : 'vc',
+			title : 'Virtual RM'
 		}).when('/about', {
 			title : 'About',
 			templateUrl : 'pages/about.html',
@@ -68,6 +73,7 @@
 			$rootScope.globals = $cookieStore.get('globals') || {};
 			// redirect to login page if not logged in and trying to access a restricted page
 			var restrictedPage = $.inArray($location.path(), [ '/login', '/logout', '/about' ]) === -1;
+			var protectedPage = $.inArray($location.path(), ['/virtualrm','/loans','/accounts']) === -1;
 			var loggedIn = $rootScope.globals.currentUser;
 			var kycValid = false;
 			if (loggedIn) {
@@ -88,7 +94,7 @@
 			if (loggedIn && (!kycValid || kycValid == false)) {
 				$location.path('/kycAadhar');
 				console.log("here 2-a.");
-			} else if (loggedIn && kycValid == true && next.indexOf("onb")<=0 && next.indexOf("logout")<=0 && restrictedPage){
+			} else if (loggedIn && kycValid == true && next.indexOf("onb")<=0 && next.indexOf("logout")<=0 && restrictedPage && protectedPage){
 				$location.path('/home');
 				console.log("here 2-b.");
 			}

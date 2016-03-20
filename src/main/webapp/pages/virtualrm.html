@@ -1,0 +1,37 @@
+<script>
+	if (annyang) {
+	  // Let's define our first command. First the text we expect, and then the function it should call
+	  var commands = {
+	    'my balance': function() {
+	    	$('#greeting').text('you said - my balance');
+	    },
+	    'my loan': function() {
+	    	$('#greeting').text('you said - my loan');
+	    },
+	    'find nearest ATM': function() {
+	    	$('#greeting').text('you said - find nearest ATM');
+	    }
+	    
+	  };
+	
+	  // Add our commands to annyang
+	  annyang.addCommands(commands);
+	
+	  // Start listening. You can call this here, or attach this call to an event, button, etc.
+	  annyang.start();
+	}
+</script>
+<div class="scrollable">
+	<div class="scrollable-content section">
+		<div class="list-group">
+	      <div class="list-group-item">
+	        <h4>{{ vc.userFirstName }}, how may I help you ?</h4>
+	        <br/>
+	        <small><b>Hint:</b> your voice is my command</small>
+	      </div>
+	      <div class="list-group-item media">
+	      	<p id="greeting"></p>
+	      </div>
+	    </div>
+	</div>
+</div>
