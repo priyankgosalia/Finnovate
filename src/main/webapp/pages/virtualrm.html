@@ -1,25 +1,5 @@
 <script>
-	if (annyang) {
-	  // Let's define our first command. First the text we expect, and then the function it should call
-	  var commands = {
-	    'my balance': function() {
-	    	$('#greeting').text('you said - my balance');
-	    },
-	    'my loan': function() {
-	    	$('#greeting').text('you said - my loan');
-	    },
-	    'find nearest ATM': function() {
-	    	$('#greeting').text('you said - find nearest ATM');
-	    }
-	    
-	  };
 	
-	  // Add our commands to annyang
-	  annyang.addCommands(commands);
-	
-	  // Start listening. You can call this here, or attach this call to an event, button, etc.
-	  annyang.start();
-	}
 </script>
 <div class="scrollable">
 	<div class="scrollable-content section">
@@ -29,8 +9,15 @@
 	        <br/>
 	        <small><b>Hint:</b> your voice is my command</small>
 	      </div>
-	      <div class="list-group-item media">
+	      <div class="list-group-item media" align="center">
 	      	<p id="greeting"></p>
+	      	<br/>
+	      	<br/>
+	      	<div id="btnspk" class="round-button">
+	      		<div id="btnspkcircle" class="round-button-circle">
+	      			<a id="speakbtn" class="round-button" ng-click="vc.speakNow()">Speak Now</a>
+	      		</div>
+	      	</div>
 	      </div>
 	    </div>
 	</div>
