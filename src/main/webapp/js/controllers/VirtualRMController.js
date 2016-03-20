@@ -13,6 +13,7 @@
         vm.AuthenticationService = AuthenticationService;
         vm.RetailService = RetailService;
         vm.getBalance = getBalance;
+        vm.getLoanDetail = getLoanDetail;
         vm.goBack = goBack;
         vm.speakNow = speakNow;
         vm.userFirstName = AuthenticationService.GetUserFirstName();
@@ -22,13 +23,12 @@
         vm.listening = false;
         
         if (annyang) {
-      	  // Let's define our first command. First the text we expect, and then the function it should call
       	  var commands = {
       	    'my balance': function() {
       	    	vm.getBalance();
       	    },
       	    'my loan': function() {
-      	    	$('#greeting').text('Fetching Loan account details...');
+      	    	vm.getLoanDetail();
       	    },
       	    'find nearest ATM': function() {
       	    	$('#greeting').text('Finding nearest ATM...');
@@ -56,11 +56,30 @@
         	vm.dataLoading = false;
         };
         
+        function getLoanDetail() {
+        	vm.dataLoading = true;
+        	console.log("Retrieving Loan details for account");
+        	$('#greeting').html('Fetching Loan Account details...');
+        	vm.RetailService.getLoanAccountDetails("LBMUM11112220001", function(response) {
+        		var loanData = response.data.loanDetails[0];
+        		console.log(loanData);
+        		if (loanData) {
+        			$('#greeting').html('Loan Account Details for Account # <b>'+'LBMUM11112220001'+'</b><br/>'+'Loan Amount: INR '+loanData.loanAmount+'<br/>Outstanding Amount: INR '+loanData.principal_outstanding+'<br/>Rate of Interest: '+loanData.roi+'<br/>Type: '+loanData.type_of_loan);
+        		} else {
+        			$('#greeting').html('Oops! Something went wrong. Please try again.');
+        		}
+        	});
+        	vm.dataLoading = false;
+        };
+        
+        
+        
         function speakNow() {
         	if (vm.listening == false) {
 	        	console.log("Listening for audio input (start)...");
 	        	// start listening
 	        	vm.annyang.start();
+	        	vm.annyang.debug(true);
 	        	$('#speakbtn').text("Listening");
 	        	$('#btnspk').toggleClass("round-button-clicked");
 	        	$('#btnspkcircle').toggleClass("round-button-clicked-circle");

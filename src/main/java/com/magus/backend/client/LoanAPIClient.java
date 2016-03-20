@@ -55,8 +55,8 @@ public class LoanAPIClient extends AbstractClient {
 		
 		//System.out.println(client.loanTransactionDetails("L001", "A000000001"));
 		String mobileNo = "9371919627";
-		//System.out.println(client.loanCustomerDetails(mobileNo));
-//		System.out.println(client.loanAccountSummaryByAccountNo("LBMUM11112220001"));
+		System.out.println(client.loanCustomerDetails(mobileNo));
+		System.out.println(client.loanAccountSummaryByAccountNo("LBMUM11112220001"));
 //		System.out.println("********************************************************************");
 //		System.out.println(client.loanAccountSummaryByCustId("88881001"));
 
