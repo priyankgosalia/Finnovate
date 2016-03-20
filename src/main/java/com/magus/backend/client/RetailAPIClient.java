@@ -19,7 +19,8 @@ public class RetailAPIClient extends AbstractClient {
 		Response response = queryClientToken(webTarget)
 				.queryParam(APIConstants.ACCOUNT_NUMBER_STR, String.valueOf(accNo)).request()
 				.accept(MediaType.APPLICATION_JSON_TYPE).get();
-		return getResponse(response, DummyReponses.getRetailBalanceEnq());
+		// return getResponse(response, DummyReponses.getRetailBalanceEnq());
+		return getVanillaResponse(response);
 	}
 
 	//http://retailbanking.mybluemix.net/banking/icicibank/account_summary?client_id=test@abc.com&token=f5316a5e35a4&custid=88881001&accountno=
@@ -75,8 +76,8 @@ public class RetailAPIClient extends AbstractClient {
 		RetailAPIClient client = new RetailAPIClient();
 		String accNo = "5555666677770328";
 		System.out.println(client.balanceEnquiry(accNo));
-		System.out.println(client.accountSummary(accNo, "88881328"));
-		System.out.println(client.branchAtmLocator("", ""));
+		//System.out.println(client.accountSummary(accNo, "88881328"));
+		//System.out.println(client.branchAtmLocator("", ""));
 
 		// DummyClient cl2 = new DummyClient();
 		// System.out.println(cl2.isKYCDone("999999990019"));

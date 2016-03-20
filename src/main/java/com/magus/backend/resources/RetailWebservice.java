@@ -84,7 +84,7 @@ public class RetailWebservice extends AbstractService {
 	@GET
 	@Path("/loanAccountSummary/{input}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public LoanAccountSummary getLoanAccountSummaryByLoanAccountNo(@PathParam("input") String input) throws JsonParseException, JsonMappingException, IOException{
+	public LoanAccountSummary getLoanAccountSummary(@PathParam("input") String input) throws JsonParseException, JsonMappingException, IOException{
 		if (input.length() == 8) {
 			return convertToJSON(loanClient.loanAccountSummaryByCustId(input), LoanAccountSummary.class);
 		}
@@ -92,5 +92,14 @@ public class RetailWebservice extends AbstractService {
 			return convertToJSON(loanClient.loanAccountSummaryByAccountNo(input), LoanAccountSummary.class);
 		}
 	}
-	//custId
+
+//	public static void main(String[] args) {
+//		RetailWebservice rws = new RetailWebservice();
+//		try {
+//			System.out.println(rws.getLoanAccountSummary("LBMUM11112220001"));
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//	}
 }

@@ -1,8 +1,10 @@
 package com.magus.backend.model;
 
-public class LoanDetails {
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-	private int id;
+public class LoanDetails {
+	
+	private String ID;
 	private String loanAccounNo;
 	private String customerName;
 	private String pos;
@@ -18,13 +20,16 @@ public class LoanDetails {
 
 	}
 
-	public int getID() {
-		return id;
+	@JsonProperty("ID")
+	public String getID() {
+		return ID;
 	}
 
-	public void setID(int iD) {
-		this.id = iD;
+
+	public void setID(String iD) {
+		ID = iD;
 	}
+
 
 	public String getLoanAccounNo() {
 		return loanAccounNo;
