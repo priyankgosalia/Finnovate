@@ -44,19 +44,16 @@
         function getBalance() {
         	vm.dataLoading = true;
         	console.log("Retrieving balance for account");
+        	$('#greeting').html('Fetching account balance...');
         	vm.RetailService.getAccountBalance("5555666677770328", function(response) {
         		console.log(response.data);
         		if (response.data) {
-        			vm.kycFailure = false;
-        			vm.otpGenerated = true;
+        			$('#greeting').html('Account Balance for Account # <b>'+response.data.accountno+'</b> is INR <b>'+response.data.balance+'</b>');
         		} else {
-        			vm.kycFailure = true;
-        			vm.failureMessage = response.message;
+        			$('#greeting').html('Oops! Something went wrong. Please try again.');
         		}
-        		vm.dataLoading = false;
         	});
-        	$('#greeting').text('you said - my balance');
-        	
+        	vm.dataLoading = false;
         };
         
         function speakNow() {
