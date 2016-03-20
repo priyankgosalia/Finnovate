@@ -47,13 +47,14 @@
         	$('#greeting').html('Fetching account balance...');
         	vm.RetailService.getAccountBalance("5555666677770328", function(response) {
         		console.log(response.data);
-        		if (response.data) {
+        		if (response.data.accountno) {
         			$('#greeting').html('Account Balance for Account # <b>'+response.data.accountno+'</b> is INR <b>'+response.data.balance+'</b>');
         		} else {
-        			$('#greeting').html('Oops! Something went wrong. Please try again.');
+        			$('#greeting').html('Oops! ' + response.data.message);
         		}
         	});
         	vm.dataLoading = false;
+        	vm.speakNow();
         };
         
         function getLoanDetail() {
@@ -70,9 +71,8 @@
         		}
         	});
         	vm.dataLoading = false;
+        	vm.speakNow();
         };
-        
-        
         
         function speakNow() {
         	if (vm.listening == false) {
@@ -97,7 +97,7 @@
 	        	
 	        	vm.listening = false;
         	}
-        }
+        };
         
         function goBack() {
         	vm.$location.path("/home");

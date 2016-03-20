@@ -10,8 +10,11 @@
 	        <small><b>Hint:</b> your voice is my command</small>
 	      </div>
 	      <div class="list-group-item media" align="center">
-	      	<p id="greeting"></p>
+	      	<div ng-if="vc.dataLoading">
+	      		<i class="fa fa-circle-o-notch"></i>
+	      	</div>
 	      	<br/>
+	      	<p id="greeting"></p>
 	      	<br/>
 	      	<div id="btnspk" class="round-button" ng-click="vc.speakNow()">
 	      		<div id="btnspkcircle" class="round-button-circle">
