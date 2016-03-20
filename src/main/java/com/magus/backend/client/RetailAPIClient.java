@@ -19,8 +19,8 @@ public class RetailAPIClient extends AbstractClient {
 		Response response = queryClientToken(webTarget)
 				.queryParam(APIConstants.ACCOUNT_NUMBER_STR, String.valueOf(accNo)).request()
 				.accept(MediaType.APPLICATION_JSON_TYPE).get();
-		// return getResponse(response, DummyReponses.getRetailBalanceEnq());
-		return getVanillaResponse(response);
+		return getResponse(response, DummyReponses.getRetailBalanceEnq());
+		//return getVanillaResponse(response);
 	}
 
 	//http://retailbanking.mybluemix.net/banking/icicibank/account_summary?client_id=test@abc.com&token=f5316a5e35a4&custid=88881001&accountno=
