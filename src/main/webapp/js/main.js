@@ -27,7 +27,9 @@
 			title : 'KYC'
 		}).when('/about', {
 			title : 'About',
-			templateUrl : 'pages/about.html'
+			templateUrl : 'pages/about.html',
+			controller: 'AboutController',
+			controllerAs : 'ac'
 		}).when('/onbSuccess', {
 			title : 'Success',
 			templateUrl : 'pages/onboardingComplete.html',
