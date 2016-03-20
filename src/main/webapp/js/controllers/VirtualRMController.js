@@ -28,10 +28,10 @@
       	    	vm.getBalance();
       	    },
       	    'my loan': function() {
-      	    	$('#greeting').text('you said - my loan');
+      	    	$('#greeting').text('Fetching Loan account details...');
       	    },
       	    'find nearest ATM': function() {
-      	    	$('#greeting').text('you said - find nearest ATM');
+      	    	$('#greeting').text('Finding nearest ATM...');
       	    }
       	    
       	  };
