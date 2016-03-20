@@ -86,7 +86,7 @@
 			if (loggedIn && (!kycValid || kycValid == false)) {
 				$location.path('/kycAadhar');
 				console.log("here 2-a.");
-			} else if (loggedIn && kycValid == true && next.indexOf("onb")<=0 && next.indexOf("logout")<=0){
+			} else if (loggedIn && kycValid == true && next.indexOf("onb")<=0 && next.indexOf("logout")<=0 && restrictedPage){
 				$location.path('/home');
 				console.log("here 2-b.");
 			}
