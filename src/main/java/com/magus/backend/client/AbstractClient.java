@@ -54,6 +54,21 @@ public class AbstractClient {
 		return trimOff_START_ARRAY(ans);
 	}
 
+	public String getResponseArray(Response response, String dummyResponse) {
+		String ans = checkStatus(response);
+		if(ans.contains("\"code\":401")){
+			return addARRAY(dummyResponse);
+		}
+		return addARRAY(ans);
+	}
+
+	private String addARRAY(String ans) {
+		String reply = ans;
+		//reply = "[".concat(reply.concat("]"));
+		reply = "{".concat("\"source\":").concat(reply.concat("}"));
+		return reply;
+	}
+
 	private String trimOff_START_ARRAY(String ans) {
 		String reply = ans;
 		if(reply.indexOf("[") == 0 && reply.lastIndexOf("]") > 0)

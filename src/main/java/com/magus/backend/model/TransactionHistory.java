@@ -1,5 +1,7 @@
 package com.magus.backend.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class TransactionHistory extends ErrorResponse {
 
 	private String transactiondate;
@@ -13,6 +15,7 @@ public class TransactionHistory extends ErrorResponse {
 
 	}
 
+	@JsonProperty("transactiondate")
 	public String getTransactiondate() {
 		return transactiondate;
 	}
@@ -21,6 +24,7 @@ public class TransactionHistory extends ErrorResponse {
 		this.transactiondate = transactiondate;
 	}
 
+	@JsonProperty("transaction_amount")
 	public String getAmount() {
 		return amount;
 	}
@@ -29,6 +33,7 @@ public class TransactionHistory extends ErrorResponse {
 		this.amount = amount;
 	}
 
+	@JsonProperty("closing_balance")
 	public String getClosing_balance() {
 		return closing_balance;
 	}
@@ -37,6 +42,7 @@ public class TransactionHistory extends ErrorResponse {
 		this.closing_balance = closing_balance;
 	}
 
+	@JsonProperty("accountno")
 	public String getAccountno() {
 		return accountno;
 	}

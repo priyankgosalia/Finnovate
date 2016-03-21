@@ -22,6 +22,7 @@ import com.magus.backend.model.LoanCustomerDetails;
 import com.magus.backend.model.LoanEMIDetails;
 import com.magus.backend.model.LoanTransactionDetails;
 import com.magus.backend.model.TransactionHistory;
+import com.magus.backend.model.Transactions;
 
 @Path("/retail")
 public class RetailWebservice extends AbstractService {
@@ -70,12 +71,29 @@ public class RetailWebservice extends AbstractService {
 	@GET
 	@Path("/transactionHistoryInterval")
 	@Produces(MediaType.APPLICATION_JSON)
-	public TransactionHistory getTransactionHistoryInterval(@QueryParam("accountNumber") String accNo,
+	public Transactions getTransactionHistoryInterval(@QueryParam("accountNumber") String accNo,
 			@QueryParam("fromDate") String fromDate, @QueryParam("toDate") String toDate)
 					throws JsonParseException, JsonMappingException, IOException {
-		return convertToJSON(client.transactionHistoryInterval(accNo, fromDate, toDate), TransactionHistory.class);
+		Transactions transactions = convertToJSON(client.transactionHistoryInterval(accNo, fromDate, toDate), Transactions.class);
+		return transactions;
 	}
 
+	@GET
+	@Path("/spentOnBetween")
+	@Produces(MediaType.APPLICATION_JSON)
+	public String getTotalSpentOn(@QueryParam("accountNumber") String accNo,
+			@QueryParam("fromDate") String fromDate, @QueryParam("toDate") String toDate, @QueryParam("type") String type)
+					throws JsonParseException, JsonMappingException, IOException {
+		Transactions transactions = convertToJSON(client.transactionHistoryInterval(accNo, fromDate, toDate), Transactions.class);
+		Double amountSpent = 0.0;
+		for(TransactionHistory th : transactions.getSource()){
+			if("Dr.".equalsIgnoreCase(th.getCredit_debit_flag()) && type.equalsIgnoreCase(th.getRemark())){
+				amountSpent += Double.valueOf(th.getAmount());
+			}
+		}
+		return String.valueOf(amountSpent);
+	}
+	
 	@GET
 	@Path("/behaviourScore")
 	@Produces(MediaType.APPLICATION_JSON)

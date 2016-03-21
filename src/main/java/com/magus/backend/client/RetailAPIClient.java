@@ -1,9 +1,13 @@
 package com.magus.backend.client;
 
+import java.io.IOException;
+
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.magus.backend.model.APIConstants;
 import com.magus.backend.model.DummyReponses;
 
@@ -46,13 +50,15 @@ public class RetailAPIClient extends AbstractClient {
 		return getResponse(response, DummyReponses.getTransactionSummaryNDays());
 	}
 	
-	public String transactionHistoryInterval(String accNo, String fromDate, String toDate) {
+	public String transactionHistoryInterval(String accNo, String fromDate, String toDate) throws JsonParseException, JsonMappingException, IOException {
 		Response response = queryClientToken(getWebTarget()).path(APIConstants.TRANSACTION_HISTORY_INTERVAL_STR)
 				.queryParam(APIConstants.ACCOUNT_NUMBER_STR, String.valueOf(accNo))
 				.queryParam(APIConstants.FROM_DATE, String.valueOf(fromDate))
 				.queryParam(APIConstants.TO_DATE, String.valueOf(toDate))
 				.request().accept(MediaType.APPLICATION_JSON_TYPE).get();
-		return getResponse(response, DummyReponses.getTransactionSummaryInterval());
+		
+		String response2 = getResponseArray(response, DummyReponses.getTransactionSummaryInterval());
+		return response2;
 	}
 	
 	public String behaviourScore(String accNo) {
@@ -71,11 +77,13 @@ public class RetailAPIClient extends AbstractClient {
 		return getResponse(response);
 	}
 	
-	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws JsonParseException, JsonMappingException, IOException {
 		RetailAPIClient client = new RetailAPIClient();
-		String accNo = "5555666677770328";
+		String accNo = "5555666677770329";
 		System.out.println(client.balanceEnquiry(accNo));
+//		System.out.println(client.miniStatement(accNo));
+//		System.out.println(client.transactionHistoryNDays(accNo, 10));
+		System.out.println(client.transactionHistoryInterval(accNo, "2016-01-01", "2016-03-31"));
 		//System.out.println(client.accountSummary(accNo, "88881328"));
 		//System.out.println(client.branchAtmLocator("", ""));
 
