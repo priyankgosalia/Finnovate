@@ -15,6 +15,7 @@
         vm.getBalance = getBalance;
         vm.transferFunds = transferFunds;
         vm.getLoanDetail = getLoanDetail;
+        vm.getSpentOn = getSpentOn;
         vm.goBack = goBack;
         vm.speakNow = speakNow;
         vm.userFirstName = AuthenticationService.GetUserFirstName();
@@ -36,6 +37,9 @@
       	    },
       	    'find nearest ATM': function() {
       	    	$('#greeting').text('Finding nearest ATM...');
+      	    },
+      	    'last :day days spent on :type': function(day, type) {
+      	    	vm.getSpentOn(day,type);
       	    }
       	    
       	  };
@@ -44,6 +48,23 @@
       	  
       	}
         return vm;
+        
+        function getSpentOn(day, type) {
+        	vm.dataLoading = true;
+        	console.log("Spent on " + type + " in last " + day + " days");
+  	    	$('#greeting').text('Spent on '+type+' in last '+day+' days');
+        	//$('#greeting').html('Fetching account balance...');
+        	vm.RetailService.getSpentOn(day,type, function(response) {
+        		console.log(response.data);
+        		if (response.data) {
+        			$('#greeting').html('Spent <b> INR '+response.data+'</b> on '+type+' in last '+ day+' days');
+        		} else {
+        			$('#greeting').html('Oops! ' + response.data.message);
+        		}
+        	});
+        	vm.dataLoading = false;
+        	vm.speakNow();
+        };
         
         function transferFunds(amount,friend) {
         	vm.dataLoading = true;
