@@ -52,7 +52,6 @@
 	    <ver.package.name>com.${project.artifactId}.version</ver.package.name>
 	    <ver.class.name>Version</ver.class.name>
 	    <ver.appversion>${project.version}</ver.appversion>
-	    <ver.buildtime>${maven.build.timestamp}</ver.buildtime>
 	    <maven.build.timestamp.format>dd-MM-yyyy HH:mm</maven.build.timestamp.format>
 	    <ver.template.dir>src/main/resources/version</ver.template.dir>
 	    <ver.template.file>VersionJava.template</ver.template.file>
