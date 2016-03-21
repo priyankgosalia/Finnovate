@@ -10,17 +10,21 @@
 	        <small><b>Hint:</b> your voice is my command</small>
 	      </div>
 	      <div class="list-group-item media" align="center">
-	      	<div ng-if="vc.dataLoading">
-	      		<i class="fa fa-circle-o-notch"></i>
+	      	<div ng-if="vc.dataLoading == true">
+	      		<i class="fa fa-spinner fa-pulse"></i>
 	      	</div>
 	      	<br/>
 	      	<p id="greeting"></p>
 	      	<br/>
-	      	<div id="btnspk" class="round-button" ng-click="vc.speakNow()">
-	      		<div id="btnspkcircle" class="round-button-circle">
-	      			<a id="speakbtn" class="round-button">Speak Now</a>
-	      		</div>
+	      	<div ng-if="vc.listening == true">
+	      		<i class="fa fa-spinner fa-pulse"></i> Listening...
 	      	</div>
+	      	<div ng-if="vc.listening == false">
+	      		Press the button to start speaking
+	      	</div>
+	      	<br/>
+	      	<button ng-if="vc.listening == false" ng-click="vc.speakNow()" type="button" class="btn btn-primary btn-circle btn-xl"><i class="fa fa-microphone fa-2x"></i></button>
+	      	<button ng-if="vc.listening == true" ng-click="vc.speakNow()" type="button" class="btn btn-danger btn-circle btn-xl"><i class="fa fa-microphone-slash fa-2x"></i></button>
 	      </div>
 	    </div>
 	</div>

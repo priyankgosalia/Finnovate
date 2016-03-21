@@ -80,21 +80,11 @@
 	        	// start listening
 	        	vm.annyang.start();
 	        	vm.annyang.debug(true);
-	        	$('#speakbtn').text("Listening");
-	        	$('#btnspk').toggleClass("round-button-clicked");
-	        	$('#btnspkcircle').toggleClass("round-button-clicked-circle");
-	        	$('#speakbtn').toggleClass("round-button-clicked");
-	        	
 	        	vm.listening = true;
         	} else {
         		console.log("Listening for audio input (stop)...");
 	        	// stop listening
 	        	vm.annyang.abort();
-	        	$('#speakbtn').text("Speak Now");
-	        	$('#btnspk').toggleClass("round-button");
-	        	$('#btnspkcircle').toggleClass("round-button-circle");
-	        	$('#speakbtn').toggleClass("round-button");
-	        	
 	        	vm.listening = false;
         	}
         };
