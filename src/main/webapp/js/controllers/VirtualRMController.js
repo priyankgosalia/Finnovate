@@ -5,14 +5,15 @@
         .module('magus')
         .controller('VirtualRMController', VirtualRMController);
  
-    VirtualRMController.$inject = ['$rootScope', '$location', 'AuthenticationService', 'RetailService'];
-    function VirtualRMController($rootScope, $location, AuthenticationService, RetailService) {
+    VirtualRMController.$inject = ['$rootScope', '$location', 'AuthenticationService', 'RetailService', '$timeout'];
+    function VirtualRMController($rootScope, $location, AuthenticationService, RetailService, $timeout) {
         var vm = this;
         vm.$location = $location;
         vm.$rootScope = $rootScope;
         vm.AuthenticationService = AuthenticationService;
         vm.RetailService = RetailService;
         vm.getBalance = getBalance;
+        vm.transferFunds = transferFunds;
         vm.getLoanDetail = getLoanDetail;
         vm.goBack = goBack;
         vm.speakNow = speakNow;
@@ -30,6 +31,9 @@
       	    'my loan': function() {
       	    	vm.getLoanDetail();
       	    },
+      	    'transfer :amount to :friend': function(amount,friend) {
+      	    	vm.transferFunds(amount,friend);
+      	    },
       	    'find nearest ATM': function() {
       	    	$('#greeting').text('Finding nearest ATM...');
       	    }
@@ -40,6 +44,17 @@
       	  
       	}
         return vm;
+        
+        function transferFunds(amount,friend) {
+        	vm.dataLoading = true;
+        	console.log("Transfer "+amount+" to "+friend);
+        	$timeout(function(){
+        		var text = "Transfer <b>INR "+amount+"</b> to <b>"+friend+"</b> ?"+"<br/><br/><button type=\"button\" class=\"btn btn-primary\">Transfer</button> <button type=\"button\" class=\"btn btn-default\">Cancel</button>";
+            	$('#greeting').html(text);
+        	},100);
+        	vm.dataLoading = false;
+        	vm.speakNow();
+        };
         
         function getBalance() {
         	vm.dataLoading = true;
