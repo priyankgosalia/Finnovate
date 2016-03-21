@@ -11,15 +11,15 @@ public class DummyReponses {
 	}
 	
 	public static String getMiniStatementSummary(){
-		return "[{ \"code\":200 }, { \"accountno\": \"9999888877770001\", \"closing_balance\": \"5000000.00\", \"transactiondate\": \"2016-02-09 12:14:33.000 IST\", \"amount\": \"10000.00\", \"credit_debit_flag\": \"Dr.\", \"remark\": \"My Remark\"}]";
+		return "{\"code\":200}, {\"transactiondate\":\"2016-03-21 22:16:24.0\",\"closing_balance\":\"4997386.770\",\"accountno\":\"5555666677770329\",\"credit_debit_flag\":\"Dr.\",\"transaction_amount\":\"285.00\",\"remark\":\"DTH\"}, {\"transactiondate\":\"2016-03-21 21:05:50.0\",\"closing_balance\":\"4997671.770\",\"accountno\":\"5555666677770329\",\"credit_debit_flag\":\"Dr.\",\"transaction_amount\":\"328.230\",\"remark\":\"Electricity\"}, {\"transactiondate\":\"2016-03-21 21:05:15.0\",\"closing_balance\":\"4998000.00\",\"accountno\":\"5555666677770329\",\"credit_debit_flag\":\"Dr.\",\"transaction_amount\":\"1000.00\",\"remark\":\"PMR\"}, {\"transactiondate\":\"2016-03-21 20:56:44.0\",\"closing_balance\":\"4999000.00\",\"accountno\":\"5555666677770329\",\"credit_debit_flag\":\"Dr.\",\"transaction_amount\":\"1000.00\",\"remark\":\"DTH\"}";
 	}
 	
 	public static String getTransactionSummaryNDays(){
-		return "[{ \"code\":200 }, { \"accountno\": \"9999888877770001\", \"closing_balance\": \"5000000.00\", \"transactiondate\": \"2016-02-09 12:14:33.000 IST\", \"amount\": \"10000.00\", \"credit_debit_flag\": \"Dr.\", \"remark\": \"My Remark\"}]";
+		return "{\"code\":200}, {\"transactiondate\":\"2016-03-21 22:16:24.0\",\"closing_balance\":\"4997386.770\",\"accountno\":\"5555666677770329\",\"credit_debit_flag\":\"Dr.\",\"transaction_amount\":\"285.00\",\"remark\":\"DTH\"}, {\"transactiondate\":\"2016-03-21 21:05:50.0\",\"closing_balance\":\"4997671.770\",\"accountno\":\"5555666677770329\",\"credit_debit_flag\":\"Dr.\",\"transaction_amount\":\"328.230\",\"remark\":\"Electricity\"}, {\"transactiondate\":\"2016-03-21 21:05:15.0\",\"closing_balance\":\"4998000.00\",\"accountno\":\"5555666677770329\",\"credit_debit_flag\":\"Dr.\",\"transaction_amount\":\"1000.00\",\"remark\":\"PMR\"}, {\"transactiondate\":\"2016-03-21 20:56:44.0\",\"closing_balance\":\"4999000.00\",\"accountno\":\"5555666677770329\",\"credit_debit_flag\":\"Dr.\",\"transaction_amount\":\"1000.00\",\"remark\":\"DTH\"}";
 	}
 
 	public static String getTransactionSummaryInterval() {
-		return "[{ \"code\":200 }, { \"accountno\": \"9999888877770001\", \"closing_balance\": \"5000000.00\", \"transactiondate\": \"2016-02-09 12:14:33.000 IST\", \"amount\": \"10000.00\", \"credit_debit_flag\": \"Dr.\", \"remark\": \"My Remark\"}]";
+		return "{\"code\":200}, {\"transactiondate\":\"2016-03-21 22:16:24.0\",\"closing_balance\":\"4997386.770\",\"accountno\":\"5555666677770329\",\"credit_debit_flag\":\"Dr.\",\"transaction_amount\":\"285.00\",\"remark\":\"DTH\"}, {\"transactiondate\":\"2016-03-21 21:05:50.0\",\"closing_balance\":\"4997671.770\",\"accountno\":\"5555666677770329\",\"credit_debit_flag\":\"Dr.\",\"transaction_amount\":\"328.230\",\"remark\":\"Electricity\"}, {\"transactiondate\":\"2016-03-21 21:05:15.0\",\"closing_balance\":\"4998000.00\",\"accountno\":\"5555666677770329\",\"credit_debit_flag\":\"Dr.\",\"transaction_amount\":\"1000.00\",\"remark\":\"PMR\"}, {\"transactiondate\":\"2016-03-21 20:56:44.0\",\"closing_balance\":\"4999000.00\",\"accountno\":\"5555666677770329\",\"credit_debit_flag\":\"Dr.\",\"transaction_amount\":\"1000.00\",\"remark\":\"DTH\"}";
 	}
 	
 	public static String getBehaviourScore() {

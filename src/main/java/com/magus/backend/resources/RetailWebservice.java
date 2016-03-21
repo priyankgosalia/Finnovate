@@ -63,9 +63,9 @@ public class RetailWebservice extends AbstractService {
 	@GET
 	@Path("/transactionHistoryNDays")
 	@Produces(MediaType.APPLICATION_JSON)
-	public TransactionHistory getTransactionHistoryNDays(@QueryParam("accountNumber") String accNo,
+	public Transactions getTransactionHistoryNDays(@QueryParam("accountNumber") String accNo,
 			@QueryParam("days") int days) throws JsonParseException, JsonMappingException, IOException {
-		return convertToJSON(client.transactionHistoryNDays(accNo, days), TransactionHistory.class);
+		return convertToJSON(client.transactionHistoryNDays(accNo, days), Transactions.class);
 	}
 
 	@GET
