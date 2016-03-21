@@ -94,6 +94,21 @@ public class RetailWebservice extends AbstractService {
 		return String.valueOf(amountSpent);
 	}
 	
+
+	@GET
+	@Path("/spentOnLast")
+	@Produces(MediaType.APPLICATION_JSON)
+	public String getTotalSpentOnLast(@QueryParam("accountNumber") String accNo, @QueryParam("days") int days, @QueryParam("type") String type)
+					throws JsonParseException, JsonMappingException, IOException {
+		Transactions transactions = convertToJSON(client.transactionHistoryNDays(accNo, days), Transactions.class);
+		Double amountSpent = 0.0;
+		for(TransactionHistory th : transactions.getSource()){
+			if("Dr.".equalsIgnoreCase(th.getCredit_debit_flag()) && type.equalsIgnoreCase(th.getRemark())){
+				amountSpent += Double.valueOf(th.getAmount());
+			}
+		}
+		return String.valueOf(amountSpent);
+	}
 	@GET
 	@Path("/behaviourScore")
 	@Produces(MediaType.APPLICATION_JSON)
