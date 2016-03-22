@@ -38,8 +38,8 @@
       	    'find nearest ATM': function() {
       	    	$('#greeting').text('Finding nearest ATM...');
       	    },
-      	    'last :day days spent on :type': function(day, type) {
-      	    	vm.getSpentOn(day,type);
+      	    ':type expense in last :day day(s)': function(type, day) {
+      	    	vm.getSpentOn(type,day);
       	    }
       	    
       	  };
@@ -49,7 +49,7 @@
       	}
         return vm;
         
-        function getSpentOn(day, type) {
+        function getSpentOn(type, day) {
         	vm.dataLoading = true;
         	console.log("Spent on " + type + " in last " + day + " days");
   	    	$('#greeting').text('Spent on '+type+' in last '+day+' days');
@@ -57,7 +57,7 @@
         	vm.RetailService.getSpentOn(day,type, function(response) {
         		console.log(response.data);
         		if (response.data) {
-        			$('#greeting').html('Spent <b> INR '+response.data+'</b> on '+type+' in last '+ day+' days');
+        			$('#greeting').html('You spent <b>INR '+response.data+'</b> on '+type+' in the last '+ day+' days');
         		} else {
         			$('#greeting').html('Oops! ' + response.data.message);
         		}
