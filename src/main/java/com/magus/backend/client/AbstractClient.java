@@ -40,7 +40,7 @@ public class AbstractClient {
 		String ans = "{ \"code\":" +  response.getStatus() + ",\"description\":\"Access Denied\",\"message\":\"Something went Wrong\"}";
 		if (response.getStatus() <= 299 && response.getStatus() >= 200) {
 			ans = response.readEntity(String.class);
-			ans = ans.replace("WalletDetails", "walletDetails");
+			//ans = ans.replace("WalletDetails", "walletDetails");
 		}
 		return ans;
 	}
@@ -62,6 +62,10 @@ public class AbstractClient {
 		return addARRAY(ans);
 	}
 
+	public String getDummyResponseArray(String dummyResponse) {
+			return addARRAY(dummyResponse);		
+	}
+	
 	private String addARRAY(String ans) {
 		String reply = ans;
 		//reply = "[".concat(reply.concat("]"));

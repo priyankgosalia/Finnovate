@@ -47,7 +47,7 @@ public class RetailAPIClient extends AbstractClient {
 				.queryParam(APIConstants.ACCOUNT_NUMBER_STR, String.valueOf(accNo))
 				.queryParam(APIConstants.NUMBER_OF_DAYS, Integer.valueOf(days))
 				.request().accept(MediaType.APPLICATION_JSON_TYPE).get();
-		return getResponseArray(response, DummyReponses.getTransactionSummaryNDays());
+		return getDummyResponseArray( DummyReponses.getTransactionSummaryNDays());
 	}
 	
 	public String transactionHistoryInterval(String accNo, String fromDate, String toDate) throws JsonParseException, JsonMappingException, IOException {

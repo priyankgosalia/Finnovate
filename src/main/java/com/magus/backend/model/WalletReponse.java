@@ -3,6 +3,8 @@ package com.magus.backend.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class WalletReponse {
 
 	private String errorCode;
@@ -20,6 +22,8 @@ public class WalletReponse {
 	public void setErrorDescripttion(String errorDescripttion) {
 		this.errorDescripttion = errorDescripttion;
 	}
+	
+	@JsonProperty("WalletDetails")
 	public List<WalletDetails> getWalletDetails() {
 		return WalletDetails;
 	}

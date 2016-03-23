@@ -3,9 +3,16 @@ package com.magus.backend.service;
 import java.util.Map;
 
 public class SharingData {
-	private Integer noOfShares;
-	private Double billAmount;
-	private Map<String, Double> shareRatio;
+	private Map<String, Double> amountSpent;
+	private Map<String, Share> shares;
+	public Map<String, Share> getShares() {
+		return shares;
+	}
+
+	public void setShares(Map<String, Share> shares) {
+		this.shares = shares;
+	}
+
 	private String message;
 	private String personalNotes;
 
@@ -17,41 +24,13 @@ public class SharingData {
 		this.personalNotes = personalNotes;
 	}
 
-	public SharingData() {
-	}
+	public SharingData() {}
 
-	public SharingData(Integer noOfShares, Double billAmount,
-			Map<String, Double> shareRatio, String message,String personalNotes) {
+	public SharingData(Map<String, Double> amountSpent, String message,String personalNotes) {
 		super();
-		this.noOfShares = noOfShares;
-		this.billAmount = billAmount;
-		this.shareRatio = shareRatio;
+		this.amountSpent = amountSpent;
 		this.message = message;
 		this.personalNotes = personalNotes;
-	}
-
-	public Integer getNoOfShares() {
-		return noOfShares;
-	}
-
-	public void setNoOfShares(Integer noOfShares) {
-		this.noOfShares = noOfShares;
-	}
-
-	public Double getBillAmount() {
-		return billAmount;
-	}
-
-	public void setBillAmount(Double billAmount) {
-		this.billAmount = billAmount;
-	}
-
-	public Map<String, Double> getShareRatio() {
-		return shareRatio;
-	}
-
-	public void setShareRatio(Map<String, Double> shareRatio) {
-		this.shareRatio = shareRatio;
 	}
 
 	public String getMessage() {
@@ -61,6 +40,37 @@ public class SharingData {
 	public void setMessage(String message) {
 		this.message = message;
 	}
-	
+
+	public Map<String, Double> getAmountSpent() {
+		return amountSpent;
+	}
+
+	public void setAmountSpent(Map<String, Double> amountSpent) {
+		this.amountSpent = amountSpent;
+	}
+
+	public class Share{
+		private String ndPerson;
+		private Double amount;
+		public String getNdPerson() {
+			return ndPerson;
+		}
+		public void setNdPerson(String ndPerson) {
+			this.ndPerson = ndPerson;
+		}
+		public Double getAmount() {
+			return amount;
+		}
+		public void setAmount(Double amount) {
+			this.amount = amount;
+		}
+		private Share(String ndPerson, Double amount) {
+			super();
+			this.ndPerson = ndPerson;
+			this.amount = amount;
+		}
+		
+		
+	}
 	
 }
