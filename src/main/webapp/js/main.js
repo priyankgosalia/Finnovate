@@ -24,7 +24,7 @@
 			templateUrl : 'pages/kycAadhar.html',
 			controller : 'KYCAadharController',
 			controllerAs : 'kca',
-			title : 'KYC'
+			title : 'e-KYC'
 		}).when('/virtualrm', {
 			templateUrl : 'pages/virtualrm.html',
 			controller : 'VirtualRMController',

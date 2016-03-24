@@ -2,6 +2,8 @@
 	<div class="scrollable-content section">
 		<div class="list-group text-center">
 			<h3>Hey {{ kca.userFirstName }}, we're almost done!</h3>
+			<h5>This step will perform AADHAR based e-KYC verification.</h5>
+			<br/>
 			<div class="list-group-item list-group-item-home">
 		        <div>
 		        	<div ng-if="kca.dataLoading">
@@ -10,11 +12,11 @@
 					<div ng-if="kca.kycFailure">
 						<div class="alert alert-danger" role="alert"><i class="fa fa-2x fa-exclamation-triangle"></i>&nbsp;{{kca.failureMessage}}</div>
 					</div>
-		            <h4 class="home-heading">Please enter your Aadhar number to activate the App</h4>
+		            <h4 class="home-heading">Please enter your <b>Aadhar</b> number</h4>
 		            <form role="form" ng-submit='kca.otpGenerated == true && kca.doKYC()'>
 						<fieldset>
 						<div class="form-group has-success has-feedback">
-							<label>Aadhar Number</label> <input ng-disabled="kca.otpGenerated == true" type="text" ng-model="kca.aadhar"
+							<input ng-disabled="kca.otpGenerated == true" type="text" ng-model="kca.aadhar"
 								class="form-control" placeholder="Enter your Aadhar Number">
 						</div>
 						<div ng-if="kca.otpGenerated == false" class="form-actions">
@@ -36,6 +38,10 @@
 						</div>
 					</form>
 		        </div>
+		        <br/>
+		        <div class="alert alert-info" role="alert">
+      				On-boarding powered by <b>Aadhar</b> based e-KYC and e-Sign
+	  			</div>
       		</div>
 		</div>
 	</div>
