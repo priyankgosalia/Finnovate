@@ -1,6 +1,8 @@
 package com.magus.backend.resources;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -21,6 +23,7 @@ import com.magus.backend.model.LoanAccountSummary;
 import com.magus.backend.model.LoanCustomerDetails;
 import com.magus.backend.model.LoanEMIDetails;
 import com.magus.backend.model.LoanTransactionDetails;
+import com.magus.backend.model.Percentages;
 import com.magus.backend.model.TransactionHistory;
 import com.magus.backend.model.Transactions;
 
@@ -109,6 +112,35 @@ public class RetailWebservice extends AbstractService {
 		}
 		return String.valueOf(amountSpent);
 	}
+	
+	@GET
+	@Path("/spentOnPercentages")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Percentages getSpentOnPercentage(@QueryParam("accountNumber") String accNo, @QueryParam("days") int days)
+					throws JsonParseException, JsonMappingException, IOException {
+		Transactions transactions = convertToJSON(client.transactionHistoryNDays(accNo, days), Transactions.class);
+		Map<String, Double> map = new HashMap<>();
+		Double total = 0.0;
+		for(TransactionHistory th : transactions.getSource()){
+			if("Dr.".equalsIgnoreCase(th.getCredit_debit_flag())){
+				Double amount = map.get(th.getRemark());
+				String amount2 = th.getAmount();
+				if(amount == null){
+					map.put(th.getRemark(), Double.valueOf(amount2));
+				}else{
+					map.put(th.getRemark(), Double.valueOf(amount2) + map.get(th.getRemark()));
+				}
+				
+				total += Double.valueOf(amount2);
+			}
+		}
+		
+		Percentages percentages = new Percentages(total, map);
+		percentages.setMap(map);
+				
+		return percentages;
+	}
+	
 	@GET
 	@Path("/behaviourScore")
 	@Produces(MediaType.APPLICATION_JSON)
