@@ -19,7 +19,7 @@ public interface APIConstants {
 	public static final String TRANSACTION_HISTORY_INTERVAL_STR = "transactioninterval";
 	public static final String BEHAVIOUR_SCORE_STR = "behaviour_score";
 	public static final String LIST_PAYEE_STR = "listpayee";
-	public static final String FUNDS_TRANSFER_STR = "fundsTransfer";
+	public static final String FUNDS_TRANSFER_STR = "fundTransfer";
 	public static final String BRANCH_ATM_LOCATOR_STR = "BranchAtmLocator";
 	public static final String LOAN_ACCOUNT_SUMMARY_STR = "getLoanDetails";
 	public static final String LOAN_CUSTOMER_DETAILS_STR = "customerDetails";
@@ -62,4 +62,14 @@ public interface APIConstants {
 	public static final String FROM_DATE = "fromdate";
 	public static final String TO_DATE = "todate";
 	public static final String MERCHANT = "myMerchant";
+	
+	public static final String SOURCE_ACCOUNT_NUMBER = "srcAccount";
+	public static final String DESTINATION_ACCOUNT_NUMBER = "destAccount";
+	public static final String AMOUNT = "amt";
+	public static final String PAYEE_DESC = "payeeDesc";
+	public static final String PAYEE_ID= "payeeId";
+	public static final String TYPE_OF_TRANSACTION = "type_of_transaction";
+			
+			;
+	
 }

@@ -1,7 +1,7 @@
 package com.magus.backend.model;
 
 
-public class AccountSummary  extends ErrorResponse {
+public class AccountSummary extends ErrorResponse {
 
 	private Double balance;
 	private String accountno;

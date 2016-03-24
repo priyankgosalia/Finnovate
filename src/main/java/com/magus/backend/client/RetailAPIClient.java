@@ -39,7 +39,7 @@ public class RetailAPIClient extends AbstractClient {
 		Response response = queryClientToken(getWebTarget()).path(APIConstants.TRANSACTION_HISTORY_MINI_STATEMENT_STR)
 				.queryParam(APIConstants.ACCOUNT_NUMBER_STR, String.valueOf(accNo))
 				.request().accept(MediaType.APPLICATION_JSON_TYPE).get();
-		return getResponse(response, DummyReponses.getMiniStatementSummary());
+		return "[" + getResponse(response).trim() + "]";
 	}
 	
 	public String transactionHistoryNDays(String accNo, int days){
@@ -77,13 +77,36 @@ public class RetailAPIClient extends AbstractClient {
 		return getResponse(response);
 	}
 	
+	public String listPayee(String cust_id){
+		Response response = queryClientToken(getWebTarget()).path(APIConstants.LIST_PAYEE_STR)
+				.queryParam(APIConstants.CUSTID_STR, cust_id)
+				.request().accept(MediaType.APPLICATION_JSON).get();
+		return "[" + getResponse(response).trim() + "]";
+	}
+	
+	public String transferFunds(String srcAccNo, String destAccNo, double amt, String payeeDesc, int payeeId, String type) {
+		Response response = queryClientToken(getWebTarget()).path(APIConstants.FUNDS_TRANSFER_STR)
+				.queryParam(APIConstants.SOURCE_ACCOUNT_NUMBER, srcAccNo)
+				.queryParam(APIConstants.DESTINATION_ACCOUNT_NUMBER, destAccNo)
+				.queryParam(APIConstants.AMOUNT, amt)
+				.queryParam(APIConstants.PAYEE_DESC, payeeDesc)
+				.queryParam(APIConstants.PAYEE_ID, payeeId)
+				.queryParam(APIConstants.TYPE_OF_TRANSACTION, type)
+				.request().accept(MediaType.APPLICATION_JSON_TYPE).get();
+		return getResponse(response).trim();
+	}
+	
 	public static void main(String[] args) throws JsonParseException, JsonMappingException, IOException {
 		RetailAPIClient client = new RetailAPIClient();
 		String accNo = "5555666677770329";
-		System.out.println(client.balanceEnquiry(accNo));
+		String destAccNo = "5555666677779999";
+//		System.out.println(client.balanceEnquiry(accNo));
 //		System.out.println(client.miniStatement(accNo));
 //		System.out.println(client.transactionHistoryNDays(accNo, 10));
-		System.out.println(client.transactionHistoryInterval(accNo, "2016-01-01", "2016-03-31"));
+//		System.out.println(client.transactionHistoryInterval(accNo, "2016-01-01", "2016-03-31"));
+		//System.out.println(client.listPayee("88881328"));
+		System.out.println(client.transferFunds(accNo, destAccNo, 10000.00, "A9999", 593, "DTH"));
+//		System.out.println(client.miniStatement(destAccNo));
 		//System.out.println(client.accountSummary(accNo, "88881328"));
 		//System.out.println(client.branchAtmLocator("", ""));
 

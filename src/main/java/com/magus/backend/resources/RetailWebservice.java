@@ -19,10 +19,12 @@ import com.magus.backend.model.AccountBalance;
 import com.magus.backend.model.AccountSummary;
 import com.magus.backend.model.BehaviourScore;
 import com.magus.backend.model.BranchAtmLocator;
+import com.magus.backend.model.FundsTransfer;
 import com.magus.backend.model.LoanAccountSummary;
 import com.magus.backend.model.LoanCustomerDetails;
 import com.magus.backend.model.LoanEMIDetails;
 import com.magus.backend.model.LoanTransactionDetails;
+import com.magus.backend.model.Payee;
 import com.magus.backend.model.Percentages;
 import com.magus.backend.model.TransactionHistory;
 import com.magus.backend.model.Transactions;
@@ -58,11 +60,12 @@ public class RetailWebservice extends AbstractService {
 	@GET
 	@Path("/miniStatement")
 	@Produces(MediaType.APPLICATION_JSON)
-	public TransactionHistory getMiniStetement(@QueryParam("accountNumber") String accNo)
+	public TransactionHistory[] getMiniStetement(@QueryParam("accountNumber") String accNo)
 			throws JsonParseException, JsonMappingException, IOException {
-		return convertToJSON(client.miniStatement(accNo), TransactionHistory.class);
+		return convertToJSON(client.miniStatement(accNo), TransactionHistory[].class);
 	}
 
+	// http://localhost:8080/magus/ws/retail/transactionHistoryNDays?accountNumber=5555666677770329&days=90
 	@GET
 	@Path("/transactionHistoryNDays")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -77,70 +80,71 @@ public class RetailWebservice extends AbstractService {
 	public Transactions getTransactionHistoryInterval(@QueryParam("accountNumber") String accNo,
 			@QueryParam("fromDate") String fromDate, @QueryParam("toDate") String toDate)
 					throws JsonParseException, JsonMappingException, IOException {
-		Transactions transactions = convertToJSON(client.transactionHistoryInterval(accNo, fromDate, toDate), Transactions.class);
+		Transactions transactions = convertToJSON(client.transactionHistoryInterval(accNo, fromDate, toDate),
+				Transactions.class);
 		return transactions;
 	}
 
 	@GET
 	@Path("/spentOnBetween")
 	@Produces(MediaType.APPLICATION_JSON)
-	public String getTotalSpentOn(@QueryParam("accountNumber") String accNo,
-			@QueryParam("fromDate") String fromDate, @QueryParam("toDate") String toDate, @QueryParam("type") String type)
+	public String getTotalSpentOn(@QueryParam("accountNumber") String accNo, @QueryParam("fromDate") String fromDate,
+			@QueryParam("toDate") String toDate, @QueryParam("type") String type)
 					throws JsonParseException, JsonMappingException, IOException {
-		Transactions transactions = convertToJSON(client.transactionHistoryInterval(accNo, fromDate, toDate), Transactions.class);
+		Transactions transactions = convertToJSON(client.transactionHistoryInterval(accNo, fromDate, toDate),
+				Transactions.class);
 		Double amountSpent = 0.0;
-		for(TransactionHistory th : transactions.getSource()){
-			if("Dr.".equalsIgnoreCase(th.getCredit_debit_flag()) && type.equalsIgnoreCase(th.getRemark())){
+		for (TransactionHistory th : transactions.getSource()) {
+			if ("Dr.".equalsIgnoreCase(th.getCredit_debit_flag()) && type.equalsIgnoreCase(th.getRemark())) {
 				amountSpent += Double.valueOf(th.getAmount());
 			}
 		}
 		return String.valueOf(amountSpent);
 	}
-	
 
 	@GET
 	@Path("/spentOnLast")
 	@Produces(MediaType.APPLICATION_JSON)
-	public String getTotalSpentOnLast(@QueryParam("accountNumber") String accNo, @QueryParam("days") int days, @QueryParam("type") String type)
-					throws JsonParseException, JsonMappingException, IOException {
+	public String getTotalSpentOnLast(@QueryParam("accountNumber") String accNo, @QueryParam("days") int days,
+			@QueryParam("type") String type) throws JsonParseException, JsonMappingException, IOException {
 		Transactions transactions = convertToJSON(client.transactionHistoryNDays(accNo, days), Transactions.class);
 		Double amountSpent = 0.0;
-		for(TransactionHistory th : transactions.getSource()){
-			if("Dr.".equalsIgnoreCase(th.getCredit_debit_flag()) && type.equalsIgnoreCase(th.getRemark())){
+		for (TransactionHistory th : transactions.getSource()) {
+			if ("Dr.".equalsIgnoreCase(th.getCredit_debit_flag()) && type.equalsIgnoreCase(th.getRemark())) {
 				amountSpent += Double.valueOf(th.getAmount());
 			}
 		}
 		return String.valueOf(amountSpent);
 	}
-	
+
 	@GET
 	@Path("/spentOnPercentages")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Percentages getSpentOnPercentage(@QueryParam("accountNumber") String accNo, @QueryParam("days") int days)
-					throws JsonParseException, JsonMappingException, IOException {
+			throws JsonParseException, JsonMappingException, IOException {
 		Transactions transactions = convertToJSON(client.transactionHistoryNDays(accNo, days), Transactions.class);
 		Map<String, Double> map = new HashMap<>();
 		Double total = 0.0;
-		for(TransactionHistory th : transactions.getSource()){
-			if("Dr.".equalsIgnoreCase(th.getCredit_debit_flag())){
+		for (TransactionHistory th : transactions.getSource()) {
+			if ("Dr.".equalsIgnoreCase(th.getCredit_debit_flag())) {
 				Double amount = map.get(th.getRemark());
 				String amount2 = th.getAmount();
-				if(amount == null){
+				if (amount == null) {
 					map.put(th.getRemark(), Double.valueOf(amount2));
-				}else{
+				} else {
 					map.put(th.getRemark(), Double.valueOf(amount2) + map.get(th.getRemark()));
 				}
-				
+
 				total += Double.valueOf(amount2);
 			}
 		}
-		
+
 		Percentages percentages = new Percentages(total, map);
 		percentages.setMap(map);
-				
+
 		return percentages;
 	}
-	
+
 	@GET
 	@Path("/behaviourScore")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -155,6 +159,27 @@ public class RetailWebservice extends AbstractService {
 	public BranchAtmLocator getAtmLocator(@QueryParam("lat") String latitude, @QueryParam("long") String longitude)
 			throws JsonParseException, JsonMappingException, IOException {
 		return convertToJSON(client.branchAtmLocator(latitude, longitude), BranchAtmLocator.class);
+	}
+
+	// http://localhost:8080/magus/ws/retail/listPayee?custId=88881328
+	@GET
+	@Path("/listPayee")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Payee[] getPayeeList(@QueryParam("custId") String custId)
+			throws JsonParseException, JsonMappingException, IOException {
+		return convertToJSON(client.listPayee(custId), Payee[].class);
+	}
+
+	// http://localhost:8080/magus/ws/retail/fundsTransfer?srcAccount=5555666677770329&destAccount=5555666677779999&amt=25000&payeeDesc=A9999&payeeId=593&type=Electricity
+	@GET
+	@Path("/fundsTransfer")
+	@Produces(MediaType.APPLICATION_JSON)
+	public FundsTransfer transferFunds(@QueryParam("srcAccount") String srcAccNo,
+			@QueryParam("destAccount") String destAccNo, @QueryParam("amt") double amt,
+			@QueryParam("payeeDesc") String payeeDesc, @QueryParam("payeeId") int payeeId,
+			@QueryParam("type") String type) throws JsonParseException, JsonMappingException, IOException {
+		return convertToJSON(client.transferFunds(srcAccNo, destAccNo, amt, payeeDesc, payeeId, type),
+				FundsTransfer.class);
 	}
 
 	@GET
