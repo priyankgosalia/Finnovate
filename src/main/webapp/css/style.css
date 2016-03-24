@@ -9,6 +9,13 @@ tr td {
 	align: center;
 }
 
+table .notif {
+	table-layout: fixed;
+}
+
+tr td .notif{
+}
+
 h4 .homeitem {
 	align: center;
 }
@@ -107,4 +114,29 @@ h5 .homeitem {
   font-size: 24px;
   line-height: 1.33;
   border-radius: 60px;
+}
+
+#notification {
+    position:fixed;
+    top:0px; /* Set to 0 or wherever */
+    width:100%; /* set to 100% if space is available */
+    z-index:105;
+    text-align:left;
+    font-weight:normal;
+    font-size:14px;
+    color:#0b080b;
+    background-color:#fef8d5;
+    padding:5px;
+}
+#notification span.dismiss {
+    border:2px solid #FFF;
+    padding:0 5px;
+    cursor:pointer;
+    float:right;
+    margin-right:10px;
+}
+#notification a {
+    color:white;
+    text-decoration:none;
+    font-weight:bold
 }

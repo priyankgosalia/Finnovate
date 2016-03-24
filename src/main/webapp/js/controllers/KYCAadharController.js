@@ -5,8 +5,8 @@
         .module('magus')
         .controller('KYCAadharController', KYCAadharController);
  
-    KYCAadharController.$inject = ['$rootScope', '$location', 'KYCService', 'AuthenticationService'];
-    function KYCAadharController($rootScope, $location, KYCService, AuthenticationService) {
+    KYCAadharController.$inject = ['$rootScope', '$location', 'KYCService', 'AuthenticationService', '$timeout'];
+    function KYCAadharController($rootScope, $location, KYCService, AuthenticationService, $timeout) {
         var vm = this;
         vm.$location = $location;
         vm.$rootScope = $rootScope;
@@ -19,6 +19,7 @@
         vm.username = AuthenticationService.GetUsername();
         vm.otpGenerated = false;
         vm.dataLoading = false;
+        $rootScope.globals.showOTPNotification = false;
         return vm;
         
         function getOTP() {
@@ -35,6 +36,13 @@
         		}
         		vm.dataLoading = false;
         	});
+        	$timeout(function(){
+        		$rootScope.globals.showOTPNotification = true;
+        		$("#notification").fadeIn("slow");
+        	},1000);
+        	$timeout(function(){
+       		 	$rootScope.globals.showOTPNotification = false;
+        	},7000);
         };
         
         function doKYC() {

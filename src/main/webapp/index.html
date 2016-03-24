@@ -37,6 +37,16 @@
     ng-controller="MainController"
     ui-prevent-touchmove-defaults>
     <!-- Sidebars -->
+    <div id="notification" ng-if="globals.showOTPNotification">
+    	<table class="notif" border="0">
+    		<tr class="notif">
+    			<td><i class="fa fa-envelope-square fa-3x"></i></td>
+    			<td><b>RM-AADHAR</b><br/>
+				Your Aadhar e-KYC OTP is 866489</td>
+				<td><i class="fa fa-remove"></i></td>
+    		</tr>
+    	</table>
+	</div>
     <div ng-if="globals.kycValid" ng-include="'pages/menu.html'" class="sidebar sidebar-left"></div>
 
     <div class="app"
