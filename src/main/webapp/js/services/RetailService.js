@@ -11,9 +11,22 @@
         service.getAccountBalance = getAccountBalance;
         service.getLoanAccountDetails = getLoanAccountDetails;
         service.getSpentOn = getSpentOn;
+        service.spentOnPercentages = spentOnPercentages;
         return service;
         
         //spentOnLast?accountNumber=5555666677770329&days=2&type=DTH
+        function spentOnPercentages(day, callback) {
+        	$http({
+        		  method: 'GET',
+        		  url: 'ws/retail/spentOnPercentages?accountNumber='+5555666677770329+'&days='+day
+        	}).then(function successCallback(response) {
+				console.log("spentOn(Success) = "+response);
+		        callback(response);
+        	}, function errorCallback(response) {
+        		console.log("spentOn(Error) = "+response);
+        	});
+        }
+
         function getSpentOn(day, type, callback) {
         	$http({
         		  method: 'GET',

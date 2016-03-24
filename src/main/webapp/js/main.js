@@ -40,6 +40,11 @@
 			templateUrl : 'pages/onboardingComplete.html',
 			controller : 'KYCAadharController',
 			controllerAs : 'kca'
+		}).when('/expenses', {
+			templateUrl : 'pages/expenseTracking.html',
+			controller : 'ExpenseController',
+			controllerAs : 'ec',
+			title : 'Expense Tracker'
 		}).otherwise({
 			redirectTo : '/login'
 		});
@@ -73,7 +78,7 @@
 			$rootScope.globals = $cookieStore.get('globals') || {};
 			// redirect to login page if not logged in and trying to access a restricted page
 			var restrictedPage = $.inArray($location.path(), [ '/login', '/logout', '/about' ]) === -1;
-			var protectedPage = $.inArray($location.path(), ['/virtualrm','/loans','/accounts']) === -1;
+			var protectedPage = $.inArray($location.path(), ['/virtualrm','/loans','/accounts','/expenses']) === -1;
 			var loggedIn = $rootScope.globals.currentUser;
 			var kycValid = false;
 			if (loggedIn) {
