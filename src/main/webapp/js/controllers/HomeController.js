@@ -12,6 +12,7 @@
         vm.$rootScope = $rootScope;
         vm.AuthenticationService = AuthenticationService;
         vm.virtualRM = virtualRM;
+        vm.expenses = expenses;
         vm.userFirstName = AuthenticationService.GetUserFirstName();
         vm.username = AuthenticationService.GetUsername();
         vm.dataLoading = false;
@@ -19,6 +20,10 @@
         
         function virtualRM() {
         	vm.$location.path("/virtualrm");
+        };
+        
+        function expenses() {
+        	vm.$location.path("/expenses");
         };
         
     }
