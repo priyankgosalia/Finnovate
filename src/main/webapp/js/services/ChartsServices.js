@@ -1,15 +1,13 @@
 console.log("Loading ....");
-google.charts.load("current", {packages:['corechart']});
+google.charts.load("current", {packages:['corechart','table']});
 
 var data = "";
 var view = "";
 
 var options = {
   title: "Expenses for past 10 days, in Rs.",
-  /*width: 600,
-  height: 400,*/
   bar: {groupWidth: "95%"},
-  legend: { position: "none" },
+  legend: 'bottom'
 };
     //google.charts.setOnLoadCallback(drawChart);
     function drawChart(json) {
@@ -43,3 +41,32 @@ var options = {
 		var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_values"));
 		  chart.draw(view, options);
 	}
+
+	var tableData = "";
+	var tableOptions = {
+			  title: "Expenses for past 10 days, in Rs.",
+			  legend: 'bottom'
+			};
+
+    function drawTransactionChart(json) {
+    	console.log("drawTransactionChart");
+    	var i=0;
+    	tableData = new google.visualization.DataTable();
+    	
+    	tableData.addColumn('string', 'Date');
+    	tableData.addColumn('number', 'amount');
+    	console.log("Json ..." + json[0].transactiondate);
+    	tableData.addRows(json.length);
+    	for(object in json){
+    		tableData.setCell(i, 0, json[i].transactiondate);
+    		tableData.setCell(i, 1, json[i].amount);
+    		i = i +1;
+    	}
+    	
+    	resizeTransactionChart();
+  }
+    
+	function resizeTransactionChart() {
+		var table = new google.visualization.Table(document.getElementById("columnchart_values"));
+		  table.draw(tableData, tableOptions);
+	}    

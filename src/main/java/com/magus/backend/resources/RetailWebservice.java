@@ -1,6 +1,7 @@
 package com.magus.backend.resources;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -117,6 +118,27 @@ public class RetailWebservice extends AbstractService {
 		return String.valueOf(amountSpent);
 	}
 
+	@GET
+	@Path("/spentOnTransaction")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Transactions getSpentOnTransaction(@QueryParam("accountNumber") String accNo, @QueryParam("days") int days, @QueryParam("type") String type)
+			throws JsonParseException, JsonMappingException, IOException {
+		System.out.println("spentOnTransaction : " + days + " " + type);
+		Transactions transactions = convertToJSON(client.transactionHistoryNDays(accNo, days), Transactions.class);
+		Transactions transactionType = new Transactions();
+		transactionType.setSource(new ArrayList<TransactionHistory>());
+		for (TransactionHistory th : transactions.getSource()) {
+			if ("Dr.".equalsIgnoreCase(th.getCredit_debit_flag()) && type.equalsIgnoreCase(th.getRemark())) {
+				transactionType.getSource().add(th);
+			}
+		}
+		
+		for(TransactionHistory t : transactionType.getSource()){
+			System.out.println(t);
+		}
+		return transactionType;
+	}
+	
 	@GET
 	@Path("/spentOnPercentages")
 	@Produces(MediaType.APPLICATION_JSON)

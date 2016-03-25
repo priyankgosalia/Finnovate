@@ -67,4 +67,13 @@ public class TransactionHistory extends ErrorResponse {
 		this.remark = remark;
 	}
 
+	@Override
+	public String toString() {
+		return "TransactionHistory [transactiondate=" + transactiondate
+				+ ", amount=" + amount + ", closing_balance=" + closing_balance
+				+ ", accountno=" + accountno + ", credit_debit_flag="
+				+ credit_debit_flag + ", remark=" + remark + "]";
+	}
+
+	
 }

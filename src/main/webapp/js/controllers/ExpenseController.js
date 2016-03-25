@@ -10,23 +10,46 @@
         var vm = this;
         vm.RetailService = RetailService;
         vm.expenseTracks = expenseTracks;
+        vm.transactionDetails = transactionDetails;
         vm.dataLoading = true;
-        vm.onresize = resize;
-        $(window).resize(resize);
+        vm.checkAndResize = checkAndResize;
+        //vm.onresize = ($rootScope.graph == "ColumnChart" ) ? resize : resizeTransactionChart;
+        $(window).resize(vm.checkAndResize);
         return vm;
 
         function expenseTracks(day) {
-        	
+        	$rootScope.graph = "ColumnChart";
         	console.log("Spent in last " + day + " days");
         	$timeout(function(){
         		vm.dataLoading = true;
         		vm.RetailService.spentOnPercentages(day, function(response) {
-            		//console.log(response.data);
             		if (response.data.map) {
-            			console.log("Response ... " + response.data.map);
-            			//$('#greeting2').html(response.data.total);
-            			//$('#greeting3').html(response.data.transactionTypes);
+            			$rootScope.tranTypes = response.data;
                     	drawChart(response.data.map);
+                    	vm.dataLoading = false;
+                    	console.debug("Transtype " + response.data.transactionTypes);
+            		} else {
+            			$('#greeting').html('Oops! ' + response.data.message);
+            		}
+            	});
+        		
+        	},500);
+        	
+        };
+
+        function transactionDetails(day, type) {
+        	if(type==null){
+        		expenseTracks(day);
+        		
+        		return;
+        	}
+        	$rootScope.graph = "Table";
+        	console.log("Spent on " +type+ " in last " + day + " days");
+        	$timeout(function(){
+        		vm.dataLoading = true;
+        		vm.RetailService.transactionDetails(day,type, function(response) {
+            		if (response.data.source) {
+            			drawTransactionChart(response.data.source);
                     	vm.dataLoading = false;
             		} else {
             			$('#greeting').html('Oops! ' + response.data.message);
@@ -35,8 +58,14 @@
         		
         	},500);
         	
-        	
         };
+	    function checkAndResize() {
+			if ($rootScope.graph == "ColumnChart") {
+				resize()
+			} else {
+				resizeTransactionChart();
+			}
+		};
 
     }
 

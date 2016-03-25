@@ -12,6 +12,7 @@
         service.getLoanAccountDetails = getLoanAccountDetails;
         service.getSpentOn = getSpentOn;
         service.spentOnPercentages = spentOnPercentages;
+        service.transactionDetails = transactionDetails;
         service.transferFunds = transferFunds;
         return service;
         
@@ -25,6 +26,18 @@
 		        callback(response);
         	}, function errorCallback(response) {
         		console.log("spentOn(Error) = "+response);
+        	});
+        }
+
+        function transactionDetails(day, type, callback) {
+        	$http({
+        		  method: 'GET',
+        		  url: 'ws/retail/spentOnTransaction?accountNumber='+5555666677770329+'&days='+day+'&type='+type
+        	}).then(function successCallback(response) {
+				console.log("transactionDetails(Success) = "+response);
+		        callback(response);
+        	}, function errorCallback(response) {
+        		console.log("transactionDetails(Error) = "+response);
         	});
         }
 
