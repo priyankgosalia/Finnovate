@@ -16,17 +16,16 @@
         vm.dataLoading = false;
 
         function expenseTracks(day) {
-        	var map = "";
         	vm.dataLoading = true;
         	console.log("Spent in last " + day + " days");
         	$timeout(function(){
         		vm.RetailService.spentOnPercentages(day, function(response) {
-            		console.log(response.data);
+            		//console.log(response.data);
             		if (response.data.map) {
-            			map = response.data.map;
+            			console.log("Response ... " + response.data.map);
             			//$('#greeting2').html(response.data.total);
             			//$('#greeting3').html(response.data.transactionTypes);
-                    	drawChart(map);
+                    	drawChart(response.data.map);
             		} else {
             			$('#greeting').html('Oops! ' + response.data.message);
             		}
