@@ -14,7 +14,8 @@
         vm.RetailService = RetailService;
         vm.expenseTracks = expenseTracks;
         vm.dataLoading = false;
-
+        vm.onresize = resize;
+        $(window).resize(resize);
         function expenseTracks(day) {
         	vm.dataLoading = true;
         	console.log("Spent in last " + day + " days");
