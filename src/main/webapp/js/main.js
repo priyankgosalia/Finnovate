@@ -81,6 +81,9 @@
 			var protectedPage = $.inArray($location.path(), ['/virtualrm','/loans','/accounts','/expenses']) === -1;
 			var loggedIn = $rootScope.globals.currentUser;
 			var kycValid = false;
+			
+			$rootScope.globals.showOTPNotification = false;
+			
 			if (loggedIn) {
 				console.log("Logged in. KYC Valid = "+$rootScope.globals.kycValid);
 				var kycValid = $rootScope.globals.kycValid;
