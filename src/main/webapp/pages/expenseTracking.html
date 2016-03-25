@@ -21,6 +21,13 @@
 						        <option value="">All Chart</option>
 						    </select>
 						</div>
+							<br/>
+							<button ng-disabled="(form.$invalid || ec.dataLoading || list_category.length > 0)"
+								class="btn btn-lg btn-success btn-block" ng-click="ec.pieOrColumn(10)">
+								<i class="fa fa-sign-in"></i>Change View</button>
+							<br/>
+							<br/>
+							
 						<div class="form-actions">
 							<br/>
 							<button ng-disabled="form.$invalid || ec.dataLoading"
