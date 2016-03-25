@@ -21,7 +21,7 @@
         	var map = "";
         	vm.dataLoading = true;
         	console.log("Spent in last " + day + " days");
-  	    	$('#greeting').text('Spent in last '+day+' days');
+  	    	//$('#greeting').text('Spent in last '+day+' days');
         	//$('#greeting').html('Fetching account balance...');
         	vm.RetailService.spentOnPercentages(day, function(response) {
         		console.log(response.data);
