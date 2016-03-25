@@ -46,6 +46,11 @@
       	  // Add our commands to annyang
       	  annyang.addCommands(commands);
       	  
+      	  // Add callbacks
+      	  annyang.addCallback('resultNoMatch', function(){
+      		  	$('#greeting').html("Sorry, I didn't quite get that. Please try again.");
+      		  });
+      	  
       	}
         return vm;
         
@@ -72,9 +77,9 @@
         	$timeout(function(){
         		var text = "Transfer <b>INR "+amount+"</b> to <b>"+friend+"</b> ?"+"<br/><br/><button type=\"button\" class=\"btn btn-primary\">Transfer</button> <button type=\"button\" class=\"btn btn-default\">Cancel</button>";
             	$('#greeting').html(text);
+            	vm.dataLoading = false;
+            	vm.speakNow();
         	},100);
-        	vm.dataLoading = false;
-        	vm.speakNow();
         };
         
         function getBalance() {
