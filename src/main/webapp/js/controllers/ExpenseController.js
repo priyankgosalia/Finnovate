@@ -92,7 +92,11 @@
         };
 	    function checkAndResize() {
 			if ($rootScope.graph == "ColumnChart") {
-				resize()
+	        	if($rootScope.pieOrColumn == "COLUMN"){
+	        		resize();
+	        	}else{
+	        		resizePie();
+	        	}
 			} else {
 				resizeTransactionChart();
 			}
