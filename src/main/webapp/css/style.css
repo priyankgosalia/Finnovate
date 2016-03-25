@@ -108,6 +108,8 @@ h5 .homeitem {
   font-size: 20px;
   line-height: 1.33;
   border-radius: 60px;
+  color: white;
+  background-color: #e96d16;
   border: 1px solid #bbb;
 }
 
