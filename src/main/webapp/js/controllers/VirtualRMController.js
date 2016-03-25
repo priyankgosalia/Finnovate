@@ -16,12 +16,20 @@
         vm.transferFunds = transferFunds;
         vm.getLoanDetail = getLoanDetail;
         vm.getSpentOn = getSpentOn;
+        vm.initiateTransfer = initiateTransfer;
         vm.goBack = goBack;
         vm.speakNow = speakNow;
         vm.userFirstName = AuthenticationService.GetUserFirstName();
         vm.username = AuthenticationService.GetUsername();
         vm.dataLoading = false;
         vm.annyang = annyang;
+        vm.transferAmount = 0;
+    	vm.transferFriend = "";
+    	vm.transferSource = "5555666677770329";
+		vm.transferDestination = "5555666677779999";
+		vm.transferDesc = "DTH";
+		vm.transferPayeeId = 593;
+		vm.trasnferPayeeDesc = "A9999";
         vm.listening = false;
         
         if (annyang) {
@@ -74,11 +82,41 @@
         function transferFunds(amount,friend) {
         	vm.dataLoading = true;
         	console.log("Transfer "+amount+" to "+friend);
-        	$timeout(function(){
-        		var text = "Transfer <b>INR "+amount+"</b> to <b>"+friend+"</b> ?"+"<br/><br/><button type=\"button\" class=\"btn btn-primary\">Transfer</button> <button type=\"button\" class=\"btn btn-default\">Cancel</button>";
-            	$('#greeting').html(text);
+        	$timeout(function() {
+        		vm.transferAmount = amount;
+            	vm.transferFriend = friend;
             	vm.dataLoading = false;
             	vm.speakNow();
+            	$rootScope.Ui.turnOn('fundTransferFriendOverlay');
+            	$timeout(function(){
+            		$timeout(function(){
+                		$rootScope.globals.showOTPNotificationForFundsTransfer = true;
+                		$("#notificationTransfer").fadeIn("slow");
+                	},1000);
+                	$timeout(function(){
+               		 	$rootScope.globals.showOTPNotificationForFundsTransfer = false;
+                	},7000);
+            	});
+        	},200);
+        };
+        
+        function initiateTransfer() {
+        	console.log("Initiating funds transfer");
+        	$timeout(function() {
+        		vm.RetailService.transferFunds(vm.transferSource, vm.transferDestination, vm.transferAmount, vm.transferPayeeId, vm.transferPayeeDesc, vm.transferDesc, function(response) {
+            		console.log(response.data);
+            		if (response.data.code >= 0) {
+            			if (response.data.code == 0) {
+            				vm.transferSuccess = true;
+            				vm.transferRef = response.data.referenceNumber;
+                			vm.transferRefDateTime = response.data.transactionDate;
+            			} else {
+            				vm.transferSuccess = false;
+            			}
+            			$rootScope.Ui.turnOff('fundTransferFriendOverlay');
+            			$rootScope.Ui.turnOn('fundTransferComplete');
+            		}
+            	});
         	},100);
         };
         

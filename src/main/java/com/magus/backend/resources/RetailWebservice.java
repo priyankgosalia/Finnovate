@@ -178,7 +178,7 @@ public class RetailWebservice extends AbstractService {
 			@QueryParam("destAccount") String destAccNo, @QueryParam("amt") double amt,
 			@QueryParam("payeeDesc") String payeeDesc, @QueryParam("payeeId") int payeeId,
 			@QueryParam("type") String type) throws JsonParseException, JsonMappingException, IOException {
-		return convertToJSON(client.transferFunds(srcAccNo, destAccNo, amt, payeeDesc, payeeId, type),
+		return convertToJSON(client.fundsTransfer(srcAccNo, destAccNo, amt, payeeDesc, payeeId, type),
 				FundsTransfer.class);
 	}
 

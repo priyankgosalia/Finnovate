@@ -23,6 +23,10 @@
 	      		Press the button below to start speaking
 	      	</div>
 	      	<br/>
+	      	<div ui-content-for="modals">
+			  <div ng-include="'pages/fundTransferOverlay.html'"></div>
+			  <div ng-include="'pages/fundTransferComplete.html'"></div>
+			</div>
 	      	<button ng-if="vc.listening == false" ng-click="vc.speakNow()" type="button" class="btn btn-primary btn-circle btn-xl"><i class="fa fa-microphone fa-2x"></i></button>
 	      	<button ng-if="vc.listening == true" ng-click="vc.speakNow()" type="button" class="btn btn-danger btn-circle btn-xl"><i class="fa fa-microphone-slash fa-2x"></i></button>
 	      </div>

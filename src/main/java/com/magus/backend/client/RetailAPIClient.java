@@ -84,7 +84,7 @@ public class RetailAPIClient extends AbstractClient {
 		return "[" + getResponse(response).trim() + "]";
 	}
 	
-	public String transferFunds(String srcAccNo, String destAccNo, double amt, String payeeDesc, int payeeId, String type) {
+	public String fundsTransfer(String srcAccNo, String destAccNo, double amt, String payeeDesc, int payeeId, String type) {
 		Response response = queryClientToken(getWebTarget()).path(APIConstants.FUNDS_TRANSFER_STR)
 				.queryParam(APIConstants.SOURCE_ACCOUNT_NUMBER, srcAccNo)
 				.queryParam(APIConstants.DESTINATION_ACCOUNT_NUMBER, destAccNo)
@@ -105,7 +105,7 @@ public class RetailAPIClient extends AbstractClient {
 //		System.out.println(client.transactionHistoryNDays(accNo, 10));
 //		System.out.println(client.transactionHistoryInterval(accNo, "2016-01-01", "2016-03-31"));
 		//System.out.println(client.listPayee("88881328"));
-		System.out.println(client.transferFunds(accNo, destAccNo, 10000.00, "A9999", 593, "DTH"));
+		System.out.println(client.fundsTransfer(accNo, destAccNo, 10000.00, "A9999", 593, "DTH"));
 //		System.out.println(client.miniStatement(destAccNo));
 		//System.out.println(client.accountSummary(accNo, "88881328"));
 		//System.out.println(client.branchAtmLocator("", ""));

@@ -151,6 +151,19 @@ h5 .homeitem {
     background-color:#fef8d5;
     padding:5px;
 }
+#notificationTransfer {
+    position:fixed;
+    top:0px; /* Set to 0 or wherever */
+    width:100%; /* set to 100% if space is available */
+    z-index:auto;
+    text-align:left;
+    font-weight:normal;
+    font-size:14px;
+    color:#0b080b;
+    background-color:#fef8d5;
+    padding:5px;
+}
+
 #notification span.dismiss {
     border:2px solid #FFF;
     padding:0 5px;

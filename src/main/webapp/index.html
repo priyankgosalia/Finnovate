@@ -38,7 +38,7 @@
   <body ng-app="magus" 
     ng-controller="MainController"
     ui-prevent-touchmove-defaults>
-    <!-- Sidebars -->
+    <!-- OTP notifications -->
     <div id="notification" ng-if="globals.showOTPNotification">
     	<table class="notif" border="0">
     		<tr class="notif">
@@ -49,6 +49,7 @@
     		</tr>
     	</table>
 	</div>
+	
     <div ng-if="globals.kycValid" ng-include="'pages/menu.html'" class="sidebar sidebar-left"></div>
 
     <div class="app"

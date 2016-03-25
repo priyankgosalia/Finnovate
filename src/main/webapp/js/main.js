@@ -83,6 +83,7 @@
 			var kycValid = false;
 			
 			$rootScope.globals.showOTPNotification = false;
+			$rootScope.globals.showOTPNotificationForFundsTransfer = false;
 			
 			if (loggedIn) {
 				console.log("Logged in. KYC Valid = "+$rootScope.globals.kycValid);

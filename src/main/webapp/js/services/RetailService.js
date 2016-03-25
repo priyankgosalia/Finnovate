@@ -12,6 +12,7 @@
         service.getLoanAccountDetails = getLoanAccountDetails;
         service.getSpentOn = getSpentOn;
         service.spentOnPercentages = spentOnPercentages;
+        service.transferFunds = transferFunds;
         return service;
         
         //spentOnLast?accountNumber=5555666677770329&days=2&type=DTH
@@ -60,6 +61,18 @@
 		        callback(response);
         	}, function errorCallback(response) {
         		console.log("loandetails(Error) = "+response);
+        	});
+        }
+        
+        function transferFunds(sourceAccount, destAccount, amount, payeeId, payeeDesc, description, callback) {
+        	$http({
+        		  method: 'GET',
+        		  url: 'ws/retail/fundsTransfer?srcAccount='+sourceAccount+'&destAccount='+destAccount+'&amt='+amount+'&type='+description+'&payeeId='+payeeId+'&payeeDesc='+payeeDesc
+        	}).then(function successCallback(response) {
+				console.log("transferFunds(Success) = "+response);
+		        callback(response);
+        	}, function errorCallback(response) {
+        		console.log("transferFunds(Error) = "+response);
         	});
         }
     }
