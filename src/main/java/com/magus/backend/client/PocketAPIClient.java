@@ -74,7 +74,7 @@ public class PocketAPIClient extends AbstractClient {
 		PocketAPIClient client = new PocketAPIClient();
 		
 		WalletProfile wallet = new WalletProfile("Prajot","Naik","prajot@gmail.com","9910111101","1985-08-01","male","10.10.200.200","windows","none","abc");
-		//System.out.println(client.create(wallet));
+		System.out.println(client.create(wallet));
 		System.out.println(client.credit(255.50));
 	}
 

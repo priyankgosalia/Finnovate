@@ -43,7 +43,7 @@ public class RetailAPIClient extends AbstractClient {
 	}
 	
 	public String transactionHistoryNDays(String accNo, int days){
-		Response response = queryClientToken(getWebTarget()).path(APIConstants.TRANSACTION_HISTORY_N_DAYS_STR)
+		queryClientToken(getWebTarget()).path(APIConstants.TRANSACTION_HISTORY_N_DAYS_STR)
 				.queryParam(APIConstants.ACCOUNT_NUMBER_STR, String.valueOf(accNo))
 				.queryParam(APIConstants.NUMBER_OF_DAYS, Integer.valueOf(days))
 				.request().accept(MediaType.APPLICATION_JSON_TYPE).get();

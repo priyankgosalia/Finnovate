@@ -31,6 +31,7 @@ public class InsuranceAPIClient extends AbstractClient {
 
 	public static void main(String[] args) {
 		InsuranceAPIClient client = new InsuranceAPIClient();
+		client.getRenewalNotice("mob", "emailId@gmail.com");
 
 		
 	}
