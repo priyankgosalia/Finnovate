@@ -29,7 +29,7 @@
 			templateUrl : 'pages/virtualrm.html',
 			controller : 'VirtualRMController',
 			controllerAs : 'vc',
-			title : 'Virtual RM'
+			title : 'iAssist'
 		}).when('/about', {
 			title : 'About',
 			templateUrl : 'pages/about.html',
