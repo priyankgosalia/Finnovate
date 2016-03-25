@@ -1,7 +1,6 @@
 table {
 	table-layout: fixed;
-	align: center;
-	padding: 20px;
+	padding: 1px;
 }
 
 tr td {
@@ -90,6 +89,28 @@ h5 .homeitem {
     text-decoration:none;
 }
 
+.btn-circle-homescreen {
+  width: 70px;
+  height: 70px;
+  text-align: center;
+  padding: 6px 0;
+  font-size: 12px;
+  line-height: 1.428571429;
+  border-radius: 15px;
+  background-color: #ffffff;
+  border: 1px solid #bbb;
+}
+
+.btn-circle-homescreen.btn-xl {
+  width: 120px;
+  height: 120px;
+  padding: 10px 16px;
+  font-size: 24px;
+  line-height: 1.33;
+  border-radius: 60px;
+  border: 1px solid #bbb;
+}
+
 .btn-circle {
   width: 80px;
   height: 80px;
@@ -100,9 +121,9 @@ h5 .homeitem {
   border-radius: 15px;
 }
 .btn-circle.btn-lg {
-  width: 50px;
-  height: 50px;
-  padding: 10px 16px;
+  width: 40px;
+  height: 40px;
+  padding: 5px 8px;
   font-size: 18px;
   line-height: 1.33;
   border-radius: 25px;
