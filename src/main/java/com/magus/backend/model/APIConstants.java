@@ -7,6 +7,8 @@ public interface APIConstants {
 	public static final String LOAN_BASE_URL = "https://alphaiciapi2.mybluemix.net/rest/Loan/";
 	public static final String CORP_BASE_URL = "https://corporate_bank.mybluemix.net/corporate_banking/mybank/";
 	public static final String INSURANCE_BASE_URL = "http://generalinsurance.mybluemix.net/banking/icicibank_general_insurance/";
+	public static final String SECURITIES_BASE_URL = "http://securities.mybluemix.net/banking/icici_securities/";
+	
 	public static final String POCKET_BASE_URL = "http://alphaiciapi2.mybluemix.net/rest/Wallet/";
 	public static final String CLIENT_ID_VALUE = "ujjwal.ju@gmail.com";
 	public static final String TOKEN_VALUE = "93bea2128124";
@@ -41,6 +43,12 @@ public interface APIConstants {
 	public static final String RM_ID = "rmid";
 	public static final String QUERY = "query";
 
+	
+	// securities api
+	public static final String GET_MUTUAL_FUND_DETAILS = "get_mf_details";
+	public static final String PLACE_MUTUAL_FUND_ORDER = "placemforder";
+	public static final String VIEW_PORTFOLIO = "viewportfolio";
+	
 	//insurance api
 	public static final String CUST_DETAILS = "getCustomerDtls";
 	public static final String MOBILE_NO = "mobileNo";
@@ -70,6 +78,7 @@ public interface APIConstants {
 	public static final String PAYEE_ID= "payeeId";
 	public static final String TYPE_OF_TRANSACTION = "type_of_transaction";
 			
-			;
+	
+	public static final String MF_SCHEME_ID = "mf_scheme_id";
 	
 }

@@ -21,31 +21,44 @@ import com.magus.backend.model.WalletProfile;
 import com.magus.backend.model.WalletReponse;
 
 @Path("/pocket")
-public class PocketService  extends AbstractService {
-	
+public class PocketService extends AbstractService {
+
 	PocketAPIClient client = new PocketAPIClient();
 	private static final Logger logger = LogManager.getLogger(PocketService.class.getName());
-	
+
 	@GET
 	@Path("/create")
 	@Produces(MediaType.APPLICATION_JSON)
-	public WalletReponse create(@QueryParam("firstName") String firstName,@QueryParam("lastName") String lastName,@QueryParam("emailId") String emailId,@QueryParam("mobile") String  mobile,@QueryParam("birthDate") String birthDate,@QueryParam("gender") String gender,@QueryParam("ipConfig") String ipConfig,@QueryParam("platform") String  platform,@QueryParam("deviceId") String deviceId,@QueryParam("state") String state) throws JsonParseException, JsonMappingException, IOException{
-		logger.info("Received Following create request: "+ firstName + " : " + lastName + " : " + emailId + " : " + mobile + " : " + birthDate + " : " + gender + " : " + ipConfig + " : " + platform + " : " + deviceId + " : " + state);
-		WalletProfile wallet = new WalletProfile(firstName, lastName, emailId, mobile, birthDate, gender, ipConfig, platform, deviceId, state);
+	public WalletReponse create(@QueryParam("firstName") String firstName, @QueryParam("lastName") String lastName,
+			@QueryParam("emailId") String emailId, @QueryParam("mobile") String mobile,
+			@QueryParam("birthDate") String birthDate, @QueryParam("gender") String gender,
+			@QueryParam("ipConfig") String ipConfig, @QueryParam("platform") String platform,
+			@QueryParam("deviceId") String deviceId, @QueryParam("state") String state)
+					throws JsonParseException, JsonMappingException, IOException {
+		logger.info("Received Following create request: " + firstName + " : " + lastName + " : " + emailId + " : "
+				+ mobile + " : " + birthDate + " : " + gender + " : " + ipConfig + " : " + platform + " : " + deviceId
+				+ " : " + state);
+		WalletProfile wallet = new WalletProfile(firstName, lastName, emailId, mobile, birthDate, gender, ipConfig,
+				platform, deviceId, state);
 		WalletReponse response = convertToJSON(client.create(wallet), WalletReponse.class);
 		System.out.println(response);
 		CACHE.putInMap(mobile, response.getWalletDetails().get(0).getAuth_data());
-		
-		return response;	
+
+		return response;
 	}
 
 	@GET
 	@Path("/credit")
 	@Produces(MediaType.APPLICATION_JSON)
-	public PocketCreditResp credit(@QueryParam("amount") Double amount,@QueryParam("firstName") String firstName,@QueryParam("lastName") String lastName,@QueryParam("emailId") String emailId,@QueryParam("mobile") String  mobile,@QueryParam("birthDate") String birthDate,@QueryParam("gender") String gender,@QueryParam("ipConfig") String ipConfig,@QueryParam("platform") String  platform,@QueryParam("deviceId") String deviceId,@QueryParam("state") String state) throws JsonParseException, JsonMappingException, IOException{
-		String auth_data = getAuthData(firstName, lastName, emailId, mobile,
-				birthDate, gender, ipConfig, platform, deviceId, state);
-		//String auth_data = "0dfa125fed634134b275";
+	public PocketCreditResp credit(@QueryParam("amount") Double amount, @QueryParam("firstName") String firstName,
+			@QueryParam("lastName") String lastName, @QueryParam("emailId") String emailId,
+			@QueryParam("mobile") String mobile, @QueryParam("birthDate") String birthDate,
+			@QueryParam("gender") String gender, @QueryParam("ipConfig") String ipConfig,
+			@QueryParam("platform") String platform, @QueryParam("deviceId") String deviceId,
+			@QueryParam("state") String state) throws JsonParseException, JsonMappingException, IOException {
+		String auth_data = getAuthData(firstName, lastName, emailId, mobile, birthDate, gender, ipConfig, platform,
+				deviceId, state);
+		// String auth_data = "0dfa125fed634134b275";
 		String imei = "35550702720000";
 
 		PocketPost creditRequest = new PocketPost();
@@ -63,7 +76,6 @@ public class PocketService  extends AbstractService {
 		creditRequest.setImei(imei);
 		creditRequest.setIp_address("194.154.205.26");
 		creditRequest.setOs("android");
-
 
 		return convertToJSON(client.credit(creditRequest), PocketCreditResp.class);
 	}
@@ -71,10 +83,15 @@ public class PocketService  extends AbstractService {
 	@GET
 	@Path("/debit")
 	@Produces(MediaType.APPLICATION_JSON)
-	public PocketCreditResp debit(@QueryParam("amount") Double amount,@QueryParam("firstName") String firstName,@QueryParam("lastName") String lastName,@QueryParam("emailId") String emailId,@QueryParam("mobile") String  mobile,@QueryParam("birthDate") String birthDate,@QueryParam("gender") String gender,@QueryParam("ipConfig") String ipConfig,@QueryParam("platform") String  platform,@QueryParam("deviceId") String deviceId,@QueryParam("state") String state) throws JsonParseException, JsonMappingException, IOException{
-		String auth_data = getAuthData(firstName, lastName, emailId, mobile,
-				birthDate, gender, ipConfig, platform, deviceId, state);
-		//String auth_data = "0dfa125fed634134b275";
+	public PocketCreditResp debit(@QueryParam("amount") Double amount, @QueryParam("firstName") String firstName,
+			@QueryParam("lastName") String lastName, @QueryParam("emailId") String emailId,
+			@QueryParam("mobile") String mobile, @QueryParam("birthDate") String birthDate,
+			@QueryParam("gender") String gender, @QueryParam("ipConfig") String ipConfig,
+			@QueryParam("platform") String platform, @QueryParam("deviceId") String deviceId,
+			@QueryParam("state") String state) throws JsonParseException, JsonMappingException, IOException {
+		String auth_data = getAuthData(firstName, lastName, emailId, mobile, birthDate, gender, ipConfig, platform,
+				deviceId, state);
+		// String auth_data = "0dfa125fed634134b275";
 		String imei = "35550702720000";
 
 		PocketPost creditRequest = new PocketPost();
@@ -93,18 +110,19 @@ public class PocketService  extends AbstractService {
 		creditRequest.setIp_address("194.154.205.26");
 		creditRequest.setOs("android");
 
-
 		return convertToJSON(client.debit(creditRequest), PocketCreditResp.class);
 	}
 
-	private String getAuthData(String firstName, String lastName,
-			String emailId, String mobile, String birthDate, String gender,
-			String ipConfig, String platform, String deviceId, String state)
-			throws JsonParseException, JsonMappingException, IOException {
+	private String getAuthData(String firstName, String lastName, String emailId, String mobile, String birthDate,
+			String gender, String ipConfig, String platform, String deviceId, String state)
+					throws JsonParseException, JsonMappingException, IOException {
 		String auth_data = CACHE.getFromMap(mobile);
-		if(auth_data == null){
-			logger.info("Received Following create request: "+ firstName + " : " + lastName + " : " + emailId + " : " + mobile + " : " + birthDate + " : " + gender + " : " + ipConfig + " : " + platform + " : " + deviceId + " : " + state);
-			WalletProfile wallet = new WalletProfile(firstName, lastName, emailId, mobile, birthDate, gender, ipConfig, platform, deviceId, state);
+		if (auth_data == null) {
+			logger.info("Received Following create request: " + firstName + " : " + lastName + " : " + emailId + " : "
+					+ mobile + " : " + birthDate + " : " + gender + " : " + ipConfig + " : " + platform + " : "
+					+ deviceId + " : " + state);
+			WalletProfile wallet = new WalletProfile(firstName, lastName, emailId, mobile, birthDate, gender, ipConfig,
+					platform, deviceId, state);
 			WalletReponse response = convertToJSON(client.create(wallet), WalletReponse.class);
 			System.out.println(response);
 			CACHE.putInMap(mobile, response.getWalletDetails().get(0).getAuth_data());
@@ -112,7 +130,9 @@ public class PocketService  extends AbstractService {
 		}
 		return auth_data;
 	}
-		public PocketCreditResp credit(@QueryParam("amount") Double amount) throws JsonParseException, JsonMappingException, IOException{
+
+	public PocketCreditResp credit(@QueryParam("amount") Double amount)
+			throws JsonParseException, JsonMappingException, IOException {
 		return convertToJSON(client.credit(amount), PocketCreditResp.class);
 	}
 }
