@@ -2,7 +2,7 @@
 	'use strict';
 
 	var magusApp = angular.module('magus', [ 'ngRoute', 'ngCookies',
-			'mobile-angular-ui', 'mobile-angular-ui.gestures', 'chart.js' ]);
+			'mobile-angular-ui', 'mobile-angular-ui.gestures', 'chart.js', 'growlNotifications' ]);
 
 	magusApp.config(function config($routeProvider) {
 		$routeProvider.when('/home', {
@@ -55,7 +55,12 @@
 			controller : 'ExpenseController',
 			controllerAs : 'ec',
 			title : 'Expense Tracker'
-		}).otherwise({
+		})/*.when('/notification', {
+			templateUrl : 'pages/notification.html',
+			controller : 'NotificationController',
+			controllerAs : 'nc',
+			title : 'Notifications'
+		})*/.otherwise({
 			redirectTo : '/login'
 		});
 	});
@@ -64,6 +69,7 @@
 		console.log("Running magus");
 		$rootScope.userAgent = navigator.userAgent;
 		console.log($rootScope.userAgent);
+		$rootScope.showNotification = true;
 
 		// Needed for the loading screen
 		$rootScope.$on('$routeChangeStart', function() {

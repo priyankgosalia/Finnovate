@@ -68,6 +68,18 @@
 	        	<div ui-content-for="modals">
 				  <div ng-include="'pages/homenew.html'"></div>
 				</div>
+
+				<div>
+					<growl-notification ttl="10000" ng-if="showNotification">
+					  <div class="alert alert-danger" role="alert"><i class="fa fa-2x fa-exclamation-triangle"></i>
+					  	CC Bill due on account no. : 5555666677770329
+					  	<br/>  
+					  	<button type="button" class="btn" ng-click="hc.deactivateNotification()">Disable</button>
+	        				<!-- <a href="#" ng-click="hc.deactivateNotification()">Disable</a> -->
+					  </div>
+					</growl-notification>
+				</div>
+		
 	        </div>
 	      </div>
 	</div>

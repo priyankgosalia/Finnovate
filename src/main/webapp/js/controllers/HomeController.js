@@ -16,6 +16,7 @@
         vm.$rootScope = $rootScope;
         vm.AuthenticationService = AuthenticationService;
         vm.virtualRM = virtualRM;
+        vm.deactivateNotification = deactivateNotification;
         vm.salaryInfo = salaryInfo;
         vm.expenses = expenses;
         vm.userFirstName = AuthenticationService.GetUserFirstName();
@@ -27,6 +28,12 @@
         	$rootScope.Ui.turnOn('salaryInfoModal');
         }
         
+        function deactivateNotification(){
+        	console.log($rootScope.showNotification);
+        	console.log("deactivateNotification");
+        	$rootScope.showNotification = false;
+        	console.log($rootScope.showNotification);
+        }
         function virtualRM() {
         	vm.$location.path("/virtualrm");
         };

@@ -39,12 +39,14 @@
     <script src="js/services/RetailService.js"></script>
     <script src="js/services/KYCService.js"></script>   
 	<script src="js/services/ChartsServices.js"></script> 
+	<script src="js/angular-growl-notifications.min.js"></script>
   </head>
 
   <body ng-app="magus" 
     ng-controller="MainController"
     ui-prevent-touchmove-defaults>
     <!-- OTP notifications -->
+<growl-notifications></growl-notifications>
     <div id="notification" ng-if="globals.showOTPNotification">
     	<table class="notif" border="0">
     		<tr class="notif">
