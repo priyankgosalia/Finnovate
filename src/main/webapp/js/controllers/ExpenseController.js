@@ -16,9 +16,18 @@
         vm.checkAndResize = checkAndResize;
         vm.pieOrColumn = pieOrColumn;
         $(window).resize(vm.checkAndResize);
+        vm.slider = new Slider('#ex1', {
+        	formatter: function(value) {
+        		$rootScope.days = value;
+        		return value + ' days';
+        	}
+        });
+        
         return vm;
 
         function expenseTracks(day) {
+        	day = $rootScope.days;
+        	console.log("Slider " + vm.slider('getValue'));
         	$rootScope.graph = "ColumnChart";
         	$rootScope.pieOrColumn = "COLUMN";
         	console.log("Spent in last " + day + " days");
@@ -40,6 +49,9 @@
         };
 
         function pieOrColumn(day, type) {
+        	day = $rootScope.days;
+        	console.log("Slider " + vm.slider);
+        	console.log("Slider " + vm.slider._state.value[0]);
         	$rootScope.graph = "ColumnChart";
         	console.log("Spent in last " + day + " days -- "+type);
         	$timeout(function(){
@@ -67,6 +79,7 @@
 
 
         function transactionDetails(day, type) {
+        	day = $rootScope.days;
         	if(type==null){
         		
         		return;

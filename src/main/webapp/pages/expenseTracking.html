@@ -10,25 +10,37 @@
 				<ui-state id='activeTab' default='1'></ui-state>
 				<ul class="nav nav-tabs">
 					<li ui-class="{'active': activeTab == 1}"><a
-						ui-set="{'activeTab': 1}" ng-click="ec.pieOrColumn(10,'PIE')">Expense spread (%)</a>
+						ui-set="{'activeTab': 1}" ng-click="ec.pieOrColumn(days,'PIE')">Expense spread (%)</a>
 					</li>
 					<li ui-class="{'active': activeTab == 2}"><a
-						ui-set="{'activeTab': 2}" ng-click="ec.pieOrColumn(10,'COLUMN')">Expense spread (₹)</a>
+						ui-set="{'activeTab': 2}" ng-click="ec.pieOrColumn(days,'COLUMN')">Expense spread (₹)</a>
 					</li>
 					<li ui-class="{'active': activeTab == 3}"><a
 						ui-set="{'activeTab': 3}"
-						ng-click="ec.transactionDetails(10,list_category)">Transaction Details</a></li>
+						ng-click="ec.transactionDetails(days,list_category)">Transaction Details</a></li>
 				</ul>
+				<input id="ex1" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="60" data-slider-step="1" data-slider-value="10" ng-model="days"/>
 				<div ui-if="activeTab == 1">
 					<h3 class="page-header">Expense spread (%)</h3>
+					<button ng-disabled="form.$invalid || ec.dataLoading"
+							class="btn btn-medium btn-success"
+							ng-click="ec.pieOrColumn(days,'PIE')">
+							<i class="fa fa-list"></i> Update
+						</button>
 				</div>
 
 				<div ui-if="activeTab == 2">
 					<h3 class="page-header">Expense spread (₹)</h3>
+					<button ng-disabled="form.$invalid || ec.dataLoading"
+							class="btn btn-medium btn-success"
+							ng-click="ec.pieOrColumn(days,'COLUMN')">
+							<i class="fa fa-list"></i> Update
+						</button>
 				</div>
 
 				<div ui-if="activeTab == 3">
 					<h3 class="page-header">Expense details</h3>
+					<div>Expenses for past {{days}} days.</div>
 					<div class="form-group has-success has-feedback">
 						Select Expense:&nbsp;<select id="sel" class="input-block-level"
 							ng-model="list_category"
@@ -38,7 +50,7 @@
 						<br />
 						<button ng-disabled="form.$invalid || ec.dataLoading"
 							class="btn btn-medium btn-success"
-							ng-click="ec.transactionDetails(10,list_category)">
+							ng-click="ec.transactionDetails(days,list_category)">
 							<i class="fa fa-list"></i> Get Details
 						</button>
 					</div>
@@ -46,7 +58,8 @@
 				<div ng-if="ec.dataLoading">
 					<i class="fa fa-spinner fa-pulse fa-2x"></i> <small>Please wait...</small>
 				</div>
-				<div ng-init="ec.pieOrColumn(10,'PIE');" id="greeting"></div>
+
+				<div ng-init="ec.pieOrColumn(days,'PIE');" id="greeting"></div>
 				<div ui-if="activeTab == 1 || activeTab == 2" id="columnchart_values" style="width: 100%; height: 300px;"></div>
 				<div ui-if="activeTab == 3" id="columnchart_transaction" style="width: 100%; height: 300px;"></div>
 			</div>
