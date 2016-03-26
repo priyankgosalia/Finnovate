@@ -1,0 +1,58 @@
+<div class="modal modal-overlay" ui-if='fundTransferFriendOverlay'
+	ui-state='fundTransferFriendOverlay'>
+	<div id="notificationTransfer"
+		ng-if="globals.showOTPNotificationForFundsTransfer">
+		<table class="notif" border="0">
+			<tr class="notif">
+				<td><i class="fa fa-envelope-square fa-3x"></i></td>
+				<td><b>RM-ICICIBK</b><br /> OTP for Funds Transfer is 981211</td>
+				<td><i class="fa fa-remove"></i></td>
+			</tr>
+		</table>
+	</div>
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button class="close" ui-turn-off="fundTransferFriendOverlay">&times;</button>
+				<h4 class="modal-title">Transfer Funds</h4>
+			</div>
+			<div class="modal-body">
+				<h5>
+					Transfer <b>Rs. {{vc.transferAmount}}</b> to <b>{{vc.transferFriend}}</b> ?
+				</h5>
+				<form role="form" ng-submit='vc.initiateTransfer()'>
+					<fieldset>
+						<div class="form-group has-success has-feedback">
+							<label>Source Account</label> <input type="text"
+								ng-model="vc.transferSource" class="form-control"
+								placeholder="Source Account">
+						</div>
+						<div class="form-group">
+							<label>Beneficiary Account</label> <input type="text"
+								class="form-control" placeholder="Destination Account"
+								ng-model="vc.transferDestination">
+						</div>
+						<div class="form-group">
+							<label>Amount</label> <input type="text" class="form-control"
+								placeholder="Transfer Amount" ng-model="vc.transferAmount">
+						</div>
+						<div class="form-group">
+							<label>Description</label> <input type="text"
+								class="form-control" placeholder="Description"
+								ng-model="vc.transferDesc">
+						</div>
+						<div class="form-group">
+							<label>Please enter the 6-digit OTP</label> <input type="text"
+								class="form-control" placeholder="6 digit OTP">
+						</div>
+					</fieldset>
+					<div class="modal-footer">
+						<button ui-turn-off="fundTransferFriendOverlay"
+							class="btn btn-default">Close</button>
+						<button type="submit" class="btn btn-primary">Transfer</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

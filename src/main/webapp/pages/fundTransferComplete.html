@@ -1,0 +1,27 @@
+<div class="modal" ui-if='fundTransferComplete' ui-state='fundTransferComplete'>
+  <div class="modal-backdrop in"></div>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button class="close" 
+                ui-turn-off="fundTransferComplete">&times;</button>
+        <h4 ng-if="vc.transferSuccess == true" class="modal-title">Success</h4>
+        <h4 ng-if="vc.transferSuccess == false" class="modal-title">Transfer Failed</h4>
+      </div>
+      <div class="modal-body">
+      	<div ng-if="vc.transferSuccess == true">
+	        <p>Fund transfer successful. Please make a note the transaction details below.</p>
+	        <p><b>Amount: </b>{{vc.transferAmount}}</p>
+	        <p><b>Transaction Reference: </b>{{vc.transferRef}}</p>
+	        <p><b>Transaction Date: </b>{{vc.transferRefDateTime}}</p>
+        </div>
+        <div ng-if="vc.transferSuccess == false">
+	        <p>Fund transfer failed.</p>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button ui-turn-off="fundTransferComplete" class="btn btn-default">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
