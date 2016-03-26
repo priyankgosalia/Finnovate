@@ -87,7 +87,7 @@
 			
 			if (loggedIn) {
 				console.log("Logged in. KYC Valid = "+$rootScope.globals.kycValid);
-				var kycValid = $rootScope.globals.kycValid;
+				 kycValid = $rootScope.globals.kycValid;
 			}
 			console.log(next.indexOf("logout"));
 			if (next.indexOf("logout")>0) {

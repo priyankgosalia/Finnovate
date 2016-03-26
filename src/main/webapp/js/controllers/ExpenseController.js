@@ -5,10 +5,12 @@
         .module('magus')
         .controller('ExpenseController', ExpenseController);
  
-    ExpenseController.$inject = ['$rootScope', '$location', 'RetailService', '$timeout'];
-    function ExpenseController($rootScope, $location, RetailService, $timeout) {
+    ExpenseController.$inject = ['$rootScope', '$location', 'RetailService', '$timeout', 'ChartsServices'];
+    function ExpenseController($rootScope, $location, RetailService, $timeout, ChartsServices) {
         var vm = this;
         vm.RetailService = RetailService;
+        vm.ChartsServices = ChartsServices;
+    	console.log("ExpenseController 2 ....");
         vm.expenseTracks = expenseTracks;
         vm.transactionDetails = transactionDetails;
         vm.dataLoading = true;
@@ -27,7 +29,7 @@
         		vm.RetailService.spentOnPercentages(day, function(response) {
             		if (response.data.map) {
             			$rootScope.tranTypes = response.data;
-                    	drawChart(response.data.map);
+                    	vm.ChartsServices.drawChart(response.data.map);
                     	vm.dataLoading = false;
                     	console.debug("Transtype " + response.data.transactionTypes);
             		} else {
@@ -53,9 +55,9 @@
             		if (response.data.map) {
             			$rootScope.tranTypes = response.data;
             			if($rootScope.pieOrColumn == "COLUMN"){
-                    	drawChart(response.data.map);
+                    	vm.ChartsServices.drawChart(response.data.map);
             			}else{
-            				drawPie(response.data.map);
+            				vm.ChartsServices.drawPie(response.data.map);
             			}
                     	vm.dataLoading = false;
                     	console.debug("Transtype " + response.data.transactionTypes);
@@ -80,7 +82,7 @@
         		vm.dataLoading = true;
         		vm.RetailService.transactionDetails(day,type, function(response) {
             		if (response.data.source) {
-            			drawTransactionChart(response.data.source);
+            			vm.ChartsServices.drawTransactionChart(response.data.source);
                     	vm.dataLoading = false;
             		} else {
             			$('#greeting').html('Oops! ' + response.data.message);
@@ -93,12 +95,12 @@
 	    function checkAndResize() {
 			if ($rootScope.graph == "ColumnChart") {
 	        	if($rootScope.pieOrColumn == "COLUMN"){
-	        		resize();
+	        		vm.ChartsServices.resize();
 	        	}else{
-	        		resizePie();
+	        		vm.ChartsServices.resizePie();
 	        	}
 			} else {
-				resizeTransactionChart();
+				vm.ChartsServices.resizeTransactionChart();
 			}
 		};
 
