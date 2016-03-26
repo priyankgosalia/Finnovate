@@ -14,8 +14,11 @@
         vm.getOTP = getOTP;
         vm.doKYC = doKYC;
         vm.completeKYC = completeKYC;
+        vm.onbESignFinal = onbESignFinal;
         vm.startBanking = startBanking;
         vm.aadhar = "";
+        vm.pan = "AAK9D2212J";
+        vm.addr = "Test Address";
         vm.userFirstName = AuthenticationService.GetUserFirstName();
         vm.username = AuthenticationService.GetUsername();
         vm.otpGenerated = false;
@@ -63,6 +66,12 @@
         			vm.dataLoading = false;
         		}
         	});
+        };
+        
+        function onbESignFinal() {
+        	console.log("Completing KYC for "+vm.userFirstName+", username="+vm.username+", aadhar="+vm.aadhar);
+        	console.log(vm.addr);
+        	vm.$location.path('/onbESignConfirm');
         };
         
         function completeKYC() {

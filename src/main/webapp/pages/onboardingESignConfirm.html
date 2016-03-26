@@ -1,0 +1,57 @@
+<div class="scrollable">
+	<div class="scrollable-content section">
+		<div class="list-group text-center">
+			<div class="list-group-item list-group-item-home">
+				<h4>Verify Personal Details for e-KYC</h4>
+				<img width="85" height="110" src="images/passportPhoto.jpg"></img>
+				<br/><br/>
+				<div class="panel-group" ui-state='myAccordion' ui-default='1'>
+					<div class="panel panel-default" ng-repeat="i in [1]">
+		          		<div class="panel-heading" ui-set="{'myAccordion': i}">
+				            <h4 class="panel-title">
+				                Personal Details
+				            </h4>
+		          		</div>
+		          		<div ui-if="myAccordion == {{i}}">
+				            <div class="panel-body">
+				              <table>
+				              	<tr align="left">
+				              		<td class="kyc" align="left"><b>Full Name</b></td>
+				              		<td>Sumit Kumar</td>
+				              	</tr>
+				              	<tr align="left">
+				              		<td class="kyc" align="left"><b>Father's Name</b></td>
+				              		<td>Bhagwansahay Kumar</td>
+				              	</tr>
+				              	<tr align="left">
+				              		<td class="kyc" align="left"><b>Address</b></td>
+				              		<td>
+				              			K/2 Riviera Pearl, 8th Floor<br/>
+				              			H.K. Road, Vile Parle(E)<br/>
+				              			Mumbai - 400063<br/>
+				              		</td>
+				              	</tr>
+				              	<tr align="left">
+				              		<td class="kyc" align="left"><b>Phone Number</b></td>
+				              		<td>+91 9920099200</td>
+				              	</tr>
+				              	<tr align="left">
+				              		<td class="kyc" align="left"><b>PAN</b></td>
+				              		<td>{{kca.pan}}</td>
+				              	</tr>
+				              	<tr align="left">
+				              		<td class="kyc" align="left"><b>Comm. Addr.</b></td>
+				              		<td>{{kca.addr}}</td>
+				              	</tr>
+				              </table>
+				            </div>
+		          		</div>
+		        	</div>
+		        </div>
+				<button 
+					class="btn btn-lg btn-success" ng-click="kca.completeKYC()">
+					<i class="fa fa-check"></i> e-Sign </button>
+			</div>
+		</div>
+	</div>
+</div>
