@@ -72,7 +72,7 @@
 	function resizePie() {
 		var chart = new google.visualization.PieChart(document.getElementById("columnchart_values"));
     	var	optionsPie = {
-    	      		  title: "Expenses for past 10 days.",
+    	      		  title: "Expenses for past " +$rootScope.days+ " days.",
     	      		  is3D: true,
     	      		};
 
@@ -82,7 +82,7 @@
 	function resize() {
 		var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_values"));
     	var options = {
-  	    	  title: "Expenses for past 10 days, in (₹)",
+  	    	  title: "Expenses for past " +$rootScope.days+ " days, in (₹)",
   	    	  bar: {groupWidth: "95%"},
   	    	  legend: 'bottom'
   	    	};
