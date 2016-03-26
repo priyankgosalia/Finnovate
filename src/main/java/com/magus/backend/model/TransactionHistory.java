@@ -1,10 +1,12 @@
 package com.magus.backend.model;
 
+import java.util.Date;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class TransactionHistory extends ErrorResponse {
 
-	private String transactiondate;
+	private Date transactiondate;
 	private String amount;
 	private String closing_balance;
 	private String accountno;
@@ -16,11 +18,11 @@ public class TransactionHistory extends ErrorResponse {
 	}
 
 	@JsonProperty("transactiondate")
-	public String getTransactiondate() {
+	public Date getTransactiondate() {
 		return transactiondate;
 	}
 
-	public void setTransactiondate(String transactiondate) {
+	public void setTransactiondate(Date transactiondate) {
 		this.transactiondate = transactiondate;
 	}
 
