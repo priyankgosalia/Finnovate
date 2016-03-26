@@ -97,13 +97,13 @@
     	var i=0;
     	tableData = new google.visualization.DataTable();
     	
-    	tableData.addColumn('string', 'Date');
+    	tableData.addColumn('date', 'Date');
     	tableData.addColumn('number', 'amount');
-    	console.log("Json ..." + json[0].transactiondate);
+    	console.log("Json ..." + new Date(json[0].transactiondate));
     	tableData.addRows(json.length);
 		var object;
     	for(object in json){
-    		tableData.setCell(i, 0, json[i].transactiondate);
+    		tableData.setCell(i, 0, new Date(json[i].transactiondate));
     		tableData.setCell(i, 1, json[i].amount);
     		i = i +1;
     	}
@@ -116,6 +116,12 @@
 		var tableOptions = {
 				alternatingRowStyle : true,
 				};
+		var formatter = new google.visualization.NumberFormat(
+			    {prefix: '₹', pattern:'#,###.##'});
+			formatter.format(tableData, 1); // Apply formatter to second column
+			
+		var formatter2 = new google.visualization.DateFormat({pattern: "EEE, d-MMM-yyyy, H:m"});
+		formatter2.format(tableData,0);
 		  table.draw(tableData, tableOptions);
 	}    
 	
