@@ -40,6 +40,11 @@
 			templateUrl : 'pages/onboardingComplete.html',
 			controller : 'KYCAadharController',
 			controllerAs : 'kca'
+		}).when('/onbESign', {
+			title : 'KYC Confirmation',
+			templateUrl : 'pages/onboardingESign.html',
+			controller : 'KYCAadharController',
+			controllerAs : 'kca'
 		}).when('/expenses', {
 			templateUrl : 'pages/expenseTracking.html',
 			controller : 'ExpenseController',

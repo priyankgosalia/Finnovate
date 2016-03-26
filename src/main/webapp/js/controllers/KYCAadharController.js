@@ -13,6 +13,7 @@
         vm.AuthenticationService = AuthenticationService;
         vm.getOTP = getOTP;
         vm.doKYC = doKYC;
+        vm.completeKYC = completeKYC;
         vm.startBanking = startBanking;
         vm.aadhar = "";
         vm.userFirstName = AuthenticationService.GetUserFirstName();
@@ -55,7 +56,7 @@
         			vm.otpGenerated = true;
         			AuthenticationService.SetKYCValid(true);
         			vm.dataLoading = false;
-        			vm.$location.path('/onbSuccess');
+        			vm.$location.path('/onbESign');
         		} else {
         			vm.kycFailure = true;
         			vm.failureMessage = response.message;
@@ -63,6 +64,12 @@
         		}
         	});
         };
+        
+        function completeKYC() {
+        	console.log("Completing KYC for "+vm.userFirstName+", username="+vm.username+", aadhar="+vm.aadhar);
+        	vm.$location.path('/onbSuccess');
+        };
+        
         
         function startBanking() {
         	vm.$location.path('/home');
