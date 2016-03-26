@@ -1,0 +1,35 @@
+<div class="modal" ui-if='salaryInfoModal' ui-state='salaryInfoModal'>
+	<div class="modal-backdrop in"></div>
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button class="close" ui-turn-off="salaryInfoModal">&times;</button>
+			</div>
+			<div class="modal-body">
+				<div class="list-group">
+					<div class="list-group-item">
+						<h3><i class="fa fa-inr fa-2x"></i>&nbsp;&nbsp;Account Summary</h3>
+					</div>
+					<div class="list-group-item">
+						<center>
+							<h5>Account Balance</h5>
+							<b>&#8377; 240987.50</b>
+						</center>
+					</div>
+					<div class="list-group-item media">
+						<center>
+							<h5>Your salary usage this month</h5>
+						</center>
+						<canvas id="doughnut" class="chart chart-doughnut"
+							chart-options='{animateScale : false,legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li><span style=\"background-color:<%=segments[i].fillColor%>\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>"}'
+							chart-data="hc.data" chart-labels="hc.labels"
+							chart-legend="true" chart-colours="hc.colours">
+						</canvas>
+						<center>Last salary credit: &#8377; 42600.00 (23 March
+							2016)</center>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

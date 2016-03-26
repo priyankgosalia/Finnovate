@@ -2,7 +2,7 @@
 	'use strict';
 
 	var magusApp = angular.module('magus', [ 'ngRoute', 'ngCookies',
-			'mobile-angular-ui', 'mobile-angular-ui.gestures' ]);
+			'mobile-angular-ui', 'mobile-angular-ui.gestures', 'chart.js' ]);
 
 	magusApp.config(function config($routeProvider) {
 		$routeProvider.when('/home', {

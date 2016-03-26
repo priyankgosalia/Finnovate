@@ -13,19 +13,19 @@
 		        			<button type="button" class="btn btn-circle-homescreen">
 		        				<i class="fa fa-inr feature-icon fa-3x text-primary"></i>
 	        				</button>
-	        				<b>Accounts</b>
+	        				Accounts
 	        			</td>
 	        			<td align="center">
 	        				<button type="button" class="btn btn-circle-homescreen">
 		        				<i class="fa fa-credit-card feature-icon fa-3x text-primary"></i>
 	        				</button>
-	        				<b>Cards</b>
+	        				Cards
 	        			</td>
 	        			<td align="center">
 	        				<button type="button" class="btn btn-circle-homescreen">
 		        				<i class="fa fa-inbox feature-icon fa-3x text-primary"></i>
 	        				</button>
-	        				<b>Loans</b>
+	        				Loans
 	        			</td>
 	        		</tr>
 	        		<tr>
@@ -33,30 +33,41 @@
 	        				<button type="button" class="btn btn-circle-homescreen">
 		        				<i class="fa fa-bar-chart feature-icon fa-3x text-primary"></i>
 	        				</button>
-	        				<b>Investments</b>
+	        				Investments
 	        			</td>
 	        			<td align="center">
 	        				<button type="button" class="btn btn-circle-homescreen">
 		        				<i class="fa fa-heartbeat feature-icon fa-3x text-primary"></i>
 	        				</button>
-	        				<b>Insurance</b>
+	        				Insurance
 	        			</td>
 	        			<td align="center" ng-click="hc.expenses()">
 	        				<button type="button" class="btn btn-circle-homescreen">
 		        				<i class="fa fa-line-chart feature-icon fa-3x text-primary"></i>
 	        				</button>
-	        				<b>Expenses</b>
-	        			</td>
-	        		</tr>
-	        		<tr>
-	        			<td align="center" colspan="3" ng-click="hc.virtualRM()">
-	        				<button type="button" class="btn btn-circle-homescreen btn-xl">
-		        				<i class="fa fa-user feature-icon fa-3x"></i>
-		        				<br/><h5 class="homeitem">iAssist</h5>
-	        				</button>
+	        				Expenses
 	        			</td>
 	        		</tr>
 	        	</table>
+	        	<table align="center">
+	        		<tr>
+	        			<td align="center" ng-click="hc.salaryInfo()">
+	        				<button type="button" class="btn btn-circle-homescreen btn-xl">
+		        				<i class="fa fa-dashboard feature-icon fa-3x"></i>
+	        				</button>
+	        				<h5 class="homeitem">Account Summary</h5>
+	        			</td>
+	        			<td align="center" ng-click="hc.virtualRM()">
+	        				<button type="button" class="btn btn-circle-homescreen btn-xl">
+		        				<i class="fa fa-user feature-icon fa-3x"></i>
+	        				</button>
+	        				<h5 class="homeitem">iAssist</h5>
+	        			</td>
+	        		</tr>
+	        	</table>
+	        	<div ui-content-for="modals">
+				  <div ng-include="'pages/homenew.html'"></div>
+				</div>
 	        </div>
 	      </div>
 	</div>

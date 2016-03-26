@@ -1,3 +1,4 @@
+
 table {
 	table-layout: fixed;
 	padding: 1px;
@@ -23,77 +24,16 @@ h5 .homeitem {
 	align: center;
 }
 
-.round-button {
-	width:25%;
-}
-.round-button-circle {
-	width: 100%;
-	height:0;
-	padding-bottom: 100%;
-    border-radius: 50%;
-	border:5px solid #cfdcec;
-    overflow:hidden;
-    
-    background: #4679BD; 
-    box-shadow: 0 0 3px gray;
-}
-.round-button-circle:hover {
-	background:#30588e;
-}
-.round-button a {
-    display:block;
-	float:left;
-	width:100%;
-	padding-top:50%;
-    padding-bottom:50%;
-	line-height:1em;
-	margin-top:-0.5em;
-    
-	text-align:center;
-	color:#e2eaf3;
-    font-family:Arial;
-    font-size:15px;
-    text-decoration:none;
-}
-
-.round-button-clicked {
-	width:25%;
-}
-.round-button-clicked-circle {
-	width: 100%;
-	height:0;
-	padding-bottom: 100%;
-    border-radius: 50%;
-	border:5px solid #1c0015;
-    overflow:hidden;
-    
-    background: #ac282f; 
-    box-shadow: 0 0 3px gray;
-}
-.round-button-clicked-circle:hover {
-	background:#30588e;
-}
-.round-button-clicked a {
-    display:block;
-	float:left;
-	width:100%;
-	padding-top:50%;
-    padding-bottom:50%;
-	line-height:1em;
-	margin-top:-0.5em;
-    
-	text-align:center;
-	color:#e2eaf3;
-    font-family:Arial;
-    font-size:15px;
-    text-decoration:none;
+.temp {
+	color: #8aace3;
+	color: #ec725e;
 }
 
 .btn-circle-homescreen {
   width: 70px;
   height: 70px;
   text-align: center;
-  padding: 6px 0;
+  padding: 0px 0;
   font-size: 12px;
   line-height: 1.428571429;
   border-radius: 15px;
@@ -104,12 +44,12 @@ h5 .homeitem {
 .btn-circle-homescreen.btn-xl {
   width: 110px;
   height: 110px;
-  padding: 10px 16px;
+  padding: 17px 16px;
   font-size: 20px;
   line-height: 1.33;
   border-radius: 60px;
   color: white;
-  background-color: #e96d16;
+  background-color: #e18423;
   border: 1px solid #bbb;
 }
 
