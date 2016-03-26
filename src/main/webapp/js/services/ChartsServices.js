@@ -117,9 +117,10 @@
   }
     
 	function resizeTransactionChart() {
-		var table = new google.visualization.Table(document.getElementById("columnchart_values"));
+		var table = new google.visualization.Table(document.getElementById("columnchart_transaction"));
 		  table.draw(tableData, tableOptions);
 	}    
+	
 	
     }
 

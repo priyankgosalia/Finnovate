@@ -10,13 +10,11 @@
         var vm = this;
         vm.RetailService = RetailService;
         vm.ChartsServices = ChartsServices;
-    	console.log("ExpenseController 2 ....");
         vm.expenseTracks = expenseTracks;
         vm.transactionDetails = transactionDetails;
         vm.dataLoading = true;
         vm.checkAndResize = checkAndResize;
         vm.pieOrColumn = pieOrColumn;
-        //vm.onresize = ($rootScope.graph == "ColumnChart" ) ? resize : resizeTransactionChart;
         $(window).resize(vm.checkAndResize);
         return vm;
 
@@ -41,22 +39,19 @@
         	
         };
 
-        function pieOrColumn(day) {
+        function pieOrColumn(day, type) {
         	$rootScope.graph = "ColumnChart";
-        	if($rootScope.pieOrColumn == "COLUMN"){
-        		$rootScope.pieOrColumn = "PIE";
-        	}else{
-        		$rootScope.pieOrColumn = "COLUMN";
-        	}
-        	console.log("Spent in last " + day + " days");
+        	console.log("Spent in last " + day + " days -- "+type);
         	$timeout(function(){
         		vm.dataLoading = true;
         		vm.RetailService.spentOnPercentages(day, function(response) {
             		if (response.data.map) {
             			$rootScope.tranTypes = response.data;
-            			if($rootScope.pieOrColumn == "COLUMN"){
-                    	vm.ChartsServices.drawChart(response.data.map);
-            			}else{
+            			if(type == "COLUMN"){
+            				console.log("drawing Bar chart");
+            				vm.ChartsServices.drawChart(response.data.map);
+            			}else if (type=="PIE"){
+            				console.log("drawing Pie chart");
             				vm.ChartsServices.drawPie(response.data.map);
             			}
                     	vm.dataLoading = false;
@@ -70,9 +65,9 @@
         	
         };
 
+
         function transactionDetails(day, type) {
         	if(type==null){
-        		expenseTracks(day);
         		
         		return;
         	}

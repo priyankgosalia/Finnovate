@@ -1,53 +1,55 @@
+<script src="js/services/ChartsServices.js"></script>
 <div class="scrollable">
 	<div class="scrollable-content section">
-		<div class="scrollable">
-			<div class="scrollable-content section">
-				<div class="list-group text-center">
-					<div class="list-group-item list-group-item-home">
-						<img width="50" height="50" src="images/icici_logo_small.gif"></img>
-						<h1>magus</h1>
-						<h4>Expense Tracker</h4>
-					</div>
-					<br />
-					<div ng-if="ec.dataLoading">
-						<i class="fa fa-spinner fa-pulse fa-2x"></i> <small>Loading
-							expense chart...</small>
-					</div>
-					<div class="list-group-item list-group-item-home">
-						<div ng-init="ec.expenseTracks(10);" id="greeting"></div>
+		<div class="list-group text-center">
+			<div class="list-group-item list-group-item-home">
+				<img width="50" height="50" src="images/icici_logo_small.gif"></img>
+				<h5>Expense Tracker</h5>
+			</div>
 
-						<form role="form">
-							<fieldset>
-								<div class="form-group has-success has-feedback">
-									Transaction Types :<select id="sel" class="input-block-level"
-										ng-model="list_category"
-										ng-options="tranType as tranType for tranType in tranTypes.transactionTypes">
-										<option value="">All Chart</option>
-									</select>
-								</div>
-								<br />
-								<button
-									ng-disabled="(form.$invalid || ec.dataLoading || list_category.length > 0)"
-									class="btn btn-lg btn-success btn-block"
-									ng-click="ec.pieOrColumn(10)">
-									<i class="fa fa-sign-in"></i>Change View
-								</button>
-								<br /> <br />
+			<div class="list-group-item list-group-item-home">
+				<ui-state id='activeTab' default='1'></ui-state>
+				<ul class="nav nav-tabs">
+					<li ui-class="{'active': activeTab == 1}"><a
+						ui-set="{'activeTab': 1}" ng-click="ec.pieOrColumn(10,'PIE')">Pie Chart</a>
+					</li>
+					<li ui-class="{'active': activeTab == 2}"><a
+						ui-set="{'activeTab': 2}" ng-click="ec.pieOrColumn(10,'COLUMN')">Bar Chart</a>
+					</li>
+					<li ui-class="{'active': activeTab == 3}"><a
+						ui-set="{'activeTab': 3}"
+						ng-click="ec.transactionDetails(10,list_category)">Details</a></li>
+				</ul>
+				<div ui-if="activeTab == 1">
+					<h3 class="page-header">Pie Chart</h3>
+				</div>
 
-								<div class="form-actions">
-									<br />
-									<button ng-disabled="form.$invalid || ec.dataLoading"
-										class="btn btn-lg btn-success btn-block"
-										ng-click="ec.transactionDetails(10,list_category)">
-										<i class="fa fa-sign-in"></i> Get Details
-									</button>
-								</div>
-							</fieldset>
-						</form>
+				<div ui-if="activeTab == 2">
+					<h3 class="page-header">Bar Chart</h3>
+				</div>
 
-						<div id="columnchart_values" style="width: 100%; height: 300px;"></div>
+				<div ui-if="activeTab == 3">
+					<h3 class="page-header">Expense wise details</h3>
+					<div class="form-group has-success has-feedback">
+						Select Expense:&nbsp;<select id="sel" class="input-block-level"
+							ng-model="list_category"
+							ng-options="tranType as tranType for tranType in tranTypes.transactionTypes">
+							<option value="">Select an Expense</option>
+						</select><br />
+						<br />
+						<button ng-disabled="form.$invalid || ec.dataLoading"
+							class="btn btn-medium btn-success"
+							ng-click="ec.transactionDetails(10,list_category)">
+							<i class="fa fa-list"></i> Get Details
+						</button>
 					</div>
 				</div>
+				<div ng-if="ec.dataLoading">
+					<i class="fa fa-spinner fa-pulse fa-2x"></i> <small>Please wait...</small>
+				</div>
+				<div ng-init="ec.pieOrColumn(10,'PIE');" id="greeting"></div>
+				<div ui-if="activeTab == 1 || activeTab == 2" id="columnchart_values" style="width: 100%; height: 300px;"></div>
+				<div ui-if="activeTab == 3" id="columnchart_transaction" style="width: 100%; height: 300px;"></div>
 			</div>
 		</div>
 	</div>
