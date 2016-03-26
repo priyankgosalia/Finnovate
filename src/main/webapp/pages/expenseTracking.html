@@ -1,4 +1,3 @@
-<script src="js/services/ChartsServices.js"></script>
 <div class="scrollable">
 	<div class="scrollable-content section">
 		<div class="list-group text-center">
@@ -11,25 +10,25 @@
 				<ui-state id='activeTab' default='1'></ui-state>
 				<ul class="nav nav-tabs">
 					<li ui-class="{'active': activeTab == 1}"><a
-						ui-set="{'activeTab': 1}" ng-click="ec.pieOrColumn(10,'PIE')">Pie Chart</a>
+						ui-set="{'activeTab': 1}" ng-click="ec.pieOrColumn(10,'PIE')">Expense spread (%)</a>
 					</li>
 					<li ui-class="{'active': activeTab == 2}"><a
-						ui-set="{'activeTab': 2}" ng-click="ec.pieOrColumn(10,'COLUMN')">Bar Chart</a>
+						ui-set="{'activeTab': 2}" ng-click="ec.pieOrColumn(10,'COLUMN')">Expense spread (₹)</a>
 					</li>
 					<li ui-class="{'active': activeTab == 3}"><a
 						ui-set="{'activeTab': 3}"
-						ng-click="ec.transactionDetails(10,list_category)">Details</a></li>
+						ng-click="ec.transactionDetails(10,list_category)">Transaction Details</a></li>
 				</ul>
 				<div ui-if="activeTab == 1">
-					<h3 class="page-header">Pie Chart</h3>
+					<h3 class="page-header">Expense spread (%)</h3>
 				</div>
 
 				<div ui-if="activeTab == 2">
-					<h3 class="page-header">Bar Chart</h3>
+					<h3 class="page-header">Expense spread (₹)</h3>
 				</div>
 
 				<div ui-if="activeTab == 3">
-					<h3 class="page-header">Expense wise details</h3>
+					<h3 class="page-header">Expense details</h3>
 					<div class="form-group has-success has-feedback">
 						Select Expense:&nbsp;<select id="sel" class="input-block-level"
 							ng-model="list_category"

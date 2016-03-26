@@ -10,20 +10,6 @@
     	console.log("Loading ....");
     	google.charts.load("current", {packages:['corechart','table']});
 
-    	$rootScope.data = "";
-    	$rootScope.view = "";
-
-    	$rootScope.options = {
-    	  title: "Expenses for past 10 days, in Rs.",
-    	  bar: {groupWidth: "95%"},
-    	  legend: 'bottom'
-    	};
-
-    	$rootScope.optionsPie = {
-      		  title: "Expenses for past 10 days, in Rs.",
-      		  is3D: true,
-      		};
-    	
     	var service = {};
         service.drawChart = drawChart;
         service.drawPie   = drawPie;
@@ -34,26 +20,28 @@
         return service;
         
 
+    	var data = "";
+    	var view = "";
 
     //google.charts.setOnLoadCallback(drawChart);
     function drawChart(json) {
     	console.log("DrawChart");
     	var i=0;
-    	$rootScope.data = new google.visualization.DataTable();
+    	data = new google.visualization.DataTable();
     	
-    	$rootScope.data.addColumn('string', 'Type');
-    	$rootScope.data.addColumn('number', 'amount');
+    	data.addColumn('string', 'Type');
+    	data.addColumn('number', 'amount');
     	console.log("Json ..." + json);
-		$rootScope.data.addRows(json.entry.length);
+		data.addRows(json.entry.length);
 		var object;
     	for(object in json.entry){
-    		$rootScope.data.setCell(i, 0, json.entry[i].key);
-    		$rootScope.data.setCell(i, 1, json.entry[i].value);
+    		data.setCell(i, 0, json.entry[i].key);
+    		data.setCell(i, 1, json.entry[i].value);
     		i = i +1;
     	}
     	
-    	$rootScope.view = new google.visualization.DataView($rootScope.data);
-    	$rootScope.view.setColumns([0, 1,
+    	view = new google.visualization.DataView(data);
+    	view.setColumns([0, 1,
     	                 { calc: "stringify",
     	                   sourceColumn: 1,
     	                   type: "string",
@@ -65,16 +53,16 @@
     function drawPie(json) {
     	console.log("DrawPie");
     	var i=0;
-    	$rootScope.data = new google.visualization.DataTable();
+    	data = new google.visualization.DataTable();
     	
-    	$rootScope.data.addColumn('string', 'Type');
-    	$rootScope.data.addColumn('number', 'amount');
+    	data.addColumn('string', 'Type');
+    	data.addColumn('number', 'amount');
     	console.log("Json ..." + json);
-		$rootScope.data.addRows(json.entry.length);
+		data.addRows(json.entry.length);
 		var object;
     	for(object in json.entry){
-    		$rootScope.data.setCell(i, 0, json.entry[i].key);
-    		$rootScope.data.setCell(i, 1, json.entry[i].value);
+    		data.setCell(i, 0, json.entry[i].key);
+    		data.setCell(i, 1, json.entry[i].value);
     		i = i +1;
     	}
 
@@ -83,19 +71,26 @@
 
 	function resizePie() {
 		var chart = new google.visualization.PieChart(document.getElementById("columnchart_values"));
-		  chart.draw($rootScope.data, $rootScope.optionsPie);
+    	var	optionsPie = {
+    	      		  title: "Expenses for past 10 days.",
+    	      		  is3D: true,
+    	      		};
+
+		  chart.draw(data, optionsPie);
 	}
     
 	function resize() {
 		var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_values"));
-		  chart.draw($rootScope.view, $rootScope.options);
+    	var options = {
+  	    	  title: "Expenses for past 10 days, in (₹)",
+  	    	  bar: {groupWidth: "95%"},
+  	    	  legend: 'bottom'
+  	    	};
+
+		  chart.draw(view, options);
 	}
 
 	var tableData = "";
-	var tableOptions = {
-			  title: "Expenses for past 10 days, in Rs.",
-			  legend: 'bottom'
-			};
 
     function drawTransactionChart(json) {
     	console.log("drawTransactionChart");
@@ -118,6 +113,9 @@
     
 	function resizeTransactionChart() {
 		var table = new google.visualization.Table(document.getElementById("columnchart_transaction"));
+		var tableOptions = {
+				alternatingRowStyle : true,
+				};
 		  table.draw(tableData, tableOptions);
 	}    
 	
