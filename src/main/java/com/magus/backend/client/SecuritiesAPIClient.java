@@ -19,6 +19,6 @@ public class SecuritiesAPIClient extends AbstractClient {
 	
 	public static void main(String[] args) {
 		SecuritiesAPIClient client = new SecuritiesAPIClient();
-		System.out.println(client.mutualFundsDetails("10002"));
+		System.out.println(client.mutualFundsDetails("10001"));
 	}
 }

@@ -21,7 +21,7 @@
 				</ul>
 				<input id="ex1" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="60" data-slider-step="1" data-slider-value="10" ng-model="days"/>
 				<div ui-if="activeTab == 1">
-					<h3 class="page-header">Expense spread (%)</h3>
+					<h3 class="page-header">Spread (%)</h3>
 					<button ng-disabled="form.$invalid || ec.dataLoading"
 							class="btn btn-medium btn-success"
 							ng-click="ec.pieOrColumn(days,'PIE')">
@@ -30,7 +30,7 @@
 				</div>
 
 				<div ui-if="activeTab == 2">
-					<h3 class="page-header">Expense spread (₹)</h3>
+					<h3 class="page-header">Spread (₹)</h3>
 					<button ng-disabled="form.$invalid || ec.dataLoading"
 							class="btn btn-medium btn-success"
 							ng-click="ec.pieOrColumn(days,'COLUMN')">
@@ -39,7 +39,7 @@
 				</div>
 
 				<div ui-if="activeTab == 3">
-					<h3 class="page-header">Expense details</h3>
+					<h3 class="page-header">Details</h3>
 					<div>Expenses for past {{days}} days.</div>
 					<div class="form-group has-success has-feedback">
 						Select Expense:&nbsp;<select id="sel" class="input-block-level"
