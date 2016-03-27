@@ -30,6 +30,7 @@ public class LoginService extends AbstractService {
 		users.put("ujjwal", 	new UserBO("ujjwal","password","Ujjwal","Jain",true,false));
 		users.put("prajot", 	new UserBO("prajot","password","Prajot","Naik",true,false));
 		users.put("priyank", 	new UserBO("priyank","password","Priyank","Gosalia",true,false));
+		users.put("sumit", 	new UserBO("sumit","sumit","Sumit","Kumar",true,false));
 	}
 	
 	@POST
